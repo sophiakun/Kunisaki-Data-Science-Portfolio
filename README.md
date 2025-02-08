@@ -6,10 +6,12 @@ Welcome! This repository highlights my projects and technical skills from the co
 
 Projects will be organized into folders based on:
 
-- **EDA**
-- **Visualizations**
-- **Models**
+- **Portfolio 1**
+- **Portfolio 2**
+- **Portfolio 3**
+- **Final Project**
 
 Each folder will contain:
-- **Jupyter Notebooks**: to document code
-- **README.md**: to describe what the project does, why the project is useful, and who maintains and contributes to the project
+- **data**: for datasets
+- **class**: for code done during class 
+- **README.md**: to describe what the project does, why the project is useful, and who contributes to the project
