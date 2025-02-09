@@ -18,12 +18,12 @@ Kunisaki-Data-Science-Portfolio/
 
 ├── basic_streamlit_app/
 
-│   ├── README.md
+│     ├── README.md
 
-│   ├── data/
+│     ├── data/
 
-│   |   ├── penguins.csv
+│   |     ├── penguins.csv
 
-│   ├── main.py
+│     ├── main.py
 
 ├── README.md
