@@ -15,9 +15,15 @@ streamlit run main.py
 ## Repository Structure:
 
 Kunisaki-Data-Science-Portfolio/
+
 ├── basic_streamlit_app/
+
 │   ├── README.md
+
 │   ├── data/
+
 │   |   ├── penguins.csv
+
 │   ├── main.py
+
 ├── README.md
