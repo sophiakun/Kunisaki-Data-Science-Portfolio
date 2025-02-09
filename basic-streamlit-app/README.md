@@ -7,12 +7,15 @@ This repository contains a Streamlit application that allows users to explore th
 ## How to Run the Streamlit App:
 
 ls 
+
 cd basic-streamlit-app/
+
 streamlit run main.py
 
 ## Repository Structure:
 
-basic-streamlit-app
+Kunisaki-Data-Science-Portfolio/
+basic-streamlit-app/
 │── data        # contains datasets
 │   ├── penguins.csv            
 │── main.py     # contains code                 
