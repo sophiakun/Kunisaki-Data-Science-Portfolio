@@ -28,3 +28,6 @@ melted_df = pd.melt(df,
 melted_df = melted_df.dropna()
 print(melted_df)
 
+# use str.split to split gender and sport by the underscore (_), split only the first occurence (n=1),
+# and create two new columns for the new variables (expand=True)
+melted_df[['Gender', 'Sport']] = melted_df['Gender_Sport'].str.split('_', n=1, expand=True)
