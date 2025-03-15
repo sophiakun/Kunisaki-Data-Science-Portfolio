@@ -34,3 +34,18 @@ melted_df[['Gender', 'Sport']] = melted_df['Gender_Sport'].str.split('_', n=1, e
 
 # use str.replace to replace underscore (_) with a space in the sport column
 melted_df["Sport"] = melted_df["Sport"].str.replace("_", " ", regex=True)
+
+# rename columns
+melted_df = melted_df.rename(columns={"medalist_name": "Medalist Name"})
+# drop the original Gender_Sport column
+melted_df = melted_df.drop(columns=["Gender_Sport"])
+# reorder columns
+melted_df = melted_df[['Medalist Name', 'Gender', 'Sport', 'Medal']]
+
+# capitalize everything
+melted_df["Sport"] = melted_df["Sport"].str.title()
+melted_df["Gender"] = melted_df["Gender"].str.title()
+melted_df["Medal"] = melted_df["Medal"].str.title()
+
+print("Cleaned (Tidy) DataFrame:")
+print(melted_df)
