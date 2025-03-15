@@ -31,3 +31,6 @@ print(melted_df)
 # use str.split to split gender and sport by the underscore (_), split only the first occurence (n=1),
 # and create two new columns for the new variables (expand=True)
 melted_df[['Gender', 'Sport']] = melted_df['Gender_Sport'].str.split('_', n=1, expand=True)
+
+# use str.replace to replace underscore (_) with a space in the sport column
+melted_df["Sport"] = melted_df["Sport"].str.replace("_", " ", regex=True)
