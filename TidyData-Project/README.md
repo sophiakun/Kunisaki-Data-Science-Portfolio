@@ -37,7 +37,11 @@ For further reading, please reference the sources below.
 
 - [Pandas Cheat Sheet](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf)
 - [Tidy Data Principles](https://vita.had.co.nz/papers/tidy-data.pdf)
+- [Seaborn Barplots](https://seaborn.pydata.org/generated/seaborn.barplot.html)
+- [Seaborn Countplots](https://seaborn.pydata.org/generated/seaborn.countplot.html)
 
 #Visual Examples:
 
-Consider adding screenshots of your visualizations or code snippets.
+![Top 5 Sports by Number of Medals](Figure_1.png)
+
+![Number of Medals by Gender](Figure_2.png)
