@@ -22,7 +22,7 @@ My objectives are to clean, transform, and then do basic exploratory data analys
 
 ### 2008 Summer Olympic Medalists Dataset:
 
-"olympics_08_medalists.csv" adapted from [here](https://edjnet.github.io/OlympicsGoNUTS/2008/)
+"olympics_08_medalists.csv" adapted from [here](https://edjnet.github.io/OlympicsGoNUTS/2008/).
 
 The dataset lists every athlete who one a medal in the 2008 Olympic Games, and their corresponding gender/sport, and medal won (gold, silver, or bronze).
 
@@ -32,13 +32,13 @@ Some pre-processing steps that I took were standardizing column names, reshaping
 
 For further reading, please reference the sources below.
 
-- **[Pandas Cheat Sheet]** (https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf)
-- **[Tidy Data Principles]**(https://vita.had.co.nz/papers/tidy-data.pdf)
-- **[Seaborn Barplots]**(https://seaborn.pydata.org/generated/seaborn.barplot.html)
-- **[Seaborn Countplots]**(https://seaborn.pydata.org/generated/seaborn.countplot.html)
+- **[Pandas Cheat Sheet](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf)**
+- **[Tidy Data Principles](https://vita.had.co.nz/papers/tidy-data.pdf)**
+- **[Seaborn Barplots](https://seaborn.pydata.org/generated/seaborn.barplot.html)**
+- **[Seaborn Countplots](https://seaborn.pydata.org/generated/seaborn.countplot.html)**
 
 # Visual Examples:
 
-!**[Top 5 Sports by Number of Medals]**(TidyData-Project/visuals/Figure_1.png)
+!**[Top 5 Sports by Number of Medals](TidyData-Project/visuals/Figure_1.png)**
 
-!**[Number of Medals by Gender]**(TidyData-Project/visuals/Figure_2.png)
+!**[Number of Medals by Gender](TidyData-Project/visuals/Figure_2.png)**
