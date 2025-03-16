@@ -49,3 +49,7 @@ melted_df["Medal"] = melted_df["Medal"].str.title()
 
 print("Cleaned (Tidy) DataFrame:")
 print(melted_df)
+
+# visualization tools
+import matplotlib.pyplot as plt
+import seaborn as sns
