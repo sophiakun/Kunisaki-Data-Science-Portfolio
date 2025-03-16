@@ -30,7 +30,7 @@ Some pre-processing steps that I took were standardizing column names, reshaping
 
 # References:
 
-For further reading, please reference the sources below.
+To see some of the resources I used, and for further reading, please reference the sources below.
 
 - **[Pandas Cheat Sheet](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf)**
 - **[Tidy Data Principles](https://vita.had.co.nz/papers/tidy-data.pdf)**
@@ -39,6 +39,11 @@ For further reading, please reference the sources below.
 
 # Visual Examples:
 
+### **1. Top 5 Sports by Number of Medals**
 ![Top 5 Sports by Number of Medals](visualizations/Figure_1.png)
 
+### **2. Number of Medals by Gender**
 ![Number of Medals by Gender](visualizations/Figure_2.png)
+
+### **3. Medal Distribution**
+![Medal Distribution](visualizations/Figure_3.png)

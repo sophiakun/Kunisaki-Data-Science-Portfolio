@@ -64,9 +64,6 @@ plt.ylabel("Number of Medals")
 plt.show()
 # shows the top 5 sports that won the most medals
 
-# save figure
-plt.savefig("visualizations/")
-
 # visualization 2 
 plt.figure(figsize=(10, 5))
 sns.countplot(data=melted_df, x="Medal", hue="Gender", order=["Gold", "Silver", "Bronze"], palette = {"Male": "dodgerblue", "Female": "hotpink"})
@@ -76,5 +73,10 @@ plt.ylabel("Number of Medals")
 plt.show()
 # shows the total number of medals split by gender (male and female) 
 
-# save figure
-plt.savefig("visualizations/")
+# visualization 3
+plt.figure(figsize=(8, 8))
+medal_counts = melted_df["Medal"].value_counts()
+plt.pie(medal_counts, labels=medal_counts.index, autopct='%1.1f%%', colors=["gold", "silver", "brown"])
+plt.title("Medal Distribution")
+plt.show()
+# shows split of gold, silver, and bronze medals 
