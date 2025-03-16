@@ -53,3 +53,22 @@ print(melted_df)
 # visualization tools
 import matplotlib.pyplot as plt
 import seaborn as sns
+
+# visualization 1
+plt.figure(figsize=(12, 6))
+sport_counts = melted_df['Sport'].value_counts().head(5) 
+sns.barplot(x=sport_counts.index, y=sport_counts.values, palette = "viridis")
+plt.title("Top 5 Sports by Number of Medals")
+plt.xlabel("Sport")
+plt.ylabel("Number of Medals")
+plt.show()
+# shows the top 5 sports that won the most medals
+
+# visualization 2 
+plt.figure(figsize=(10, 5))
+sns.countplot(data=melted_df, x="Medal", hue="Gender", order=["Gold", "Silver", "Bronze"], palette = {"Male": "dodgerblue", "Female": "hotpink"})
+plt.title("Number of Medals by Gender")
+plt.xlabel("Medal Type")
+plt.ylabel("Number of Medals")
+plt.show()
+# shows the total number of medals split by gender (male and female) 
