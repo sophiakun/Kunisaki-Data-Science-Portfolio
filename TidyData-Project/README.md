@@ -39,6 +39,6 @@ For further reading, please reference the sources below.
 
 # Visual Examples:
 
-![Top 5 Sports by Number of Medals](TidyData-Project/visuals/Figure_1.png)
+![Top 5 Sports by Number of Medals](TidyData-Project/visualizations/Figure_1.png)
 
-![Number of Medals by Gender](TidyData-Project/visuals/Figure_2.png)
+![Number of Medals by Gender](TidyData-Project/visualizations/Figure_2.png)
