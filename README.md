@@ -8,6 +8,8 @@ Hello! This repository highlights my projects and technical skills from the cour
 
 **Portfolio Update 2:** [TidyData-Project](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/TidyData-Project)
 
+**Portfolio Update 3:** coming soon
+
 **Portfolio README:** [README.md](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/blob/main/README.md)
 
 ## Organizational Plan
@@ -51,8 +53,4 @@ Later in the semester, I will update this section with my Portfolio #3 update.
 
 ## Importance
 
-This portfolio represents my journey in data science, emphasizing:
-- **Data transformation skills:** Cleaning, reshaping, and structuring data.
-- **Analytical thinking:** Extracting insights from complex datasets.
-- **Data storytelling:** Presenting meaningful trends through visualization.
-Interactive applications: Making data accessible and engaging for users.
+This portfolio represents my progress in data science, from learning **data transformation skills:** like cleaning and structuring data, to **data visualization**, where I have presented data that is accessible and engaging for users.
