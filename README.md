@@ -46,10 +46,10 @@ Later in the semester, I will update this section with my Portfolio #3 update.
 
 ## Skills Overview
 
-- Python: Pandas, Matplotlib, Seaborn, Streamlit
-- Data Cleaning: melt(), pivot_table(), etc.
-- Interactive Applications: using Streamlit
-- Data Visualizations: sns.barplot(), sns.countplot(), plt.pie() using Matplotlib & Seaborn
+- **Python:** Pandas, Matplotlib, Seaborn, Streamlit
+- **Data Cleaning:** melt(), pivot_table(), etc.
+- **Interactive Applications:** using Streamlit
+- **Data Visualization:** sns.barplot(), sns.countplot(), plt.pie() using Matplotlib & Seaborn
 
 ## Importance
 
