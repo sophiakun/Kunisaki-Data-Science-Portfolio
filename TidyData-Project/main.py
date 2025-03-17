@@ -1,3 +1,7 @@
+# ================================================================================
+# Data Cleaning 
+# ================================================================================
+
 import pandas as pd
 df = pd.read_csv("TidyData-Project/data/olympics_08_medalists.csv")
 
@@ -49,6 +53,17 @@ melted_df["Medal"] = melted_df["Medal"].str.title()
 
 print("Cleaned (Tidy) DataFrame:")
 print(melted_df)
+
+# ================================================================================
+# Pivot Table 
+# ================================================================================
+
+pivot_table = melted_df.pivot_table(index='Sport', columns='Gender', values='Medal', aggfunc='count', fill_value=0)
+print(pivot_table)
+
+# ================================================================================
+# Data Visualization
+# ================================================================================
 
 # visualization tools
 import matplotlib.pyplot as plt
