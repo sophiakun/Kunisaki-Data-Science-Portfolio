@@ -1,29 +1,32 @@
-# Welcome to my data science streamlit app!
+# 🐧 Palmer Penguins Streamlit App
 
-## About Portfolio Update 1:
+## About:
 
-This repository contains a Streamlit application that allows users to explore the Palmer Penguins dataset interactively. Users can select different species of penguins and slides across a range of penguin body masses. This project is important to becoming ontinue updating my portfolio through the semester to refine past projects and develop new projects in the future.
+This repository is my first Portfolio Update of the semester. It contains a Streamlit application that allows users to explore the Palmer Penguins dataset interactively. Users can select different species of penguins and slides across a range of penguin body masses. This project is important to becoming ontinue updating my portfolio through the semester to refine past projects and develop new projects in the future.
 
-## How to Run the Streamlit App:
+## Instructions:
 
-ls 
+1. Open the terminal in VS Code
+2. Navigate to the project folder
+    - ls 
+    - cd basic-streamlit-app/
+    - streamlit run main.py
+3. Install required Python libraries (if first-time user)
+    - pip install pandas streamlit
+4. Run code
 
-cd basic-streamlit-app/
+## Dataset Description:
 
-streamlit run main.py
+The app loads "penguins.csv", which contains penguin:
 
-## Repository Structure:
+- Species
+- Island
+- Bill length & depth
+- Flipper length
+- Body mass
+- Sex
+- Year
 
-Kunisaki-Data-Science-Portfolio/
+## References:
 
-├── basic_streamlit_app/
-
-│     ├── README.md
-
-│     ├── data/
-
-│   |     ├── penguins.csv
-
-│     ├── main.py
-
-├── README.md
+- **[Streamlit Cheat Sheet](https://docs.streamlit.io/develop/quick-reference/cheat-sheet)**
