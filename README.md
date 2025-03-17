@@ -1,4 +1,4 @@
-# Welcome to My Data Science Portfolio!
+# 👩‍💻 Welcome to My Data Science Portfolio!
 
 Hello! This repository highlights my projects and technical skills from the course "Introduction to Data Science". The purpose of this portfolio is to document my data science journey and share my work with the my peers, professors, employers, the Notre Dame community, and beyond. As a senior graduating in May 2025, my hope is that I have evidence of my work in undergraduate data science classes for years to come!
 
@@ -21,14 +21,14 @@ Each project will contain a:
 
 ## Projects
 
-### **1. Building a Streamlit Application**
+### **1. 🐧 Palmer Penguins Streamlit App**
 [View](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/basic-streamlit-app)
 
 The Streamlit project showcases my skills in building a Streamlit application. Specifically, the app allows users to explore the Palmer Penguins dataset interactively. Users can select different species of penguins and slides across a range of penguin body masses. 
 
 Key skills demonstrated include using Streamlit for interactive components, such as sliders and selection filters. This project complements my overall coding portfolio by showcasing my ability to **develop interactive web applications for data exploration**.
 
-### **2. Tidy Data Project**
+### **2. 🏅 2008 Olympic Medalists Tidy Data**
 [View](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/TidyData-Project)
 
 The tidy data project involves using **tidy data principles** to clean the data set [olympics_08_medalists.csv](https://edjnet.github.io/OlympicsGoNUTS/2008/). The dataset details 2008 Olympic medalists and their respective sports, genders, and medals won.  
