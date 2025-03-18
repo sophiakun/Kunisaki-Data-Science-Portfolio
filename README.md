@@ -26,14 +26,14 @@ Each project will contain a:
 
 The Streamlit project showcases my skills in building a Streamlit application. Specifically, the app allows users to explore the Palmer Penguins dataset interactively. Users can select different species of penguins and slides across a range of penguin body masses. 
 
-Key skills demonstrated include using Streamlit for interactive components, such as sliders and selection filters. This project complements my overall coding portfolio by showcasing my ability to **develop interactive web applications for data exploration**.
+Some key skills I demonstrated include using Streamlit for interactive components, such as sliders and selection filters. This project complements my overall coding portfolio by showcasing my ability to **develop interactive web applications for data exploration**.
 
 ### **2. 🏅 2008 Olympic Medalists Tidy Data**
 [View](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/TidyData-Project)
 
 The tidy data project involves using **tidy data principles** to clean the data set [olympics_08_medalists.csv](https://edjnet.github.io/OlympicsGoNUTS/2008/). The dataset details 2008 Olympic medalists and their respective sports, genders, and medals won.  
 
-Key skills demonstrated include using data clenaing tools in Pandas, such as  str.split() and str.replace(), data visualization tools in Matplotlib and Seaborn, and tidy data principles, ensuring that each variable is in its own column, each observation is a row, and each type of observational unit forms its own table.  
+Some key skills I demonstrated include using data clenaing tools in Pandas, such as  str.split() and str.replace(), data visualization tools in Matplotlib and Seaborn, and tidy data principles, ensuring that each variable is in its own column, each observation is a row, and each type of observational unit forms its own table.  
 
 This project complements my data science portfolio by showcasing my ability to:
 - **Transform unitdy data into tidy data** for better analysis
@@ -53,4 +53,4 @@ Later in the semester, I will update this section with my Portfolio #3 update.
 
 ## Importance
 
-This portfolio represents my progress in data science, from learning **data transformation skills:** like cleaning and structuring data, to **data visualization**, where I have presented data that is accessible and engaging for users.
+This portfolio represents my progress in data science, from learning **data transformation skills** like cleaning and structuring data, to **data visualization**, where I have presented data that is engaging for users, and that ultimately, tells a story. 
