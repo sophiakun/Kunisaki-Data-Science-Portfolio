@@ -17,7 +17,7 @@ This repository is my first Portfolio Update of the semester. It contains a Stre
 
 ## Dataset Description:
 
-The app loads "penguins.csv", which contains penguin:
+The app loads "penguins.csv", which contains:
 
 - Species
 - Island

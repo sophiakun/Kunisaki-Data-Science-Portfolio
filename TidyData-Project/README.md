@@ -1,13 +1,13 @@
 # 🏅 2008 Olympic Medalists Tidy Data
 
-## About:
+## About
 This project focuses on cleaning and visualizing a **2008 Summer Olympic Medalists dataset** using **tidy data principles**. I transformed the dataset so that:
 
 - Each variable has its own column
 - Each observation forms its own row
 - Each type of observational unit forms its own table
 
-My objectives are to clean, transform, and then do basic exploratory data analysis on the data. These tidy data principles are important because they make data analysis easier by standardizing one structure. This project includes exploratory data analysis through **visualizations** and a **pivot table** aggregation to provide deeper insights from the cleaned data.
+My objectives are to clean the data and then do basic data analysis on the data. These tidy data principles are important because they make data analysis easier by standardizing one structure across the data. This project includes analysis through **visualizations** and a **pivot table** aggregation to provide deeper insights from the cleaned data.
 
 ## Instructions:
 
