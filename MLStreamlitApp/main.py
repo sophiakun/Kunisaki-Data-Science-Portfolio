@@ -27,7 +27,7 @@ from sklearn.decomposition import PCA
 # Application Information
 # -----------------------------------------------
 
-st.title("Interactive Supervised Machine Learning Explorer")
+st.title("⚙️ Interactive Supervised Machine Learning Explorer ⚙️")
 st.markdown("""
 Explore different supervised machine learning models including:  
 1. **Logistic Regression**  
@@ -140,8 +140,8 @@ st.pyplot(fig)
 
 # Print the classification report 
 st.subheader("Classification Report")
-report = classification_report(y_test, y_pred, output_dict=True)
-
+report = classification_report(y_test, y_pred)
+st.markdown(report)
 
 # ----------------------------
 # Visual for Iris Data
