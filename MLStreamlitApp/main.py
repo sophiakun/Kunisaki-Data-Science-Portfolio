@@ -138,8 +138,9 @@ ax.set_xlabel("Predicted")
 ax.set_ylabel("Actual")
 st.pyplot(fig)
 
-# Print the classification report with detailed metrics
-st.text("\nClassification Report:\n" + classification_report(y_test, y_pred))
+# Print the classification report 
+st.subheader("Classification Report")
+report = classification_report(y_test, y_pred)
 
 # ----------------------------
 # Visual for Iris Data
