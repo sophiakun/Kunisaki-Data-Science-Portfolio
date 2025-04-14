@@ -26,7 +26,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 # -----------------------------------------------
 # Application Information
 # -----------------------------------------------
-st.set_page_config(page_title="Iris Classifier", layout="wide")
+st.set_page_config(page_title="Exploring Machine Learning Models Using the Iris Dataset", layout="wide")
 st.title("Iris Classifier") 
 st.markdown("""
 ### Interactive Machine Learning Explorer
@@ -39,7 +39,7 @@ st.markdown("""
 # Helper Functions
 # -----------------------------------------------
 def load_and_preprocess_data():
-    df = pd.read_csv("iris.csv")
+    df = pd.read_csv("data/iris.csv")
     features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
     X = df[features]
     y = df['species'] 
