@@ -141,6 +141,7 @@ st.pyplot(fig)
 # Print the classification report 
 st.subheader("Classification Report")
 report = classification_report(y_test, y_pred)
+st.markdown(f"""""")
 
 # ----------------------------
 # Visual for Iris Data
