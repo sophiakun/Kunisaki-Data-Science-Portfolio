@@ -26,19 +26,20 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 # Application Information
 # -----------------------------------------------
 
-st.title("Supervised Machine Learning Explorer")
+st.title("Interactive Supervised Machine Learning Explorer")
 st.markdown("""
-Explore different supervised machine learning models including:
-            1. Linear Regression
-            2. Logistic Regression
-            3. Decision Trees
-            4. K-nearest Neighrbors
-Upload your own dataset or use the built-in Titanic and Iris datasets to engage with this interactive app!
+Explore different supervised machine learning models including:  
+1. **Logistic Regression**  
+2. **Decision Trees**  
+3. **K-Nearest Neighbors (KNN)**  
+
+Upload your own dataset or use the built-in **Titanic** and **Iris** datasets to engage with this interactive app!
 """)
 
 # -----------------------------------------------
-# Sample Data
+# Load Sample Data
 # -----------------------------------------------
+@st.cache_data
 def load_sample_data(name):
     if name == 'Iris':
         df = sns.load_dataset('iris')
@@ -57,9 +58,8 @@ def load_sample_data(name):
     return None, None, None
 
 # -----------------------------------------------
-# User-Uploaded Dataset
+# Dataset Selection
 # -----------------------------------------------
-
 st.sidebar.header("1. Choose Dataset")
 dataset_choice = st.sidebar.radio("Select a dataset:", ['Iris', 'Titanic', 'Upload your own CSV'])
 
@@ -78,12 +78,13 @@ else:
     df = pd.concat([X, y], axis=1)
     st.dataframe(df.head())
 
-# Encode categorical target
+# Label encode target if needed
+original_target = y
 if y.dtype == 'object':
     y = LabelEncoder().fit_transform(y)
 
 # -----------------------------------------------
-# Model selection and parameters
+# Model Selection
 # -----------------------------------------------
 st.sidebar.header("2. Choose Model")
 model_name = st.sidebar.selectbox("Model", ['Logistic Regression', 'Decision Tree', 'KNN'])
@@ -104,25 +105,25 @@ elif model_name == 'KNN':
 # -----------------------------------------------
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Scale numeric features (not for Decision Tree)
 if model_name in ['Logistic Regression', 'KNN']:
     scaler = StandardScaler()
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test)
 
-
+# -----------------------------------------------
+# Train Model & Predict
+# -----------------------------------------------
 model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 
 # -----------------------------------------------
-# Performance Metrics
+# Evaluation
 # -----------------------------------------------
+st.subheader("📊 Classification Metrics")
 acc = accuracy_score(y_test, y_pred)
 prec = precision_score(y_test, y_pred, average='weighted')
 rec = recall_score(y_test, y_pred, average='weighted')
 f1 = f1_score(y_test, y_pred, average='weighted')
-
-st.subheader("Model Performance")
 st.markdown(f"""
 - **Accuracy**: {acc:.2f}  
 - **Precision**: {prec:.2f}  
@@ -133,17 +134,17 @@ st.markdown(f"""
 # -----------------------------------------------
 # Confusion Matrix
 # -----------------------------------------------
-st.subheader("Confusion Matrix")
+st.subheader("🔲 Confusion Matrix")
 cm = confusion_matrix(y_test, y_pred)
 fig, ax = plt.subplots()
 sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', ax=ax)
 st.pyplot(fig)
 
 # -----------------------------------------------
-# ROC Curve for binary classification
+# ROC Curve for Binary Classification
 # -----------------------------------------------
 if len(np.unique(y)) == 2:
-    st.subheader("ROC Curve")
+    st.subheader("📈 ROC Curve")
     y_prob = model.predict_proba(X_test)[:, 1]
     fpr, tpr, _ = roc_curve(y_test, y_prob)
     roc_auc = auc(fpr, tpr)
@@ -156,9 +157,3 @@ if len(np.unique(y)) == 2:
     ax2.set_title("ROC Curve")
     ax2.legend()
     st.pyplot(fig2)
-
-# -----------------------------------------------
-# Linear Regression
-# -----------------------------------------------
-
-
