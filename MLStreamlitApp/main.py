@@ -150,8 +150,6 @@ st.dataframe(report_df.style.format("{:.2f}"))
 # Visual for Iris Data
 # ----------------------------
 if dataset_option == "Iris":
-    st.subheader("Visualization")
-    
-# Create a pairplot colored by species
-fig = sns.pairplot(df, hue="species", palette="viridis")
-st.pyplot(fig)
+    st.subheader("Pairplot of Iris Features")
+    fig = sns.pairplot(df, hue="species", palette="viridis")
+    st.pyplot(fig)
