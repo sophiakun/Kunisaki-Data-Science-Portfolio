@@ -39,23 +39,18 @@ Upload **your own dataset** or use the built-in **Titanic** and **Iris** dataset
 # -----------------------------------------------
 # Select Dataset
 # -----------------------------------------------
-
 st.sidebar.header("1. Choose a Dataset")
-dataset_option = st.sidebar.radio("Dataset source:", ["Iris", "Titanic", "Upload your own CSV"])
+dataset_option = st.sidebar.radio("Select dataset source:", ["Iris", "Titanic", "Upload your own CSV"])
 
 if dataset_option == "Upload your own CSV":
-    uploaded_file = st.sidebar.file_uploader("Upload your CSV file", type=["csv"])
-    if uploaded_file:
+    uploaded_file = st.sidebar.file_uploader("Upload a CSV file", type=["csv"])
+    if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
         st.subheader("Uploaded Dataset Preview")
         st.dataframe(df.head())
-        target_column = st.sidebar.selectbox("Select the target column", df.columns)
+        target_column = st.sidebar.selectbox("Select your target variable", df.columns)
         X = df.drop(columns=[target_column])
         y = df[target_column]
-
-# 🔧 Ensure all features are numeric for model training
-X = pd.get_dummies(X, drop_first=True)
-
     else:
         st.warning("Please upload a CSV file.")
         st.stop()
@@ -67,7 +62,7 @@ elif dataset_option == "Titanic":
     X = df[features]
     y = df["survived"]
     st.subheader("Titanic Dataset Preview")
-    st.dataframe(df[features + ['survived']].head())
+    st.dataframe(df[features + ["survived"]].head())
 
 else:  # Iris
     df = sns.load_dataset("iris")
@@ -76,12 +71,21 @@ else:  # Iris
     st.subheader("Iris Dataset Preview")
     st.dataframe(df.head())
 
-# -----------------------------------------------
-# Select Type of ML Model
-# -----------------------------------------------
+# ----------------------------
+# Preprocessing
+# ----------------------------
+# Encode target if needed
+if y.dtype == 'object':
+    y = LabelEncoder().fit_transform(y)
 
-st.sidebar.header("2. Choose Model")
-model_choice = st.sidebar.selectbox("Model", ["Logistic Regression", "Decision Tree", "KNN"])
+# Encode categorical features in X
+X = pd.get_dummies(X, drop_first=True)
+
+# ----------------------------
+# Model selection
+# ----------------------------
+st.sidebar.header("2. Choose a Model")
+model_choice = st.sidebar.selectbox("Model:", ["Logistic Regression", "Decision Tree", "KNN"])
 
 if model_choice == "Logistic Regression":
     model = LogisticRegression()
@@ -90,32 +94,34 @@ elif model_choice == "Decision Tree":
 else:
     model = KNeighborsClassifier()
 
-# -------------------------------------
-# Train/Test Model
-# -------------------------------------
+# ----------------------------
+# Train/test split and scale
+# ----------------------------
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Scale only for LR and KNN
 if model_choice in ["Logistic Regression", "KNN"]:
     scaler = StandardScaler()
     X_train = scaler.fit_transform(X_train)
     X_test = scaler.transform(X_test)
 
+# ----------------------------
+# Train model and predict
+# ----------------------------
 model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 
-# -------------------------------------
-# Results & Metrics
-# -------------------------------------
-st.subheader("Model Performance")
+# ----------------------------
+# Display results
+# ----------------------------
+st.subheader("📊 Model Performance")
 st.markdown(f"""
-- **Accuracy**: {accuracy_score(y_test, y_pred):.2f}  
-- **Precision**: {precision_score(y_test, y_pred, average='weighted'):.2f}  
-- **Recall**: {recall_score(y_test, y_pred, average='weighted'):.2f}  
-- **F1 Score**: {f1_score(y_test, y_pred, average='weighted'):.2f}
+- **Accuracy:** {accuracy_score(y_test, y_pred):.2f}  
+- **Precision:** {precision_score(y_test, y_pred, average='weighted'):.2f}  
+- **Recall:** {recall_score(y_test, y_pred, average='weighted'):.2f}  
+- **F1 Score:** {f1_score(y_test, y_pred, average='weighted'):.2f}
 """)
 
-st.subheader("Confusion Matrix")
+st.subheader("🔲 Confusion Matrix")
 cm = confusion_matrix(y_test, y_pred)
 fig, ax = plt.subplots()
 sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
