@@ -37,26 +37,42 @@ Upload **your own dataset** or use the built-in **Titanic** and **Iris** dataset
 """)
 
 # -----------------------------------------------
-# Select Dataset
+# User-Uploaded Dataset
 # -----------------------------------------------
+
+# Create sidebar with different datasets to choose from
 st.sidebar.header("1. Choose a Dataset")
 dataset_option = st.sidebar.radio("Select dataset source:", ["Iris", "Titanic", "Upload your own CSV"])
 
+# Allow user to upload their dataset as a CSV
 if dataset_option == "Upload your own CSV":
     uploaded_file = st.sidebar.file_uploader("Upload CSV", type=["csv"])
     
     if not uploaded_file:
         st.warning("Please upload a CSV file to continue.")
         st.stop()
-    
+ 
+# Allow user to preview uploaded dataset
     df = pd.read_csv(uploaded_file)
     st.subheader("Uploaded Dataset Preview")
     st.dataframe(df.head())
 
+# Only select numeric variables becuase this is a classification model
+    numeric_features = df.select_dtypes(include='number').columns.tolist()
+    X = df[numeric_features]
+
+# Allow user to select target variable
     target_column = st.sidebar.selectbox("Select the target variable", df.columns)
     X = df.drop(columns=[target_column])
     y = df[target_column]
 
+# Allow user to select feature variable
+
+# -----------------------------------------------
+# Default Datasets
+# -----------------------------------------------
+
+# Titanic example
 elif dataset_option == "Titanic":
     df = sns.load_dataset("titanic").dropna(subset=["age"])
     df = pd.get_dummies(df, columns=["sex"], drop_first=True)
@@ -66,6 +82,7 @@ elif dataset_option == "Titanic":
     st.subheader("Titanic Dataset Preview")
     st.dataframe(df[features + ["survived"]].head())
 
+# Iris example
 else: 
     df = sns.load_dataset("iris")
     X = df.drop(columns=["species"])
@@ -74,7 +91,7 @@ else:
     st.dataframe(df.head())
 
 # ----------------------------
-# Model selection
+# User Model Selection
 # ----------------------------
 st.sidebar.header("2. Choose a Model")
 model_choice = st.sidebar.selectbox("Model:", ["Logistic Regression", "Decision Tree", "KNN"])
