@@ -1,5 +1,5 @@
 # -----------------------------------------------
-# Preliminary Steps
+# Launch Streamlit Cloud App
 # -----------------------------------------------
 
 # # requirements.txt file commands:
@@ -28,8 +28,12 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 
 st.title("Supervised Machine Learning Explorer")
 st.markdown("""
-Explore different supervised machine learning models including linear and logistic regression, decision trees,
-or K-nearest neighrbors with this interactive app. Upload your own dataset or use the built-in Titanic and Iris datasets.
+Explore different supervised machine learning models including:
+            1. Linear Regression
+            2. Logistic Regression
+            3. Decision Trees
+            4. K-nearest Neighrbors
+Upload your own dataset or use the built-in Titanic and Iris datasets to engage with this interactive app!
 """)
 
 with st.sidebar:
@@ -46,47 +50,128 @@ with st.sidebar:
     )
 
 # -----------------------------------------------
-# Helper Functions
+# Sample Data
 # -----------------------------------------------
-@st.cache_data
-def load_data(dataset_name):
-    if dataset_name == "Titanic (Classification)":
+def load_sample_data(name):
+    if name == 'Iris':
+        df = sns.load_dataset('iris')
+        X = df.drop('species', axis=1)
+        y = df['species']
+        return X, y, 'species'
+    elif name == 'Titanic':
         df = sns.load_dataset('titanic')
-        df = df.dropna(subset=['age'])
+        df.dropna(subset=['age'], inplace=True)
         df = pd.get_dummies(df, columns=['sex'], drop_first=True)
         features = ['pclass', 'age', 'sibsp', 'parch', 'fare', 'sex_male']
+        df = df[features + ['survived']]
         X = df[features]
         y = df['survived']
-        return X, y, features, df
-        
-    elif dataset_name == "Iris (Classification)":
-        iris = load_iris()
-        X = pd.DataFrame(iris.data, columns=iris.feature_names)
-        y = pd.Series(iris.target)
-        features = iris.feature_names
-        df = pd.concat([X, y], axis=1)
-        df.columns = list(iris.feature_names) + ['target']
-        return X, y, features, df
-   
-    else:  # Upload your own
-        uploaded_file = st.file_uploader("Upload your CSV file", type=["csv"])
-        return None, None, None, None
-
+        return X, y, 'survived'
+    return None, None, None
 
 # -----------------------------------------------
-# Model Selection and Configuration
+# User-Uploaded Dataset
 # -----------------------------------------------
 
+st.sidebar.header("1. Choose Dataset")
+dataset_choice = st.sidebar.radio("Select a dataset:", ['Iris', 'Titanic', 'Upload your own CSV'])
+
+if dataset_choice == 'Upload your own CSV':
+    uploaded_file = st.sidebar.file_uploader("Upload CSV", type=['csv'])
+    if uploaded_file:
+        df = pd.read_csv(uploaded_file)
+        st.dataframe(df.head())
+        target_column = st.sidebar.selectbox("Select target variable", df.columns)
+        X = df.drop(columns=[target_column])
+        y = df[target_column]
+    else:
+        st.stop()
+else:
+    X, y, target_column = load_sample_data(dataset_choice)
+    df = pd.concat([X, y], axis=1)
+    st.dataframe(df.head())
+
+# Encode categorical target
+if y.dtype == 'object':
+    y = LabelEncoder().fit_transform(y)
+
+# -----------------------------------------------
+# Model selection and parameters
+# -----------------------------------------------
+st.sidebar.header("2. Choose Model")
+model_name = st.sidebar.selectbox("Model", ['Logistic Regression', 'Decision Tree', 'KNN'])
+
+if model_name == 'Logistic Regression':
+    C = st.sidebar.slider("Regularization Strength (C)", 0.01, 10.0, 1.0)
+    model = LogisticRegression(C=C)
+elif model_name == 'Decision Tree':
+    max_depth = st.sidebar.slider("Max Depth", 1, 20, 5)
+    criterion = st.sidebar.selectbox("Criterion", ['gini', 'entropy'])
+    model = DecisionTreeClassifier(max_depth=max_depth, criterion=criterion)
+elif model_name == 'KNN':
+    k = st.sidebar.slider("Number of Neighbors (K)", 1, 15, 5)
+    model = KNeighborsClassifier(n_neighbors=k)
+
+# -----------------------------------------------
+# Train/Test Split & Scaling
+# -----------------------------------------------
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Scale numeric features (not for Decision Tree)
+if model_name in ['Logistic Regression', 'KNN']:
+    scaler = StandardScaler()
+    X_train = scaler.fit_transform(X_train)
+    X_test = scaler.transform(X_test)
+
+
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+
+# -----------------------------------------------
+# Performance Metrics
+# -----------------------------------------------
+acc = accuracy_score(y_test, y_pred)
+prec = precision_score(y_test, y_pred, average='weighted')
+rec = recall_score(y_test, y_pred, average='weighted')
+f1 = f1_score(y_test, y_pred, average='weighted')
+
+st.subheader("Model Performance")
+st.markdown(f"""
+- **Accuracy**: {acc:.2f}  
+- **Precision**: {prec:.2f}  
+- **Recall**: {rec:.2f}  
+- **F1 Score**: {f1:.2f}
+""")
+
+# -----------------------------------------------
+# Confusion Matrix
+# -----------------------------------------------
+st.subheader("Confusion Matrix")
+cm = confusion_matrix(y_test, y_pred)
+fig, ax = plt.subplots()
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', ax=ax)
+st.pyplot(fig)
+
+# -----------------------------------------------
+# ROC Curve for binary classification
+# -----------------------------------------------
+if len(np.unique(y)) == 2:
+    st.subheader("ROC Curve")
+    y_prob = model.predict_proba(X_test)[:, 1]
+    fpr, tpr, _ = roc_curve(y_test, y_prob)
+    roc_auc = auc(fpr, tpr)
+
+    fig2, ax2 = plt.subplots()
+    ax2.plot(fpr, tpr, label=f"AUC = {roc_auc:.2f}")
+    ax2.plot([0, 1], [0, 1], linestyle='--', color='gray')
+    ax2.set_xlabel("False Positive Rate")
+    ax2.set_ylabel("True Positive Rate")
+    ax2.set_title("ROC Curve")
+    ax2.legend()
+    st.pyplot(fig2)
 
 # -----------------------------------------------
 # Linear Regression
 # -----------------------------------------------
 
-# -----------------------------------------------
-# Decision Tree
-# -----------------------------------------------
 
-
-# -----------------------------------------------
-# Dataset Info for All Tabs
-# -----------------------------------------------
