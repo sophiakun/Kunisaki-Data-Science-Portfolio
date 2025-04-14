@@ -36,19 +36,6 @@ Explore different supervised machine learning models including:
 Upload your own dataset or use the built-in Titanic and Iris datasets to engage with this interactive app!
 """)
 
-with st.sidebar:
-    st.header("Dataset Selection")
-    dataset_choice = st.selectbox(
-        "Choose a dataset",
-        ["Titanic (Classification)", "Iris (Classification)", "Upload your own"]
-    )
-
-    st.header("Model Settings")
-    model_type = st.selectbox(
-        "Select model type",
-        ["Logistic Regression", "Decision Tree", "K-Nearest Neighbors", "Linear Regression"]
-    )
-
 # -----------------------------------------------
 # Sample Data
 # -----------------------------------------------
