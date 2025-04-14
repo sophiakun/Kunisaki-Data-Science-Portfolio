@@ -27,7 +27,7 @@ from sklearn.decomposition import PCA
 # Application Information
 # -----------------------------------------------
 
-st.title("<h1 style='text-align: center;'>⚙️ Interactive Supervised Machine Learning Explorer ⚙️")
+st.title("<h1 style='text-align: center;'>⚙️ Interactive Supervised Machine Learning Explorer ⚙️</h1>")
 st.markdown("""
 Explore different supervised machine learning models including:  
 1. **Logistic Regression**  
