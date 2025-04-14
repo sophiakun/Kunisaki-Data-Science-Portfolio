@@ -12,7 +12,7 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
@@ -33,7 +33,7 @@ Explore different supervised machine learning models including:
 2. **Decision Trees**  
 3. **K-Nearest Neighbors (KNN)**  
 
-Upload your own dataset or use the built-in **Titanic** and **Iris** datasets to engage with this interactive app!
+Upload **your own dataset** or use the built-in **Titanic** and **Iris** datasets to engage with this interactive app!
 """)
 
 # -----------------------------------------------
@@ -61,9 +61,9 @@ def load_sample_data(name):
 # Dataset Selection
 # -----------------------------------------------
 st.sidebar.header("1. Choose Dataset")
-dataset_choice = st.sidebar.radio("Select a dataset:", ['Iris', 'Titanic', 'Upload your own CSV'])
+dataset_choice = st.sidebar.radio("Select a dataset:", ['Iris', 'Titanic', 'Upload Your Own CSV'])
 
-if dataset_choice == 'Upload your own CSV':
+if dataset_choice == 'Upload Your Own CSV':
     uploaded_file = st.sidebar.file_uploader("Upload CSV", type=['csv'])
     if uploaded_file:
         df = pd.read_csv(uploaded_file)
@@ -92,29 +92,27 @@ model_name = st.sidebar.selectbox("Model", ['Logistic Regression', 'Decision Tre
 if model_name == 'Logistic Regression':
     C = st.sidebar.slider("Regularization Strength (C)", 0.01, 10.0, 1.0)
     model = LogisticRegression(C=C)
-elif model_name == 'Decision Tree':
-    max_depth = st.sidebar.slider("Max Depth", 1, 20, 5)
-    criterion = st.sidebar.selectbox("Criterion", ['gini', 'entropy'])
-    model = DecisionTreeClassifier(max_depth=max_depth, criterion=criterion)
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+
 elif model_name == 'KNN':
     k = st.sidebar.slider("Number of Neighbors (K)", 1, 15, 5)
     model = KNeighborsClassifier(n_neighbors=k)
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
 
-# -----------------------------------------------
-# Train/Test Split & Scaling
-# -----------------------------------------------
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+elif model_name == 'Decision Tree (GridSearchCV)':
+    param_grid = {
+        'max_depth': list(range(2, 10)),
+        'criterion': ['gini', 'entropy']
+    }
+    base_model = DecisionTreeClassifier(random_state=42)
+    grid_search = GridSearchCV(base_model, param_grid, cv=5)
+    grid_search.fit(X_train, y_train)
+    model = grid_search.best_estimator_
+    y_pred = model.predict(X_test)
 
-if model_name in ['Logistic Regression', 'KNN']:
-    scaler = StandardScaler()
-    X_train = scaler.fit_transform(X_train)
-    X_test = scaler.transform(X_test)
-
-# -----------------------------------------------
-# Train Model & Predict
-# -----------------------------------------------
-model.fit(X_train, y_train)
-y_pred = model.predict(X_test)
+    st.sidebar.success(f"Best Parameters: {grid_search.best_params_}")
 
 # -----------------------------------------------
 # Evaluation
@@ -157,3 +155,12 @@ if len(np.unique(y)) == 2:
     ax2.set_title("ROC Curve")
     ax2.legend()
     st.pyplot(fig2)
+
+# -----------------------------------------------
+# Visualize Decision Tree (if selected)
+# -----------------------------------------------
+if "Decision Tree" in model_name:
+    st.subheader("🌳 Visualized Decision Tree")
+    fig3, ax3 = plt.subplots(figsize=(10, 5))
+    plot_tree(model, filled=True, feature_names=X.columns, class_names=True if len(np.unique(y)) > 2 else ['0', '1'], ax=ax3)
+    st.pyplot(fig3)
