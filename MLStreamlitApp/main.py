@@ -39,11 +39,13 @@ st.markdown("""
 # Helper Functions
 # -----------------------------------------------
 def load_and_preprocess_data():
-    df = pd.read_csv("data/iris.csv")
-    features = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']
-    X = df[features]
-    y = df['species'] 
-    return df, X, y, features
+    iris = load_iris(as_frame=True)
+    df = iris.frame
+    X = df[iris.feature_names]
+    y = df['target']
+    return df, X, y, iris.feature_names
+
+df, X, y, features = load_and_preprocess_data()
 
 def split_data(X, y, test_size=0.2, random_state=42):
     return train_test_split(X, y, test_size=test_size, random_state=random_state)
