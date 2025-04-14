@@ -94,7 +94,7 @@ model_type = st.sidebar.radio(
 )
 
 # -----------------------------------------------
-# Model-Specific Logic
+# Linear Regression
 # -----------------------------------------------
 if model_type == "Linear Regression":
     st.header("Linear Regression")
@@ -112,49 +112,46 @@ if model_type == "Linear Regression":
     ax.set_ylabel("Predicted")
     ax.set_title("Linear Regression: Actual vs. Predicted")
     st.pyplot(fig)
-
+    
+# -----------------------------------------------
+# K-Nearest Neighbors
+# -----------------------------------------------
 elif model_type == "K-Nearest Neighbors":
-    st.header("K-Nearest Neighbors (KNN)")
-    k = st.slider("Select number of neighbors (k)", 1, 15, step=2, value=5)
-    knn = train_knn(X_train_class, y_train_class, k)
-    y_pred = knn.predict(X_test_class)
+    st.header("K-Nearest Neighbors")
+    k = st.sidebar.slider("Number of Neighbors (K)", min_value=1, max_value=15, value=5)
+    model = KNeighborsClassifier(n_neighbors=k)
+    model.fit(X_train_class, y_train_class)
+    y_pred = model.predict(X_test_class)
 
     st.write(f"**Accuracy:** {accuracy_score(y_test_class, y_pred):.2f}")
+    st.subheader("Confusion Matrix")
+    plot_confusion_matrix(confusion_matrix(y_test_class, y_pred), class_names, "KNN Confusion Matrix")
 
-    col1, col2 = st.columns(2)
-    with col1:
-        st.subheader("Confusion Matrix")
-        cm = confusion_matrix(y_test_class, y_pred)
-        plot_confusion_matrix(cm, le.classes_, "KNN Confusion Matrix")
+    st.subheader("Classification Report")
+    st.text(classification_report(y_test_class, y_pred, target_names=class_names))
 
-    with col2:
-        st.subheader("Classification Report")
-        st.text(classification_report(y_test_class, y_pred, target_names=le.classes_))
-
+# -----------------------------------------------
+# Decision Tree
+# -----------------------------------------------
 elif model_type == "Decision Tree":
     st.header("Decision Tree Classifier")
-    max_depth = st.slider("Max Depth of Tree", 1, 10, step=1, value=3)
-    dtree = DecisionTreeClassifier(max_depth=max_depth, random_state=42)
-    dtree.fit(X_train_class, y_train_class)
-    y_pred = dtree.predict(X_test_class)
+    max_depth = st.sidebar.slider("Max Depth", min_value=1, max_value=10, value=3)
+    model = DecisionTreeClassifier(max_depth=max_depth, random_state=42)
+    model.fit(X_train_class, y_train_class)
+    y_pred = model.predict(X_test_class)
 
     st.write(f"**Accuracy:** {accuracy_score(y_test_class, y_pred):.2f}")
+    st.subheader("Confusion Matrix")
+    plot_confusion_matrix(confusion_matrix(y_test_class, y_pred), class_names, "Decision Tree Confusion Matrix")
 
-    col1, col2 = st.columns(2)
-    with col1:
-        st.subheader("Confusion Matrix")
-        cm = confusion_matrix(y_test_class, y_pred)
-        plot_confusion_matrix(cm, le.classes_, "Decision Tree Confusion Matrix")
-
-    with col2:
-        st.subheader("Classification Report")
-        st.text(classification_report(y_test_class, y_pred, target_names=le.classes_))
+    st.subheader("Classification Report")
+    st.text(classification_report(y_test_class, y_pred, target_names=class_names))
 
 # -----------------------------------------------
-# Dataset Info
+# Dataset Info for All Tabs
 # -----------------------------------------------
-with st.expander("Click to view Iris Dataset Information"):
-    st.write("### First 5 Rows of the Dataset")
+with st.expander("Click to view dataset information"):
+    st.write("### First Five Rows")
     st.dataframe(df.head())
     st.write("### Summary Statistics")
     st.dataframe(df.describe())
