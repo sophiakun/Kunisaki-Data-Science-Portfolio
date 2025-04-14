@@ -44,17 +44,19 @@ st.sidebar.header("1. Choose a Dataset")
 dataset_option = st.sidebar.radio("Select dataset source:", ["Iris", "Titanic", "Upload your own CSV"])
 
 if dataset_option == "Upload your own CSV":
-    uploaded_file = st.sidebar.file_uploader("Upload a CSV file", type=["csv"])
-    if uploaded_file is not None:
-        df = pd.read_csv(uploaded_file)
-        st.subheader("Uploaded Dataset Preview")
-        st.dataframe(df.head())
-        target_column = st.sidebar.selectbox("Select your target variable", df.columns)
-        X = df.drop(columns=[target_column])
-        y = df[target_column]
-    else:
-        st.warning("Please upload a CSV file.")
+    uploaded_file = st.sidebar.file_uploader("Upload CSV", type=["csv"])
+    
+    if not uploaded_file:
+        st.warning("Please upload a CSV file to continue.")
         st.stop()
+    
+    df = pd.read_csv(uploaded_file)
+    st.subheader("Uploaded Dataset Preview")
+    st.dataframe(df.head())
+
+    target_column = st.sidebar.selectbox("Select the target variable", df.columns)
+    X = df.drop(columns=[target_column])
+    y = df[target_column]
 
 elif dataset_option == "Titanic":
     df = sns.load_dataset("titanic").dropna(subset=["age"])
@@ -141,7 +143,7 @@ st.pyplot(fig)
 # Print the classification report 
 st.subheader("Classification Report")
 report = classification_report(y_test, y_pred)
-st.markdown(report)
+st.text(report)
 
 # ----------------------------
 # Visual for Iris Data
@@ -149,6 +151,6 @@ st.markdown(report)
 if dataset_option == "Iris":
     st.subheader("Visualization")
     
-    # Create a pairplot colored by species
-    fig = sns.pairplot(df, hue="species", palette="viridis")
-    st.pyplot(fig)
+# Create a pairplot colored by species
+fig = sns.pairplot(df, hue="species", palette="viridis")
+st.pyplot(fig)
