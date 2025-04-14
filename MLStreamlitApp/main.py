@@ -27,7 +27,7 @@ from sklearn.decomposition import PCA
 # Application Information
 # -----------------------------------------------
 
-st.title("⚙️ Interactive Supervised Machine Learning Explorer ⚙️")
+st.title("<h1 style='text-align: center;'>⚙️ Interactive Supervised Machine Learning Explorer ⚙️")
 st.markdown("""
 Explore different supervised machine learning models including:  
 1. **Logistic Regression**  
@@ -67,7 +67,7 @@ elif dataset_option == "Titanic":
     st.subheader("Titanic Dataset Preview")
     st.dataframe(df[features + ["survived"]].head())
 
-else:  # Iris
+else: 
     df = sns.load_dataset("iris")
     X = df.drop(columns=["species"])
     y = df["species"]
@@ -146,6 +146,7 @@ report_df = pd.DataFrame(report_dict).transpose()
 
 st.subheader("Classification Report")
 st.dataframe(report_df.style.format("{:.2f}"))
+
 # ----------------------------
 # Visual for Iris Data
 # ----------------------------
