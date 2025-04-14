@@ -111,6 +111,11 @@ y_pred = model.predict(X_test)
 # ----------------------------
 # Display results
 # ----------------------------
+
+# For binary classification show ROC and AUC
+if len(np.unique(y)) == 2 and model_choice != "Decision Tree":
+    st.write("ROC AUC Score:", roc_auc_score(y_test, y_pred))
+
 # Only show metrics if they are not equal to 1
 if not all(score == 1.0 for score in [accuracy_score(y_test, y_pred), 
                                     precision_score(y_test, y_pred, average='weighted'),
@@ -132,6 +137,9 @@ sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
 ax.set_xlabel("Predicted")
 ax.set_ylabel("Actual")
 st.pyplot(fig)
+
+# Print the classification report with detailed metrics
+st.text("\nClassification Report:\n" + classification_report(y_test, y_pred))
 
 # ----------------------------
 # Visual for Iris Data
