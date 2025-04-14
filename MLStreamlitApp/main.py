@@ -21,13 +21,12 @@ from sklearn.metrics import (
     accuracy_score, precision_score, recall_score, f1_score,
     confusion_matrix, classification_report, roc_auc_score
 )
-from sklearn.decomposition import PCA
     
 # -----------------------------------------------
 # Application Information
 # -----------------------------------------------
 
-st.title("<h1 style='text-align: center;'>⚙️ Interactive Supervised Machine Learning Explorer ⚙️</h1>")
+st.title("⚙️ Interactive Supervised Machine Learning Explorer ⚙️")
 st.markdown("""
 Explore different supervised machine learning models including:  
 1. **Logistic Regression**  
