@@ -64,7 +64,7 @@ def plot_confusion_matrix(cm, classes, title):
 # Select Type of ML Model & Scale
 # -----------------------------------------------
 st.sidebar.header("Model Configuration")
-algorithm = st.sidebar.radio(
+model_type = st.sidebar.radio(
     "Select Algorithm:",
     ["Linear Regression", "K-Nearest Neighbors", "Decision Tree"],  
 )
