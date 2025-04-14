@@ -21,6 +21,7 @@ from sklearn.metrics import (
     accuracy_score, precision_score, recall_score, f1_score,
     confusion_matrix, roc_curve, auc
 )
+from sklearn.decomposition import PCA
     
 # -----------------------------------------------
 # Application Information
@@ -85,7 +86,7 @@ else:
     model = KNeighborsClassifier()
 
 # ----------------------------
-# Data Preprocessing and splitting
+# Data Preprocessing and Splitting
 # ----------------------------
 
 # Encode categorical features in X and y
@@ -97,6 +98,7 @@ if y.dtype == 'object':
 # Split dataset into training and testing subsets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
+# Scale dataset for logistic and k-nearest neighbors models
 if model_choice in ["Logistic Regression", "KNN"]:
     scaler = StandardScaler()
     X_train = scaler.fit_transform(X_train)
@@ -109,7 +111,7 @@ y_pred = model.predict(X_test)
 # ----------------------------
 # Display results
 # ----------------------------
-# Only show metrics if they're meaningful (not all 1.0)
+# Only show metrics if they are not equal to 1
 if not all(score == 1.0 for score in [accuracy_score(y_test, y_pred), 
                                     precision_score(y_test, y_pred, average='weighted'),
                                     recall_score(y_test, y_pred, average='weighted'),
@@ -132,25 +134,11 @@ ax.set_ylabel("Actual")
 st.pyplot(fig)
 
 # ----------------------------
-# Visual
+# Visual for Iris Data
 # ----------------------------
 if dataset_option == "Iris":
-    st.subheader("Feature Space Visualization")
+    st.subheader("Visualization")
     
     # Create a pairplot colored by species
     fig = sns.pairplot(df, hue="species", palette="viridis")
-    st.pyplot(fig)
-    
-    # PCA Visualization
-    from sklearn.decomposition import PCA
-    pca = PCA(n_components=2)
-    X_pca = pca.fit_transform(X)
-    
-    fig, ax = plt.subplots()
-    scatter = ax.scatter(X_pca[:, 0], X_pca[:, 1], c=y, cmap="viridis")
-    ax.set_xlabel("PCA Component 1")
-    ax.set_ylabel("PCA Component 2")
-    ax.set_title("2D PCA Projection")
-    legend = ax.legend(*scatter.legend_elements(), title="Classes")
-    ax.add_artist(legend)
     st.pyplot(fig)
