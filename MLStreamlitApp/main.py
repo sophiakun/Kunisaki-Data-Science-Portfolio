@@ -52,6 +52,10 @@ if dataset_option == "Upload your own CSV":
         target_column = st.sidebar.selectbox("Select the target column", df.columns)
         X = df.drop(columns=[target_column])
         y = df[target_column]
+
+# 🔧 Ensure all features are numeric for model training
+X = pd.get_dummies(X, drop_first=True)
+
     else:
         st.warning("Please upload a CSV file.")
         st.stop()
