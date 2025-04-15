@@ -170,7 +170,7 @@ with tab1:
         - You can see how well the features help separate classes
         """)
         fig = sns.pairplot(df, hue="species", palette="viridis")
-        fig.fig.set_size_inches(6, 4)  # Resize 
+        fig.fig.set_size_inches(3, 2)  # Resize 
         st.pyplot(fig)
 
     else:
@@ -282,8 +282,8 @@ The confusion matrix cells represent:
 """)
     cm = confusion_matrix(y_test, y_pred)
     fig, ax = plt.subplots() # Create a Matplotlib heatmap
-    sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
     plt.figure(figsize=(3, 2))  # Resize
+    sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
     ax.set_xlabel("Predicted")
     ax.set_ylabel("Actual")
     st.pyplot(fig)
