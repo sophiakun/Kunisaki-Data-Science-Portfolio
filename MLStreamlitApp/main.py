@@ -283,7 +283,7 @@ The confusion matrix cells represent:
     cm = confusion_matrix(y_test, y_pred)
     fig, ax = plt.subplots() # Create a Matplotlib heatmap
     sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
-    plt.figure(figsize=(6, 4))  # Resize
+    plt.figure(figsize=(3, 2))  # Resize
     ax.set_xlabel("Predicted")
     ax.set_ylabel("Actual")
     st.pyplot(fig)
