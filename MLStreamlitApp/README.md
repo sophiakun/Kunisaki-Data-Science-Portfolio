@@ -4,6 +4,16 @@
 
 Describe the goal of your project and summarize what the user can do with your app.
 
+This interactive Streamlit application allows users to explore supervised machine learning models with built-in or custom datasets. Users can:
+
+- Upload their own CSV data or use provided Titanic/Iris datasets
+
+- Select features and target variables
+
+- hoose between Logistic Regression, Decision Trees, or K-Nearest Neighbors models
+
+- View performance metrics and visualizations
+
 ## Instructions:
 
 Include step-by-step instructions on how to run the app locally and a link to the deployed version. List all necessary libraries and versions.
@@ -13,11 +23,11 @@ In the requirements.txt terminal, run:
 pip install pipreqs
 
 ### Necessary Libraries
-matplotlib==3.10.1
-pandas==2.2.3
-seaborn==0.13.2
-streamlit==1.37.1
-scikit-learn== 1.5.1
+- matplotlib==3.10.1
+- pandas==2.2.3
+- seaborn==0.13.2
+- streamlit==1.37.1
+- scikit-learn== 1.5.1
 
 ## App Features:
 
