@@ -238,18 +238,6 @@ with tab3:
     - **ROC AUC:** (for binary models) how well the model distinguishes classes
     """)
 
-    if source == "Iris":
-        st.markdown("""
-    All metrics from the **Iris Dataset** equal 1.00 (100%)
-
-    The Iris dataset is very well-behaved for machine learning:
-
-    - The classes (Setosa, Versicolor, Virginica) are clearly separated
-    - There is no missing or noisy data
-
-    **Perfect classification** is achieved on the test split**.
-    """)
-
     # Compute ROC AUC if the problem is binary classification and model is not a Decision Tree
     if len(np.unique(y)) == 2 and model_name != "Decision Tree":
         st.markdown(f"- **ROC AUC Score:** {roc_auc_score(y_test, y_pred):.2f}") # Show ROC AUC score (2 decimal places)
@@ -259,6 +247,18 @@ with tab3:
     - **Precision:** {precision_score(y_test, y_pred, average='weighted', zero_division=0):.2f}  
     - **Recall:** {recall_score(y_test, y_pred, average='weighted', zero_division=0):.2f}  
     - **F1 Score:** {f1_score(y_test, y_pred, average='weighted', zero_division=0):.2f}
+    """)
+
+    if source == "Iris":
+        st.markdown("""
+    All metrics from the **Iris Dataset** equal 1.00 (100%)
+
+    The Iris dataset is very well-behaved for machine learning:
+
+    - The classes (Setosa, Versicolor, Virginica) are clearly separated
+    - There is no missing or noisy data
+
+    **Perfect classification** is achieved on the test split.
     """)
 
     # Confusion Matrix
