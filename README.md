@@ -4,11 +4,11 @@ Hello! This repository highlights my projects and technical skills from the cour
 
 ## Table of Contents
 
-**Portfolio Update 1:** [basic-streamlit-app](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/basic-streamlit-app)
+**Portfolio Update 1:** [Basic Streamlit App](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/basic-streamlit-app)
 
-**Portfolio Update 2:** [TidyData-Project](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/TidyData-Project)
+**Portfolio Update 2:** [Tidy Data Project](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/TidyData-Project)
 
-**Portfolio Update 3:** coming soon
+**Portfolio Update 3:** [ML Streamlot App](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLStreamlitApp)
 
 **Portfolio README:** [README.md](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/blob/main/README.md)
 
@@ -40,9 +40,15 @@ This project complements my data science portfolio by showcasing my ability to:
 - **Create data visualizations** that add meaning to the data
 - **Use various Python libraries** such as Pandas, Matplotlib, and Seaborn
 
-### **3. TBD**
+### **3. ⚙️ Interactive Supervised Machine Learning Explorer**
+[View](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLStreamlitApp)
 
-Later in the semester, I will update this section with my Portfolio #3 update.
+Deploy to the Streamlit Community Cloud, the ML project shows my development of a machine learning application using Python and Streamlit. The app allows users to upload their own dataset, select and train a supervised machine learning model, experiment with hyperparameter tuning, and view model performance metrics. 
+
+Portfolio Significance:
+- **Technical Skills**: showcases Python, Streamlit, and scikit-learn expertise
+- **ML Understanding**: demonstrates knowledge and implementation of classification algorithms
+- **UI/UX Focus**: highlights user-friendlu, interactive data science app development
 
 ## Skills Overview
 
