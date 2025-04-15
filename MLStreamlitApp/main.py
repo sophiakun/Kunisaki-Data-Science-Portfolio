@@ -240,6 +240,8 @@ with tab3:
 
     # Compute ROC AUC if the problem is binary classification and model is not a Decision Tree
     if len(np.unique(y)) == 2 and model_name != "Decision Tree":
+        auc_score = roc_auc_score(y_test, y_pred)
+        st.markdown(f"**ROC AUC Score:** `{auc_score:.2f}`")
         st.markdown("""
     ### What is ROC AUC?
 
@@ -256,8 +258,8 @@ with tab3:
     - **Precision:** {precision_score(y_test, y_pred, average='weighted', zero_division=0):.2f}  
     - **Recall:** {recall_score(y_test, y_pred, average='weighted', zero_division=0):.2f}  
     - **F1 Score:** {f1_score(y_test, y_pred, average='weighted', zero_division=0):.2f}
-    - **ROC AUC Score:** {roc_auc_score(y_test, y_pred):.2f}" # Show ROC AUC score (2 decimal places)
-    """)
+    - **ROC AUC Score:** {roc_auc_score(y_test, y_pred):.2f}
+    """) # Show metrics (2 decimal places)
 
     if source == "Iris":
         st.markdown("""
