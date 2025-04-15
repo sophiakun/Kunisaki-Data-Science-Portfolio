@@ -164,47 +164,37 @@ with tab3:
     y_pred = model.predict(X_test)
 
 # ----------------------------
-# Display Results and Metrics
+# Metrics
 # ----------------------------
-st.subheader("Model Performance Metrics")
 
-# Display ROC AUC for binary classifiers (excluding Decision Tree)
-if len(np.unique(y)) == 2 and model_name != "Decision Tree":
-    st.markdown(f"- **ROC AUC Score:** {roc_auc_score(y_test, y_pred):.2f}")
+    # Display ROC AUC for binary classifiers (excluding Decision Tree)
+    st.subheader("Model Performance Metrics")
+    if len(np.unique(y)) == 2 and model_name != "Decision Tree":
+        st.markdown(f"- **ROC AUC Score:** {roc_auc_score(y_test, y_pred):.2f}")
 
-# Classification metrics
-st.markdown(f"""
-- **Accuracy:** {accuracy_score(y_test, y_pred):.2f}  
-- **Precision:** {precision_score(y_test, y_pred, average='weighted', zero_division=0):.2f}  
-- **Recall:** {recall_score(y_test, y_pred, average='weighted', zero_division=0):.2f}  
-- **F1 Score:** {f1_score(y_test, y_pred, average='weighted', zero_division=0):.2f}
-""")
+    st.markdown(f"""
+    - **Accuracy:** {accuracy_score(y_test, y_pred):.2f}  
+    - **Precision:** {precision_score(y_test, y_pred, average='weighted', zero_division=0):.2f}  
+    - **Recall:** {recall_score(y_test, y_pred, average='weighted', zero_division=0):.2f}  
+    - **F1 Score:** {f1_score(y_test, y_pred, average='weighted', zero_division=0):.2f}
+    """)
 
-# -----------------------------------------------
-# Confusion Matrix Visualization
-# -----------------------------------------------
-
-st.subheader("Confusion Matrix")
-cm = confusion_matrix(y_test, y_pred)
-fig, ax = plt.subplots()
-sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
-ax.set_xlabel("Predicted")
-ax.set_ylabel("Actual")
-st.pyplot(fig)
-
-# -----------------------------------------------
-# Classification Report Table
-# -----------------------------------------------
-
-st.subheader("Classification Report")
-report_df = pd.DataFrame(classification_report(y_test, y_pred, output_dict=True)).transpose()
-st.dataframe(report_df.style.format("{:.2f}"))
-
-# -----------------------------------------------
-# Iris Dataset Visualization
-# -----------------------------------------------
-
-if source == "Iris":
-    st.subheader("Pairplot of Iris Features")
-    fig = sns.pairplot(df, hue="species", palette="viridis")
+    # Confusion Matrix
+    st.subheader("Confusion Matrix")
+    cm = confusion_matrix(y_test, y_pred)
+    fig, ax = plt.subplots()
+    sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
+    ax.set_xlabel("Predicted")
+    ax.set_ylabel("Actual")
     st.pyplot(fig)
+
+    # Classification Report Table
+    st.subheader("Classification Report")
+    report_df = pd.DataFrame(classification_report(y_test, y_pred, output_dict=True)).transpose()
+    st.dataframe(report_df.style.format("{:.2f}"))
+
+    # Iris Dataset Visualization
+    if source == "Iris":
+        st.subheader("Pairplot of Iris Features")
+        fig = sns.pairplot(df, hue="species", palette="viridis")
+        st.pyplot(fig)
