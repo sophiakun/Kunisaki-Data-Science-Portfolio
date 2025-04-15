@@ -111,19 +111,12 @@ else:
 st.sidebar.header("2. Choose a Model")
 model_name = st.sidebar.selectbox("Model:", ["Logistic Regression", "Decision Tree", "KNN"])
 
-with st.sidebar.expander("Model Hyperparameters"):
-    if model_name == "Logistic Regression":
-        c_val = st.slider("Inverse regularization strength (C)", 0.01, 10.0, 1.0)
-        max_iter = st.slider("Maximum Iterations", 100, 1000, 200)
-        model = LogisticRegression(C=c_val, max_iter=max_iter)
-    elif model_name == "Decision Tree":
-        max_depth = st.slider("Max Depth", 1, 20, 5)
-        criterion = st.selectbox("Criterion", ["gini", "entropy"])
-        model = DecisionTreeClassifier(max_depth=max_depth, criterion=criterion)
-    else:  # KNN
-        n_neighbors = st.slider("Number of Neighbors", 1, 15, 5)
-        weights = st.selectbox("Weight Function", ["uniform", "distance"])
-        model = KNeighborsClassifier(n_neighbors=n_neighbors, weights=weights)
+if model_name == "Logistic Regression":
+    model = LogisticRegression()
+elif model_name == "Decision Tree":
+    model = DecisionTreeClassifier()
+else:
+    model = KNeighborsClassifier()
 
 # ----------------------------
 # Data Preprocessing and Splitting
@@ -192,6 +185,26 @@ with tab3:
     st.subheader("Classification Report")
     report_df = pd.DataFrame(classification_report(y_test, y_pred, output_dict=True)).transpose()
     st.dataframe(report_df.style.format("{:.2f}"))
+    
+    # Show logistic regression model coefficients
+    if model_name == "Logistic Regression":
+        st.subheader("Model Coefficients")
+    
+    # Make sure feature names align with scaled or encoded input
+        if isinstance(X_train, np.ndarray):
+         feature_names = X.columns
+        else:
+            feature_names = X_train.columns
+
+        coef_df = pd.DataFrame({
+            "Feature": feature_names,
+            "Coefficient": model.coef_[0]
+        })
+
+        coef_df["Abs(Coefficient)"] = coef_df["Coefficient"].abs()
+        coef_df = coef_df.sort_values("Abs(Coefficient)", ascending=False)
+
+        st.dataframe(coef_df[["Feature", "Coefficient"]].style.format("{:.4f}"))
 
     # Iris Dataset Visualization
     if source == "Iris":
