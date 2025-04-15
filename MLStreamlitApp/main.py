@@ -26,7 +26,7 @@ from sklearn.metrics import (
 # Application Information
 # -----------------------------------------------
 
-st.title("⚙️ Interactive Supervised Machine Learning Explorer ⚙️")
+st.title("Interactive Supervised Machine Learning Explorer ⚙️")
 st.markdown("""
 Explore different supervised machine learning models including:  
 1. **Logistic Regression**  
@@ -142,7 +142,7 @@ with tab1:
             - **Pairplot:** Visualizes how features cluster by species
         """)
 
-        st.subheader("🔍 Dataset Preview")
+        st.subheader("Dataset Preview")
         st.dataframe(df.head())
 
     else:
