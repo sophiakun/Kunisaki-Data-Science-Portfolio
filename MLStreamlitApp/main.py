@@ -1,6 +1,3 @@
-import streamlit as st
-st.write("🚀 App is running...")
-
 # -----------------------------------------------
 # Launch Streamlit Cloud App
 # -----------------------------------------------
@@ -58,12 +55,7 @@ if source == "Upload your own CSV":
 # for the Titanic example
 else:
     if source == "Titanic":
-        try:
-            df = sns.load_dataset("titanic").dropna(subset=["age"])
-            st.write("✅ Titanic dataset loaded:", df.shape)
-        except Exception as e:
-         st.error(f"❌ Failed to load Titanic dataset: {e}")
-        st.stop()
+        df = sns.load_dataset("titanic").dropna(subset=["age"])
         df = pd.get_dummies(df, columns=["sex"], drop_first=True)
         features = ['pclass', 'age', 'sibsp', 'parch', 'fare', 'sex_male']
         X = df[features]
@@ -180,9 +172,6 @@ with tab3:
     if y.dtype == "object":
         y = LabelEncoder().fit_transform(y)
 
-    st.write("📊 Feature matrix X shape:", X.shape)
-    st.write("🎯 Target vector y shape:", y.shape)
-
     # Split test and training subsets
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
@@ -193,14 +182,7 @@ with tab3:
         X_test = scaler.transform(X_test)
 
     # Fit model and make prediction
-    try:
-        st.write("🧠 Training model...")
-        model.fit(X_train, y_train)
-        st.write("✅ Model trained.")
-    except Exception as e:
-        st.error(f"❌ Model training failed: {e}")
-        st.stop()
-
+    model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
 
 # ----------------------------
