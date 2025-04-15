@@ -242,9 +242,13 @@ with tab3:
     if len(np.unique(y)) == 2 and model_name != "Decision Tree":
         st.markdown(f"- **ROC AUC Score:** {roc_auc_score(y_test, y_pred):.2f}") # Show ROC AUC score (2 decimal places)
         st.markdown("""
-    - ROC AUC (Receiver Operating Characteristic – Area Under Curve) measures how well the model can distinguish between classes
+    ### What is ROC AUC?
+
+    **ROC AUC**, or *Receiver Operating Characteristic – Area Under the Curve*:
+
+    - Tells us how well the model can **distinguish between two classes** 
     - AUC of 1.0 = perfect ranking
-    - AUC of 0.5 = random guessing
+    - AUC of 0.5 = random guessing format
     """)
 
     st.markdown(f"""
