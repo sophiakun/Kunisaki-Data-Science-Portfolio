@@ -110,43 +110,49 @@ else:
 tab1, tab2, tab3 = st.tabs(["About the Data & Preview", "Model Settings", "Results & Evaluation"])
 
 with tab1:
-    if source == "Titanic":
+    st.subheader("About the Dataset")
 
+    if source == "Titanic":
         st.markdown("""
-        ### Titanic Dataset
-        - **Goal:** Predict whether a passenger survived the Titanic disaster.
+        ### 🛳️ Titanic Dataset
+        - **Goal:** Predict whether a passenger survived the Titanic
         - **Target:** `survived` (1 = survived, 0 = did not survive)
         - **Features:** Passenger class, age, family aboard, fare, and gender
         - **Evaluation Metrics:**
-            - **Accuracy:** How many passengers were correctly predicted (survived/did not).
-            - **Precision:** When the model predicts survival, how often is it correct?
-            - **Recall:** Of all actual survivors, how many did the model correctly identify?
-            - **F1 Score:** A balance between precision and recall.
-            - **Confusion Matrix:** See which passengers were misclassified.
+            - **Accuracy:** % of passengers correctly predicted
+            - **Precision:** Of predicted survivors, how many actually survived?
+            - **Recall:** Of all real survivors, how many were found?
+            - **F1 Score:** Balance between precision and recall
+            - **Confusion Matrix:** Shows true/false predictions per class
         """)
-        st.subheader("Preview of Data")
+
+        st.subheader("Dataset Preview")
         st.dataframe(df[features + ["survived"]].head())
 
     elif source == "Iris":
-
         st.markdown("""
         ### Iris Dataset
-        - **Goal:** Predict the species of an iris flower based on its measurements.
+        - **Goal:** Predict the species of an iris flower based on petal and sepal measurements
         - **Target:** `species` (Setosa, Versicolor, Virginica)
-        - **Features:** Sepal and petal length/width.
+        - **Features:** Sepal and petal length and width
         - **Evaluation Metrics:**
-            - **Accuracy:** Percentage of flowers correctly classified by species.
-            - **Precision/Recall/F1:** Show performance per flower class.
-            - **Confusion Matrix:** Highlights which species were misidentified.
-            - **Pairplot:** Visualizes feature groupings across species.
+            - **Accuracy:** % of flowers correctly classified
+            - **Precision/Recall/F1:** Show model quality per class
+            - **Confusion Matrix:** Reveals which species are misclassified
+            - **Pairplot:** Visualizes how features cluster by species
         """)
 
+        st.subheader("🔍 Dataset Preview")
+        st.dataframe(df.head())
+
+    else:
+        st.subheader("Dataset Preview")
         st.dataframe(df.head())
 
 with tab2:
     st.markdown("""
     - **X Shape:** Rows = number of samples; Columns = number of input features
-    - **y Distribution:** Shows how many of each type of target are present
+    - **y Distribution:** Shows how many of each type of target variable are present
     """)
     st.subheader("Model Info and Configuration")
     st.write("Selected Model:", model_name)
@@ -217,16 +223,22 @@ with tab3:
     if model_name == "Logistic Regression":
         st.subheader("Model Coefficients")
         st.markdown("These values show how each input feature contributes to the prediction.")
+
         feature_names = X.columns
+        coefficients = model.coef_[0]
+
         coef_df = pd.DataFrame({
             "Feature": feature_names,
-            "Coefficient": model.coef_[0]
+            "Coefficient": pd.Series(coefficients, dtype="float")
         })
+
+    # Drop NaNs if any (just in case)
+        coef_df = coef_df.dropna(subset=["Coefficient"])
+
         coef_df["Abs(Coefficient)"] = coef_df["Coefficient"].abs()
         coef_df = coef_df.sort_values("Abs(Coefficient)", ascending=False)
 
-        styled = coef_df[["Feature", "Coefficient"]].style.format({"Coefficient": "{:.4f}"})
-        st.dataframe(styled)
+        st.dataframe(coef_df[["Feature", "Coefficient"]].style.format({"Coefficient": "{:.4f}"}))
 
     # Iris Dataset Visualization
     if source == "Iris":
