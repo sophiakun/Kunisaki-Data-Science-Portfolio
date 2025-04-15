@@ -60,19 +60,20 @@ To see some of the resources I used, and for further reading, please reference t
 
 - **[Streamlit Sidebar](https://docs.streamlit.io/develop/api-reference/layout/st.sidebar)**
 - **[Streamlit Tabs](https://docs.streamlit.io/develop/api-reference/layout/st.tabs)**
-- **[Pandas](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.select_dtypes.html)**
+- **[Pandas 'select_dtypes'](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.select_dtypes.html)**
 - **[Seaborn Pairplot](https://seaborn.pydata.org/generated/seaborn.pairplot.html)**
+- **[Resize Image](https://stackoverflow.com/questions/14675913/changing-image-size-in-markdown)**
 
 ## Visual Examples:
 
 ### **1. Example Pairplot: Iris Data**
-![Iris Data](visualizations/iris_pairplot.png)
+<img src="visualizations/iris_pairplot.png" alt="Confusion Matrix" width="400"/>
 
 ### **2. Confusion Matrix: Logistic Regression**
-![Confusion Matrix](visualizations/logit_example.png)
+<img src="visualizations/logit_example.png" alt="Confusion Matrix" width="400"/>
 
 ### **3. Confusion Matrix: Decision Tree**
-![Confusion Matrix](visualizations/tree_example.png)
+<img src="visualizations/tree_example.png" alt="Confusion Matrix" width="400"/>
 
 ### **4. Confusion Matrix: K-Nearest Neighbors**
 <img src="visualizations/knn_example.png" alt="Confusion Matrix" width="400"/>
