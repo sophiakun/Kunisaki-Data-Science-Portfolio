@@ -68,9 +68,6 @@ else:
 # -----------------------------------------------
 
 if source == "Upload your own CSV":
-    st.subheader("Uploaded Dataset Preview")
-    st.dataframe(df.head())
-
     # Select target column
     target_col = st.sidebar.selectbox("Select the target variable", df.columns)
 
@@ -94,15 +91,6 @@ if source == "Upload your own CSV":
         st.stop()
 
     st.write(f"Selected features: {', '.join(X.columns)}")
-
-# Show preview of built-in datasets
-elif source == "Iris":
-    st.subheader("Iris Dataset Preview")
-    st.dataframe(df.head())
-
-else:
-    st.subheader("Titanic Dataset Preview")
-    st.dataframe(df[features + ["survived"]].head())
 
 # -----------------------------------------------
 # Model Selection Sidebar
