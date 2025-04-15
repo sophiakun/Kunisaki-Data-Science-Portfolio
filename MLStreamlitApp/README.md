@@ -65,16 +65,16 @@ To see some of the resources I used, and for further reading, please reference t
 
 ## Visual Examples:
 
-### **1. Example Pairplot**
+### **1. Example Pairplot: Iris Data**
 ![Iris Data](visualizations/iris_pairplot.png)
 
-### **2. Logistic Regression**
+### **2. Confusion Matrix: Logistic Regression**
 ![Confusion Matrix](visualizations/logit_example.png)
 
-### **3. Decision Tree**
+### **3. Confusion Matrix: Decision Tree**
 ![Confusion Matrix](visualizations/tree_example.png)
 
-### **4. K-Nearest Neighbors**
-![Confusion Matrix](visualizations/knn_example.png)
+### **4. Confusion Matrix: K-Nearest Neighbors**
+<img src="visualizations/knn_example.png" alt="Confusion Matrix" width="400"/>
 
 
