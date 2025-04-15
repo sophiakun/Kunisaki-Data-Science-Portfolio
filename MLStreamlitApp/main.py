@@ -216,12 +216,15 @@ with tab3:
       A smaller `k` may capture noise (overfitting), while a larger `k` makes the model more generalized.""")
 
     elif model_name == "Decision Tree":
-        st.markdown(f"""**Decision Tree Configuration**
-                    - **Max Depth:** `{max_depth}`
-                    This limits how deep the tree can go. Lower values create simpler trees; higher values allow more splits but can lead to overfitting.
-                    
-                    - **Min Samples to Split:** `{min_samples_split}`
-                    The minimum number of samples required to split a node. Larger values restrict growth and help prevent overfitting.""")
+        st.markdown(f"""
+**Decision Tree Configuration**
+
+- **Max Depth:** `{max_depth}`  
+  This limits how deep the tree can go. Lower values create simpler trees; higher values allow more splits but can lead to overfitting.
+
+- **Min Samples to Split:** `{min_samples_split}`  
+  The minimum number of samples required to split a node. Larger values restrict growth and help prevent overfitting.
+""")
 
 # ----------------------------
 # Metrics
@@ -250,11 +253,22 @@ with tab3:
 
     # Confusion Matrix
     st.subheader("Confusion Matrix")
-    st.markdown("This shows how many values were correctly and incorrectly classified." \
-"   - **Actual:** the real label from the data" \
-"   - **Predicted:** what the ML model guessed" \
-"In the **Titanic example**, `0` = not survived and `1` = survived" \
-" showing true positives (bottom right), true negatives (top left), false positives (top right), and false negatives (bottom left).")
+    st.markdown("""
+This shows how many values were correctly and incorrectly classified:
+
+- **Actual:** The real label from the data  
+- **Predicted:** What the ML model guessed  
+
+In the **Titanic example**:  
+- `0` = Did **not** survive  
+- `1` = **Survived**
+
+The confusion matrix cells represent:
+- **True Negatives** (Top-left): Actual = 0, Predicted = 0  
+- **False Positives** (Top-right): Actual = 0, Predicted = 1  
+- **False Negatives** (Bottom-left): Actual = 1, Predicted = 0  
+- **True Positives** (Bottom-right): Actual = 1, Predicted = 1
+""")
     cm = confusion_matrix(y_test, y_pred)
     fig, ax = plt.subplots() # Create a Matplotlib heatmap
     sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
