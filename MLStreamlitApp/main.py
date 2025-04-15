@@ -96,9 +96,8 @@ model_name = st.sidebar.selectbox("Model:", ["Logistic Regression", "Decision Tr
 # If Decision Tree selected, user can control tree depth (avoid overfitting)
 # and require a minimum number of samples for splits (control tree complexity)
 if model_name == "Decision Tree":
-    st.sidebar.markdown("### Decision Tree Settings")
-    max_depth = st.sidebar.slider("Max Depth of Tree:", min_value=1, max_value=20, value=5)
-    min_samples_split = st.sidebar.slider("Minimum Samples to Split:", min_value=2, max_value=10, value=2)
+    max_depth = st.sidebar.slider("Choose max depth of tree:", min_value=1, max_value=20, value=5)
+    min_samples_split = st.sidebar.slider("Choose minimum samples to split:", min_value=2, max_value=10, value=2)
 
 # If KNN selected, show a slider for 'k'
 if model_name == "KNN":
@@ -187,37 +186,37 @@ with tab2:
     st.write("y Distribution:", pd.Series(y).value_counts())
 
 with tab3:
-    # Encode categorical features in X and y
+    # Encode categorical features and labels
     X = pd.get_dummies(X, drop_first=True)
     if y.dtype == "object":
         y = LabelEncoder().fit_transform(y)
 
-    # Split test and training subsets
+    # Split data
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    # Scale dataset for logistic and k-nearest neighbors models
+    # Scale for Logistic Regression and KNN
     if model_name in ["Logistic Regression", "KNN"]:
         scaler = StandardScaler()
         X_train = scaler.fit_transform(X_train)
         X_test = scaler.transform(X_test)
 
-    # Train the model using user-defined or default settings
+    # Train and predict
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+
+    # Show user-selected hyperparameters
     if model_name == "KNN":
-    # Inform the user what value of k is being used
-        st.markdown(f"🔧 Training KNN model with k = {selected_k}")
-    
-    # Use the selected number of neighbors
-        model = KNeighborsClassifier(n_neighbors=selected_k)
-        model.fit(X_train, y_train)
-        y_pred = model.predict(X_test)
-    else:
-        model.fit(X_train, y_train)
-        y_pred = model.predict(X_test)
-    # Show Decision Tree parameters in evaluation tab
-    if model_name == "Decision Tree":
-        st.markdown("🌲 **Decision Tree Configuration Used:**")
-        st.markdown(f"- Max Depth: `{max_depth}`")
-        st.markdown(f"- Min Samples to Split: `{min_samples_split}`")
+        st.markdown(f""" **KNN Configuration**
+    - **k (Number of Neighbors):** `{selected_k}`  
+      The number of closest data points the algorithm uses to classify a new point.  
+      A smaller `k` may capture noise (overfitting), while a larger `k` makes the model more generalized.""")
+
+    elif model_name == "Decision Tree":
+        st.markdown(f"""**Decision Tree Configuration**
+            - **Max Depth:** `{max_depth}`  
+            This limits how deep the tree can go. Lower values create simpler trees; higher values allow more splits but can lead to overfitting.
+            - **Min Samples to Split:** `{min_samples_split}`  
+            The minimum number of samples required to split a node. Larger values restrict growth and help prevent overfitting.""")
 
 # ----------------------------
 # Metrics
