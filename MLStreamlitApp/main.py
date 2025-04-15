@@ -78,10 +78,6 @@ if source == "Upload your own CSV":
         default=[col for col in df.columns if col != target_col]
     )
 
-    if not feature_cols:
-        st.error("Please select at least one feature column.")
-        st.stop()
-
     # Only keep numeric features
     X = df[feature_cols].select_dtypes(include="number")
     y = df[target_col]
@@ -117,6 +113,37 @@ with tab1:
     st.subheader("Preview of Data")
     st.dataframe(df.head())
 
+    if source == "Titanic":
+        st.dataframe(df[features + ["survived"]].head())
+
+        st.markdown("""
+        ### Titanic Dataset
+        - **Goal:** Predict whether a passenger survived the Titanic disaster.
+        - **Target:** `survived` (1 = survived, 0 = did not survive)
+        - **Features:** Passenger class, age, family aboard, fare, and gender
+        - **Evaluation Metrics:**
+            - **Accuracy:** How many passengers were correctly predicted (survived/did not).
+            - **Precision:** When the model predicts survival, how often is it correct?
+            - **Recall:** Of all actual survivors, how many did the model correctly identify?
+            - **F1 Score:** A balance between precision and recall.
+            - **Confusion Matrix:** See which passengers were misclassified.
+        """)
+
+    elif source == "Iris":
+        st.dataframe(df.head())
+
+        st.markdown("""
+        ### Iris Dataset
+        - **Goal:** Predict the species of an iris flower based on its measurements.
+        - **Target:** `species` (Setosa, Versicolor, Virginica)
+        - **Features:** Sepal and petal length/width.
+        - **Evaluation Metrics:**
+            - **Accuracy:** Percentage of flowers correctly classified by species.
+            - **Precision/Recall/F1:** Show performance per flower class.
+            - **Confusion Matrix:** Highlights which species were misidentified.
+            - **Pairplot:** Visualizes feature groupings across species.
+        """)
+
 with tab2:
     st.subheader("Model Info and Configuration")
     st.write("Selected Model:", model_name)
@@ -124,8 +151,6 @@ with tab2:
     st.write("y Distribution:", pd.Series(y).value_counts())
 
 with tab3:
-    st.subheader("Training and Evaluation")
-
     # Encode categorical features in X and y
     X = pd.get_dummies(X, drop_first=True)
     if y.dtype == "object":
