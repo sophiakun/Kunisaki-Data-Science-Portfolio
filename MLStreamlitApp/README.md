@@ -66,16 +66,15 @@ To see some of the resources I used, and for further reading, please reference t
 ## Visual Examples:
 
 ### **1. Example Pairplot**
-![Iris Data](/Users/sophiakunisaki/Desktop/GitHub/Kunisaki-Data-Science-Portfolio/MLStreamlitApp/visualizations/iris_pairplot.png)
+![Iris Data](visualizations/iris_pairplot.png)
 
 ### **2. Logistic Regression**
-![Confusion Matrix](MLStreamlitApp/visualizations/logit_example.png)
+![Confusion Matrix](visualizations/logit_example.png)
 
 ### **3. Decision Tree**
-![Confusion Matrix](MLStreamlitApp/visualizations/tree_example.png)
+![Confusion Matrix](visualizations/tree_example.png)
 
 ### **4. K-Nearest Neighbors**
-![Confusion Matrix](MLStreamlitApp/visualizations/knn_example.png)
-
+![Confusion Matrix](visualizations/knn_example.png)
 
 
