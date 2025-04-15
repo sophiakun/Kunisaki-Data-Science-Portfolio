@@ -244,13 +244,14 @@ with tab3:
         st.markdown("""
     ### What is ROC AUC?
 
-    **ROC AUC**, or *Receiver Operating Characteristic – Area Under the Curve*:
+    **ROC AUC**, or Receiver Operating Characteristic – Area Under the Curve:
 
     - Tells us how well the model can **distinguish between two classes** 
     - AUC of 1.0 = perfect ranking
     - AUC of 0.5 = random guessing format
     """)
 
+    st.subheader("Dataset Results")
     st.markdown(f"""
     - **Accuracy:** {accuracy_score(y_test, y_pred):.2f}  
     - **Precision:** {precision_score(y_test, y_pred, average='weighted', zero_division=0):.2f}  
