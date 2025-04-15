@@ -72,14 +72,29 @@ pip install pipreqs
 
 To see some of the resources I used, and for further reading, please reference the sources below.
 
-- **[Scikit-learn Logistic Regression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html)**
-- **[Scikit-learn KNN](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html)**
-- **[Scikit-learn Decision Tree](https://scikit-learn.org/stable/modules/tree.html)**
-- **[Streamlit Sidebar](https://docs.streamlit.io/develop/api-reference/layout/st.sidebar)**
-- **[Streamlit Tabs](https://docs.streamlit.io/develop/api-reference/layout/st.tabs)**
-- **[Pandas 'select_dtypes'](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.select_dtypes.html)**
-- **[Seaborn Pairplot](https://seaborn.pydata.org/generated/seaborn.pairplot.html)**
-- **[Seaborn Heatmap](https://seaborn.pydata.org/generated/seaborn.heatmap.html)**
-- **[Resize Image](https://stackoverflow.com/questions/14675913/changing-image-size-in-markdown)**
+- **Scikit-learn Models**
+  - [Logistic Regression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html)
+  - [KNN](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html)
+  - [Decision Tree](https://scikit-learn.org/stable/modules/tree.html)
+  - [Train/Test Split](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html)
+  - [StandardScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html)
+  - [Confusion Matrix](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.confusion_matrix.html)
+  - [Classification Report](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html)
+  - [ROC AUC Score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html)
+
+- **Streamlit**
+  - [Sidebar Layout](https://docs.streamlit.io/develop/api-reference/layout/st.sidebar)
+  - [Tabs](https://docs.streamlit.io/develop/api-reference/layout/st.tabs)
+  - [Markdown Text](https://docs.streamlit.io/develop/api-reference/text/st.markdown)
+
+- **Visualization**
+  - [Seaborn Pairplot](https://seaborn.pydata.org/generated/seaborn.pairplot.html)
+  - [Seaborn Heatmap](https://seaborn.pydata.org/generated/seaborn.heatmap.html)
+  - [Resize Image in Markdown](https://stackoverflow.com/questions/14675913/changing-image-size-in-markdown)
+
+- **General**
+  - [Scikit-learn User Guide](https://scikit-learn.org/stable/user_guide.html)
+  - [Pandas Documentation](https://pandas.pydata.org/docs/)
+  - [Streamlit Documentation](https://docs.streamlit.io/)
 
 
