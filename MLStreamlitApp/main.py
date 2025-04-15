@@ -184,13 +184,35 @@ with tab1:
 
 with tab2: # model settings
     st.markdown("""
-    - **X Shape:** Rows = number of samples; Columns = number of input features
-    - **y Distribution:** Shows how many of each type of target variable are present
+    - **X Shape:** rows = number of samples; columns = number of input features
+    - **y Distribution:** shows how many of each type of target variable are present
     """)
     st.subheader("Model Info and Configuration")
     st.write("Selected Model:", model_name)
     st.write("X Shape:", X.shape)
     st.write("y Distribution:", pd.Series(y).value_counts())
+
+    # Add explanation of hyperparameters
+    st.markdown("""
+    ### Understanding Model Hyperparameters
+
+    #### K-Nearest Neighbors (KNN)
+    - **k (Number of Neighbors):**
+      - Controls how many nearby points the model looks at when classifying
+      - **Smaller k**: model is very sensitive, but has risk of overfitting
+      - **Larger k**: smoother decision boundaries, more generalized
+
+    #### Decision Tree
+    - **Max Depth:**
+      - The maximum number of splits the tree can make from top to bottom
+      - **Lower values**: simpler tree, less likely to overfit
+      - **Higher values**: more complex tree, may overfit to training data
+
+    - **Min Samples to Split:**
+      - The minimum number of data points a node must have to be split further
+      - **Higher values**: tree stops growing early, prevents overfitting
+      - **Lower values**: tree grows deeper, more flexible but might overfit
+    """)
 
 with tab3: # evaluation
     # Encode categorical features and labels
