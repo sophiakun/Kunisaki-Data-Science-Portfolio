@@ -110,11 +110,10 @@ else:
 tab1, tab2, tab3 = st.tabs(["Dataset Preview", "Model Settings", "Results & Evaluation"])
 
 with tab1:
-    st.subheader("Preview of Data")
+    st.subheader("About & Preview of Data")
     st.dataframe(df.head())
 
     if source == "Titanic":
-        st.dataframe(df[features + ["survived"]].head())
 
         st.markdown("""
         ### Titanic Dataset
@@ -129,8 +128,9 @@ with tab1:
             - **Confusion Matrix:** See which passengers were misclassified.
         """)
 
+        st.dataframe(df[features + ["survived"]].head())
+
     elif source == "Iris":
-        st.dataframe(df.head())
 
         st.markdown("""
         ### Iris Dataset
@@ -143,6 +143,8 @@ with tab1:
             - **Confusion Matrix:** Highlights which species were misidentified.
             - **Pairplot:** Visualizes feature groupings across species.
         """)
+
+        st.dataframe(df.head())
 
 with tab2:
     st.subheader("Model Info and Configuration")
