@@ -14,13 +14,12 @@ This interactive Streamlit application allows users to explore supervised machin
 
 - View performance metrics and visualizations
 
-## Instructions:
-
-Include step-by-step instructions on how to run the app locally and a link to the deployed version. List all necessary libraries and versions.
-
-### Step-by-Step Instructions
+### Run Locally
 In the requirements.txt terminal, run: 
 pip install pipreqs
+
+### Deployed Version Link
+[Launch the App Here](https://kunisaki-data-science-portfolio.streamlit.app/)
 
 ### Necessary Libraries
 - matplotlib 3.10.1
@@ -31,8 +30,29 @@ pip install pipreqs
 
 ## App Features:
 
-Explain the models you used and describe how hyperparameters are selected or tuned
+- **Dataset Options**:
+  - Built-in datasets: Titanic and Iris
+  - Upload your own CSV file
 
+- **Model Options**:
+  - Logistic Regression
+  - Decision Tree
+  - K-Nearest Neighbors (KNN)
+
+- **Interactive Hyperparameter Tuning**:
+  - KNN: Adjust the number of neighbors (`k`)
+  - Decision Tree: Adjust max depth and minimum samples to split
+
+- **Performance Metrics**:
+  - Accuracy, Precision, Recall, F1 Score
+  - ROC AUC Score 
+  - Confusion Matrix
+  - Classification Report Table
+
+- **Visualizations**:
+  - Iris Dataset Pairplot
+  - Confusion Matrix Heatmap
+  - Feature Coefficients for Logistic Regression
 
 ## References:
 
@@ -41,11 +61,21 @@ To see some of the resources I used, and for further reading, please reference t
 - **[Streamlit Sidebar](https://docs.streamlit.io/develop/api-reference/layout/st.sidebar)**
 - **[Streamlit Tabs](https://docs.streamlit.io/develop/api-reference/layout/st.tabs)**
 - **[Pandas](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.select_dtypes.html)**
+- **[Seaborn Pairplot](https://seaborn.pydata.org/generated/seaborn.pairplot.html)**
 
 ## Visual Examples:
 
-### **1. Title**
-![XX]()
+### **1. Example Pairplot**
+![Iris Data](/Users/sophiakunisaki/Desktop/GitHub/Kunisaki-Data-Science-Portfolio/MLStreamlitApp/visualizations/iris_pairplot.png)
 
-### **2. Title**
-![XX]()
+### **2. Logistic Regression**
+![Confusion Matrix](MLStreamlitApp/visualizations/logit_example.png)
+
+### **3. Decision Tree**
+![Confusion Matrix](MLStreamlitApp/visualizations/tree_example.png)
+
+### **4. K-Nearest Neighbors**
+![Confusion Matrix](MLStreamlitApp/visualizations/knn_example.png)
+
+
+
