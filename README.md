@@ -8,7 +8,7 @@ Hello! This repository highlights my projects and technical skills from the cour
 
 **Portfolio Update 2:** [Tidy Data Project](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/TidyData-Project)
 
-**Portfolio Update 3:** [ML Streamlot App](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLStreamlitApp)
+**Portfolio Update 3:** [ML Streamlit App](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLStreamlitApp)
 
 **Portfolio README:** [README.md](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/blob/main/README.md)
 
