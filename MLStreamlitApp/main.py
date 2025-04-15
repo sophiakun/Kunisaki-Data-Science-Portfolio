@@ -252,7 +252,7 @@ with tab3:
         st.dataframe(coef_df[["Feature", "Coefficient"]].style.format({"Coefficient": "{:.4f}"})) # show in app
 
     # Iris Dataset Visualization
-    if source == "Iris":
-        st.subheader("Pairplot of Iris Features")
-        fig = sns.pairplot(df, hue="species", palette="viridis") # Create a seaborn pairplot colored by species
-        st.pyplot(fig) # show in app
+    #if source == "Iris":
+        #st.subheader("Pairplot of Iris Features")
+        #fig = sns.pairplot(df, hue="species", palette="viridis") # Create a seaborn pairplot colored by species
+        #st.pyplot(fig) # show in app
