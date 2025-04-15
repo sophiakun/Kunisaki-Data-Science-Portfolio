@@ -48,9 +48,6 @@ source = st.sidebar.radio("Select dataset source:", ["Iris", "Titanic", "Upload 
 # for user-uploaded CSV
 if source == "Upload your own CSV":
     uploaded_file = st.sidebar.file_uploader("Upload CSV", type="csv")
-    if not uploaded_file:
-        st.warning("Please upload a CSV file to continue.")
-        st.stop()
     df = pd.read_csv(uploaded_file)
 # for the Titanic example
 else:
@@ -84,11 +81,6 @@ if source == "Upload your own CSV":
     X = df[feature_cols].select_dtypes(include="number")
     # Extract the target column (labels) as the response variable
     y = df[target_col]
-
-    # Check if the resulting feature set is empty 
-    if X.empty: 
-        st.error("Selected features must be numeric.") # Display an error message in the Streamlit app
-        st.stop()
     
     # Display the list of selected feature names to the user
     st.write(f"Selected features: {', '.join(X.columns)}")
@@ -101,13 +93,30 @@ if source == "Upload your own CSV":
 st.sidebar.header("2. Choose a Model")
 model_name = st.sidebar.selectbox("Model:", ["Logistic Regression", "Decision Tree", "KNN"])
 
+# If Decision Tree selected, user can control tree depth (avoid overfitting)
+# and require a minimum number of samples for splits (control tree complexity)
+if model_name == "Decision Tree":
+    st.sidebar.markdown("### Decision Tree Settings")
+    max_depth = st.sidebar.slider("Max Depth of Tree:", min_value=1, max_value=20, value=5)
+    min_samples_split = st.sidebar.slider("Minimum Samples to Split:", min_value=2, max_value=10, value=2)
+
+# If KNN selected, show a slider for 'k'
+if model_name == "KNN":
+    selected_k = st.sidebar.slider(
+        "Choose number of neighbors (k):",
+        min_value=1, max_value=15, step=2, value=5
+    )
+
 # Initialize respective models
 if model_name == "Logistic Regression":
     model = LogisticRegression()
 elif model_name == "Decision Tree":
-    model = DecisionTreeClassifier()
-else:
-    model = KNeighborsClassifier()
+    model = DecisionTreeClassifier(
+        max_depth=max_depth,
+        min_samples_split=min_samples_split,
+        random_state=42)
+else:  # KNN
+    model = KNeighborsClassifier(n_neighbors=selected_k)
 
 # ----------------------------
 # Data Preprocessing and Splitting
@@ -192,25 +201,23 @@ with tab3:
         X_train = scaler.fit_transform(X_train)
         X_test = scaler.transform(X_test)
 
-    # Fit and predict with optional KNN tuning
+    # Train the model using user-defined or default settings
     if model_name == "KNN":
-        st.markdown("Tuning `k` (number of neighbors) using cross-validation...")
-
-        # Define a range of k values to explore for odd numbers
-        param_grid = {'n_neighbors': list(range(3, 16, 2))}
-
-        grid = GridSearchCV(KNeighborsClassifier(), param_grid, cv=5)
-        grid.fit(X_train, y_train)
-
-        # Use best model
-        model = grid.best_estimator_
+    # Inform the user what value of k is being used
+        st.markdown(f"🔧 Training KNN model with k = {selected_k}")
+    
+    # Use the selected number of neighbors
+        model = KNeighborsClassifier(n_neighbors=selected_k)
+        model.fit(X_train, y_train)
         y_pred = model.predict(X_test)
-
-        st.success(f"Best k (n_neighbors): {grid.best_params_['n_neighbors']}")
     else:
         model.fit(X_train, y_train)
         y_pred = model.predict(X_test)
-
+    # Show Decision Tree parameters in evaluation tab
+    if model_name == "Decision Tree":
+        st.markdown("🌲 **Decision Tree Configuration Used:**")
+        st.markdown(f"- Max Depth: `{max_depth}`")
+        st.markdown(f"- Min Samples to Split: `{min_samples_split}`")
 
 # ----------------------------
 # Metrics
@@ -240,8 +247,8 @@ with tab3:
     # Confusion Matrix
     st.subheader("Confusion Matrix")
     st.markdown("This shows how many values were correctly and incorrectly classified." \
-    "- **Actual:** the real label from the data" \
-    "- **Predicted:** what the ML model guessed  " \
+    "   - **Actual:** the real label from the data" \
+    "   - **Predicted:** what the ML model guessed" \
     
     "In the **Titanic example**, `0` = not survived and `1` = survived" \
     " showing true positives (bottom right), true negatives (top left), false positives (top right), and false negatives (bottom left).")
