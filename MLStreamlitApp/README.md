@@ -23,11 +23,11 @@ In the requirements.txt terminal, run:
 pip install pipreqs
 
 ### Necessary Libraries
-- matplotlib==3.10.1
-- pandas==2.2.3
-- seaborn==0.13.2
-- streamlit==1.37.1
-- scikit-learn== 1.5.1
+- matplotlib 3.10.1
+- pandas 2.2.3
+- seaborn 0.13.2
+- streamlit 1.37.1
+- scikit-learn 1.5.1
 
 ## App Features:
 
