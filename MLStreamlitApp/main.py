@@ -29,9 +29,12 @@ from sklearn.metrics import (
 st.title("Interactive Supervised Machine Learning Explorer ⚙️")
 st.markdown("""
 Explore different supervised machine learning models including:  
-1. **Logistic Regression**  
-2. **Decision Trees**  
-3. **K-Nearest Neighbors (KNN)**  
+1. **Logistic Regression**: a statistical model used for binary classification,
+            estimating the probability of target variable gieven a set of features
+2. **Decision Trees**:  a flowchart-like model that splits data into branches based on
+            features and can handle both numerical and categorical data
+3. **K-Nearest Neighbors (KNN)**: a non-parametric model that classifies a data point
+            based on the majority class among its ‘k’ nearest neighbors in the training set
 
 Upload **your own dataset** or use the built-in **Titanic** and **Iris** datasets to engage with this interactive app!
 """)
@@ -43,14 +46,14 @@ Upload **your own dataset** or use the built-in **Titanic** and **Iris** dataset
 # Create sidebar with different datasets to choose from
 st.sidebar.header("1. Choose a Dataset")
 source = st.sidebar.radio("Select dataset source:", ["Iris", "Titanic", "Upload your own CSV"])
-
+# for user-uploaded CSV
 if source == "Upload your own CSV":
     uploaded_file = st.sidebar.file_uploader("Upload CSV", type="csv")
     if not uploaded_file:
         st.warning("Please upload a CSV file to continue.")
         st.stop()
     df = pd.read_csv(uploaded_file)
-
+# for the Titanic example
 else:
     if source == "Titanic":
         df = sns.load_dataset("titanic").dropna(subset=["age"])
@@ -58,7 +61,7 @@ else:
         features = ['pclass', 'age', 'sibsp', 'parch', 'fare', 'sex_male']
         X = df[features]
         y = df["survived"]
-    else:
+    else: # for the Iris example
         df = sns.load_dataset("iris")
         X = df.drop(columns=["species"])
         y = df["species"]
@@ -74,18 +77,21 @@ if source == "Upload your own CSV":
     # Select features
     feature_cols = st.sidebar.multiselect(
         "Select features to include in the model (inputs used to make predictions)",
-        options=[col for col in df.columns if col != target_col],
-        default=[col for col in df.columns if col != target_col]
+        options=[col for col in df.columns if col != target_col], # Dropdown options: all columns except the target
+        default=[col for col in df.columns if col != target_col] # Default options: pre-select all available features (excluding the target)
     )
 
-    # Only keep numeric features
+    # Keep only numeric columns from the selected feature columns
     X = df[feature_cols].select_dtypes(include="number")
+    # Extract the target column (labels) as the response variable
     y = df[target_col]
 
-    if X.empty:
-        st.error("Selected features must be numeric.")
+    # Check if the resulting feature set is empty 
+    if X.empty: 
+        st.error("Selected features must be numeric.") # Display an error message in the Streamlit app
         st.stop()
-
+    
+    # Display the list of selected feature names to the user
     st.write(f"Selected features: {', '.join(X.columns)}")
 
 # -----------------------------------------------
