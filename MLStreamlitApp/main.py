@@ -192,9 +192,25 @@ with tab3:
         X_train = scaler.fit_transform(X_train)
         X_test = scaler.transform(X_test)
 
-    # Fit model and make prediction
-    model.fit(X_train, y_train)
-    y_pred = model.predict(X_test)
+    # Fit and predict with optional KNN tuning
+    if model_name == "KNN":
+        st.markdown("Tuning `k` (number of neighbors) using cross-validation...")
+
+        # Define a range of k values to explore for odd numbers
+        param_grid = {'n_neighbors': list(range(3, 16, 2))}
+
+        grid = GridSearchCV(KNeighborsClassifier(), param_grid, cv=5)
+        grid.fit(X_train, y_train)
+
+        # Use best model
+        model = grid.best_estimator_
+        y_pred = model.predict(X_test)
+
+        st.success(f"Best k (n_neighbors): {grid.best_params_['n_neighbors']}")
+    else:
+        model.fit(X_train, y_train)
+        y_pred = model.predict(X_test)
+
 
 # ----------------------------
 # Metrics
