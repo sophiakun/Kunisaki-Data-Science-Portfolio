@@ -8,7 +8,9 @@ Hello! This repository highlights my projects and technical skills from the cour
 
 **Portfolio Update 2:** [Tidy Data Project](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/TidyData-Project)
 
-**Portfolio Update 3:** [ML Streamlit App](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLStreamlitApp)
+**Portfolio Update 3:** [ML Streamlit App](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLStreamlitApp) 
+
+[Launch the App Here](https://kunisaki-data-science-portfolio.streamlit.app/)
 
 **Portfolio README:** [README.md](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/blob/main/README.md)
 
@@ -41,22 +43,26 @@ This project complements my data science portfolio by showcasing my ability to:
 - **Use various Python libraries** such as Pandas, Matplotlib, and Seaborn
 
 ### **3. ⚙️ Interactive Supervised Machine Learning Explorer**
-[View](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLStreamlitApp)
+[View Code](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLStreamlitApp)
+[Launch App](https://kunisaki-data-science-portfolio.streamlit.app/)
 
-Deploy to the Streamlit Community Cloud, the ML project shows my development of a machine learning application using Python and Streamlit. The app allows users to upload their own dataset, select and train a supervised machine learning model, experiment with hyperparameter tuning, and view model performance metrics. 
+Deployed to the Streamlit Community Cloud, the ML project shows my development of a machine learning application using Python and Streamlit. The app allows users to upload their own dataset, select and train a supervised machine learning model, experiment with hyperparameter tuning, and view model performance metrics. 
+
+This app complements my portfolio by bridging the gap between data analysis and user experience (UI/UX) and interactivity, making data tools accessible to others.
 
 Portfolio Significance:
 - **Technical Skills**: showcases Python, Streamlit, and scikit-learn expertise
 - **ML Understanding**: demonstrates knowledge and implementation of classification algorithms
-- **UI/UX Focus**: highlights user-friendlu, interactive data science app development
+- **UI/UX Focus**: highlights user-friendly, interactive data science app development
 
 ## Skills Overview
 
-- **Python:** Pandas, Matplotlib, Seaborn, Streamlit
+- **Python:** Pandas, Matplotlib, Seaborn, Streamlit, Scikit-learn
 - **Data Cleaning:** melt(), pivot_table(), etc.
-- **Interactive Applications:** using Streamlit
-- **Data Visualization:** sns.barplot(), sns.countplot(), plt.pie() using Matplotlib & Seaborn
+- **Interactive Applications:** develop strong UI/UX capabilities for seamless user interaction in Streamlit
+- **Data Visualization:** sns.barplot(), sns.countplot(), sns.pairplot(), plt.pie() using Matplotlib & Seaborn
+- **Machine Learning:** Build and evaluate supervised learning models (Logistic Regression, KNN, Decision Trees) using Scikit-learn; apply concepts like train-test split, scaling, model evaluation metrics, and hyperparameter tuning
 
 ## Importance
 
-This portfolio represents my progress in data science, from learning **data transformation skills** like cleaning and structuring data, to **data visualization**, where I have presented data that is engaging for users, and that ultimately, tells a story. 
+This portfolio represents my progress in data science, from learning **data transformation skills** like cleaning and structuring data, to developing **interactive machine learning algorithms**, where I have presented data that is engaging for users, and that ultimately, tells a story. 

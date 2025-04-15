@@ -58,6 +58,9 @@ pip install pipreqs
 
 To see some of the resources I used, and for further reading, please reference the sources below.
 
+- **[Scikit-learn Logistic Regression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html)**
+- **[Scikit-learn KNN](https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html)**
+- **[Scikit-learn Decision Tree](https://scikit-learn.org/stable/modules/tree.html)**
 - **[Streamlit Sidebar](https://docs.streamlit.io/develop/api-reference/layout/st.sidebar)**
 - **[Streamlit Tabs](https://docs.streamlit.io/develop/api-reference/layout/st.tabs)**
 - **[Pandas 'select_dtypes'](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.select_dtypes.html)**
