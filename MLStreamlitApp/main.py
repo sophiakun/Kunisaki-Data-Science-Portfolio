@@ -2,7 +2,7 @@
 # Launch Streamlit Cloud App
 # -----------------------------------------------
 
-# # requirements.txt file commands:
+# requirements.txt file commands:
 # pip install pipreqs
 
 # import libraries 
@@ -64,7 +64,7 @@ else:
         y = df["species"]
 
 # -----------------------------------------------
-# Custom Dataset: Feature & Target Selection
+# Feature & Target Selection for User-Uploaded Dataset
 # -----------------------------------------------
 
 if source == "Upload your own CSV":
@@ -111,36 +111,57 @@ else:
 st.sidebar.header("2. Choose a Model")
 model_name = st.sidebar.selectbox("Model:", ["Logistic Regression", "Decision Tree", "KNN"])
 
-# Instantiate model
-if model_name == "Logistic Regression":
-    model = LogisticRegression()
-elif model_name == "Decision Tree":
-    model = DecisionTreeClassifier()
-else:
-    model = KNeighborsClassifier()
+with st.sidebar.expander("Model Hyperparameters"):
+    if model_name == "Logistic Regression":
+        c_val = st.slider("Inverse regularization strength (C)", 0.01, 10.0, 1.0)
+        max_iter = st.slider("Maximum Iterations", 100, 1000, 200)
+        model = LogisticRegression(C=c_val, max_iter=max_iter)
+    elif model_name == "Decision Tree":
+        max_depth = st.slider("Max Depth", 1, 20, 5)
+        criterion = st.selectbox("Criterion", ["gini", "entropy"])
+        model = DecisionTreeClassifier(max_depth=max_depth, criterion=criterion)
+    else:  # KNN
+        n_neighbors = st.slider("Number of Neighbors", 1, 15, 5)
+        weights = st.selectbox("Weight Function", ["uniform", "distance"])
+        model = KNeighborsClassifier(n_neighbors=n_neighbors, weights=weights)
 
 # ----------------------------
 # Data Preprocessing and Splitting
 # ----------------------------
 
-# Encode categorical features in X and y
-X = pd.get_dummies(X, drop_first=True)
+# Make 3 tabs 
+tab1, tab2, tab3 = st.tabs(["Dataset Preview", "Model Settings", "Results & Evaluation"])
 
-if y.dtype == 'object':
-    y = LabelEncoder().fit_transform(y)
+with tab1:
+    st.subheader("Preview of Data")
+    st.dataframe(df.head())
 
-# Split dataset into training and testing subsets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+with tab2:
+    st.subheader("Model Info and Configuration")
+    st.write("Selected Model:", model_name)
+    st.write("X Shape:", X.shape)
+    st.write("y Distribution:", pd.Series(y).value_counts())
 
-# Scale dataset for logistic and k-nearest neighbors models
-if model_name in ["Logistic Regression", "KNN"]:
-    scaler = StandardScaler()
-    X_train = scaler.fit_transform(X_train)
-    X_test = scaler.transform(X_test)
+with tab3:
+    st.subheader("Training and Evaluation")
 
-# Make prediction
-model.fit(X_train, y_train)
-y_pred = model.predict(X_test)
+    # Encode categorical features in X and y
+    X = pd.get_dummies(X, drop_first=True)
+    if y.dtype == "object":
+        y = LabelEncoder().fit_transform(y)
+
+    # Split test and training subsets
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # Scale dataset for logistic and k-nearest neighbors models
+    if model_name in ["Logistic Regression", "KNN"]:
+        scaler = StandardScaler()
+        X_train = scaler.fit_transform(X_train)
+        X_test = scaler.transform(X_test)
+
+    # Fit model and make prediction
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
 
 # ----------------------------
 # Display Results and Metrics
