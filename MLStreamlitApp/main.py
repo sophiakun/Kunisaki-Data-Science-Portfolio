@@ -249,7 +249,7 @@ with tab3:
 
     - Tells us how well the model can **distinguish between two classes** 
     - AUC of 1.0 = perfect ranking
-    - AUC of 0.5 = random guessing format
+    - AUC of 0.5 = good as random guessing
     """)
 
     st.subheader("Dataset Results")
@@ -269,7 +269,7 @@ with tab3:
     - The classes (Setosa, Versicolor, Virginica) are clearly separated
     - There is no missing or noisy data
 
-    **whcih shows **perfect classification** achieved on the test split!
+    which shows **perfect classification** achieved on the test split!
     """)
 
     # Confusion Matrix
@@ -282,7 +282,7 @@ This shows how many values were correctly and incorrectly classified:
 
 In the **Titanic example**:  
 - `0` = Did **not** survive  
-- `1` = **Survived**
+- `1` = Survived
 
 The confusion matrix cells represent:
 - **True Negatives** (Top-left): Actual = 0, Predicted = 0  
