@@ -129,9 +129,9 @@ else:  # KNN
 tab1, tab2, tab3 = st.tabs(["About", "Model Settings", "Evaluation"])
 
 with tab1:
-    st.subheader("About the Dataset")
-
+    # Show "About the Dataset" only for built-in datasets
     if source == "Titanic":
+        st.subheader("About the Dataset")
         st.markdown("""
         ### Titanic Dataset
         - **Goal:** Predict whether a passenger survived the Titanic
@@ -144,11 +144,11 @@ with tab1:
             - **F1 Score:** Balance between precision and recall
             - **Confusion Matrix:** Shows true/false predictions per class
         """)
-
         st.subheader("Dataset Preview")
         st.dataframe(df[features + ["survived"]].head())
 
     elif source == "Iris":
+        st.subheader("About the Dataset")
         st.markdown("""
         ### Iris Dataset
         - **Goal:** Predict the species of an iris flower based on petal and sepal measurements
@@ -160,22 +160,22 @@ with tab1:
             - **Confusion Matrix:** Reveals which species are misclassified
             - **Pairplot:** Visualizes how features cluster by species
         """)
-
         st.subheader("Dataset Preview")
         st.dataframe(df.head())
-        if source == "Iris":
-            st.subheader("Iris Dataset Pairplot")
-            st.markdown("""
-            This plot helps visualize how different flower species separate based on their features.
 
-            -   Each dot is a flower  
-            - Colors represent the species  
-            - You can see how well the features help separate classes
+        st.subheader("Iris Dataset Pairplot")
+        st.markdown("""
+        This plot helps visualize how different flower species separate based on their features:
+
+        - Each dot is a flower  
+        - Colors represent the species  
+        - You can see how well the features help separate classes
         """)
-            fig = sns.pairplot(df, hue="species", palette="viridis") # Create a seaborn pairplot colored by species
-            st.pyplot(fig) # show in app
+        fig = sns.pairplot(df, hue="species", palette="viridis")
+        st.pyplot(fig)
 
     else:
+        # User-uploaded dataset – no "About the Dataset" header
         st.subheader("Dataset Preview")
         st.dataframe(df.head())
 
@@ -251,11 +251,10 @@ with tab3:
     # Confusion Matrix
     st.subheader("Confusion Matrix")
     st.markdown("This shows how many values were correctly and incorrectly classified." \
-    "   - **Actual:** the real label from the data" \
-    "   - **Predicted:** what the ML model guessed" \
-    
-    "In the **Titanic example**, `0` = not survived and `1` = survived" \
-    " showing true positives (bottom right), true negatives (top left), false positives (top right), and false negatives (bottom left).")
+"   - **Actual:** the real label from the data" \
+"   - **Predicted:** what the ML model guessed" \
+"In the **Titanic example**, `0` = not survived and `1` = survived" \
+" showing true positives (bottom right), true negatives (top left), false positives (top right), and false negatives (bottom left).")
     cm = confusion_matrix(y_test, y_pred)
     fig, ax = plt.subplots() # Create a Matplotlib heatmap
     sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
