@@ -48,7 +48,11 @@ source = st.sidebar.radio("Select dataset source:", ["Iris", "Titanic", "Upload 
 # for user-uploaded CSV
 if source == "Upload your own CSV":
     uploaded_file = st.sidebar.file_uploader("Upload CSV", type="csv")
+    if not uploaded_file:
+        st.warning("Please upload a CSV file to continue.")
+        st.stop()
     df = pd.read_csv(uploaded_file)
+
 # for the Titanic example
 else:
     if source == "Titanic":
@@ -213,10 +217,11 @@ with tab3:
 
     elif model_name == "Decision Tree":
         st.markdown(f"""**Decision Tree Configuration**
-            - **Max Depth:** `{max_depth}`  
-            This limits how deep the tree can go. Lower values create simpler trees; higher values allow more splits but can lead to overfitting.
-            - **Min Samples to Split:** `{min_samples_split}`  
-            The minimum number of samples required to split a node. Larger values restrict growth and help prevent overfitting.""")
+                    - **Max Depth:** `{max_depth}`
+                    This limits how deep the tree can go. Lower values create simpler trees; higher values allow more splits but can lead to overfitting.
+                    
+                    - **Min Samples to Split:** `{min_samples_split}`
+                    The minimum number of samples required to split a node. Larger values restrict growth and help prevent overfitting.""")
 
 # ----------------------------
 # Metrics
