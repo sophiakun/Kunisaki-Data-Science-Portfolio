@@ -128,7 +128,7 @@ with tab1:
         - **Evaluation Metrics:**
             - **Accuracy:** % of passengers correctly predicted
             - **Precision:** Of predicted survivors, how many actually survived?
-            - **Recall:** Of all real survivors, how many were found?
+            - **Recall:** Of actual survivors, how many did the model correctly predict as survivors?
             - **F1 Score:** Balance between precision and recall
             - **Confusion Matrix:** Shows true/false predictions per class
         """)
@@ -151,6 +151,17 @@ with tab1:
 
         st.subheader("Dataset Preview")
         st.dataframe(df.head())
+        if source == "Iris":
+            st.subheader("Iris Dataset Pairplot")
+            st.markdown("""
+            This plot helps visualize how different flower species separate based on their features.
+
+            -   Each dot is a flower  
+            - Colors represent the species  
+            - You can see how well the features help separate classes
+        """)
+            fig = sns.pairplot(df, hue="species", palette="viridis") # Create a seaborn pairplot colored by species
+            st.pyplot(fig) # show in app
 
     else:
         st.subheader("Dataset Preview")
@@ -213,7 +224,11 @@ with tab3:
     # Confusion Matrix
     st.subheader("Confusion Matrix")
     st.markdown("This shows how many values were correctly and incorrectly classified." \
-    "Specifcially, a breakdown of true positives, true negatives, false positives, and false negatives)")
+    "- **Actual:** the real label from the data" \
+    "- **Predicted:** what the ML model guessed  " \
+    
+    "In the **Titanic example**, `0` = not survived and `1` = survived" \
+    " showing true positives (bottom right), true negatives (top left), false positives (top right), and false negatives (bottom left).")
     cm = confusion_matrix(y_test, y_pred)
     fig, ax = plt.subplots() # Create a Matplotlib heatmap
     sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
@@ -232,7 +247,13 @@ with tab3:
     # Show logistic regression model coefficients
     if model_name == "Logistic Regression":
         st.subheader("Model Coefficients")
-        st.markdown("The magnitude of coefficients shows the strength of each feature's influence")
+        st.markdown("""
+These values show how much each feature (input variable) influences the model’s predictions:
+
+- A **positive coefficient** means the feature increases the chance of predicting class `1`  
+- A **negative coefficient** means it decreases that chance  
+- The **larger the number**, the stronger the influence
+""")
         # Extract feature names and corresponding model coefficients
         feature_names = X.columns
         coefficients = model.coef_[0]
@@ -249,9 +270,3 @@ with tab3:
         coef_df = coef_df.sort_values("Abs(Coefficient)", ascending=False)
 
         st.dataframe(coef_df[["Feature", "Coefficient"]].style.format({"Coefficient": "{:.4f}"})) # show in app
-
-    # Iris Dataset Visualization
-    if source == "Iris":
-        st.subheader("Pairplot of Iris Features")
-        fig = sns.pairplot(df, hue="species", palette="viridis") # Create a seaborn pairplot colored by species
-        st.pyplot(fig) # show in app
