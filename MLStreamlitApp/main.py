@@ -107,11 +107,10 @@ else:
 # ----------------------------
 
 # Make 3 tabs 
-tab1, tab2, tab3 = st.tabs(["Dataset Preview", "Model Settings", "Results & Evaluation"])
+tab1, tab2, tab3 = st.tabs(["About the Data & Preview", "Model Settings", "Results & Evaluation"])
 
 with tab1:
-    st.subheader("About & Preview of Data")
-    st.dataframe(df.head())
+    st.subheader("Preview of Data")
 
     if source == "Titanic":
 
