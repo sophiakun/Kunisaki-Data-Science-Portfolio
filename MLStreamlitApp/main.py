@@ -98,9 +98,11 @@ if source == "Upload your own CSV":
 # Model Selection Sidebar
 # -----------------------------------------------
 
+# Allow user to choose the type of model they want
 st.sidebar.header("2. Choose a Model")
 model_name = st.sidebar.selectbox("Model:", ["Logistic Regression", "Decision Tree", "KNN"])
 
+# Initialize respective models
 if model_name == "Logistic Regression":
     model = LogisticRegression()
 elif model_name == "Decision Tree":
@@ -113,14 +115,14 @@ else:
 # ----------------------------
 
 # Make 3 tabs 
-tab1, tab2, tab3 = st.tabs(["About the Data & Preview", "Model Settings", "Results & Evaluation"])
+tab1, tab2, tab3 = st.tabs(["About", "Model Settings", "Evaluation"])
 
 with tab1:
     st.subheader("About the Dataset")
 
     if source == "Titanic":
         st.markdown("""
-        ### 🛳️ Titanic Dataset
+        ### Titanic Dataset
         - **Goal:** Predict whether a passenger survived the Titanic
         - **Target:** `survived` (1 = survived, 0 = did not survive)
         - **Features:** Passenger class, age, family aboard, fare, and gender
@@ -198,8 +200,9 @@ with tab3:
     - **ROC AUC:** (for binary models) how well the model distinguishes classes
     """)
 
+    # Compute ROC AUC if the problem is binary classification and model is not a Decision Tree
     if len(np.unique(y)) == 2 and model_name != "Decision Tree":
-        st.markdown(f"- **ROC AUC Score:** {roc_auc_score(y_test, y_pred):.2f}")
+        st.markdown(f"- **ROC AUC Score:** {roc_auc_score(y_test, y_pred):.2f}") # Show ROC AUC score (2 decimal places)
 
     st.markdown(f"""
     - **Accuracy:** {accuracy_score(y_test, y_pred):.2f}  
@@ -213,7 +216,7 @@ with tab3:
     st.markdown("This shows how many values were correctly and incorrectly classified." \
     "Specifcially, a breakdown of true positives, true negatives, false positives, and false negatives)")
     cm = confusion_matrix(y_test, y_pred)
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots() # Create a Matplotlib heatmap
     sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
     ax.set_xlabel("Predicted")
     ax.set_ylabel("Actual")
@@ -221,33 +224,35 @@ with tab3:
 
     # Classification Report Table
     st.subheader("Classification Report")
-    st.markdown("Detailed breakdown of precision, recall, and F1 per class.")
+    st.markdown("Detailed breakdown of precision, recall, and F1 per class")
+
+    # Generate a classification report and convert it into a formatted DF
     report_df = pd.DataFrame(classification_report(y_test, y_pred, output_dict=True)).transpose()
-    st.dataframe(report_df.style.format("{:.2f}"))
+    st.dataframe(report_df.style.format("{:.2f}")) # Display as styled table
     
     # Show logistic regression model coefficients
     if model_name == "Logistic Regression":
         st.subheader("Model Coefficients")
-        st.markdown("These values show how each input feature contributes to the prediction.")
-
+        st.markdown("The magnitude of coefficients shows the strength of each feature's influence")
+        # Extract feature names and corresponding model coefficients
         feature_names = X.columns
         coefficients = model.coef_[0]
-
+        # Create a DataFrame to display features and their corresponding coefficients
         coef_df = pd.DataFrame({
             "Feature": feature_names,
             "Coefficient": pd.Series(coefficients, dtype="float")
         })
 
-    # Drop NaNs if any (just in case)
+        # Drop NaNs 
         coef_df = coef_df.dropna(subset=["Coefficient"])
-
+        # Take absolute value of coefficients and sort by magnitude
         coef_df["Abs(Coefficient)"] = coef_df["Coefficient"].abs()
         coef_df = coef_df.sort_values("Abs(Coefficient)", ascending=False)
 
-        st.dataframe(coef_df[["Feature", "Coefficient"]].style.format({"Coefficient": "{:.4f}"}))
+        st.dataframe(coef_df[["Feature", "Coefficient"]].style.format({"Coefficient": "{:.4f}"})) # show in app
 
     # Iris Dataset Visualization
     if source == "Iris":
         st.subheader("Pairplot of Iris Features")
-        fig = sns.pairplot(df, hue="species", palette="viridis")
-        st.pyplot(fig)
+        fig = sns.pairplot(df, hue="species", palette="viridis") # Create a seaborn pairplot colored by species
+        st.pyplot(fig) # show in app
