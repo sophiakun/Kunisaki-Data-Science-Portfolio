@@ -2,8 +2,7 @@
 # Launch Streamlit Cloud App
 # -----------------------------------------------
 
-# requirements.txt file commands:
-# pip install pipreqs
+# requirements.txt file commands: pip install pipreqs
 
 # import libraries 
 import streamlit as st
@@ -26,7 +25,7 @@ from sklearn.metrics import (
 # Application Information
 # -----------------------------------------------
 
-st.title("Interactive Supervised Machine Learning Explorer ⚙️")
+st.title(" ⚙️ Interactive Supervised Machine Learning Explorer ⚙️")
 st.markdown("""
 Explore different supervised machine learning models including:  
 1. **Logistic Regression**: a statistical model used for binary classification,
@@ -201,8 +200,8 @@ with tab3:
     """)
 
     # Compute ROC AUC if the problem is binary classification and model is not a Decision Tree
-    if len(np.unique(y)) == 2 and model_name != "Decision Tree":
-        st.markdown(f"- **ROC AUC Score:** {roc_auc_score(y_test, y_pred):.2f}") # Show ROC AUC score (2 decimal places)
+    #if len(np.unique(y)) == 2 and model_name != "Decision Tree":
+        #st.markdown(f"- **ROC AUC Score:** {roc_auc_score(y_test, y_pred):.2f}") # Show ROC AUC score (2 decimal places)
 
     st.markdown(f"""
     - **Accuracy:** {accuracy_score(y_test, y_pred):.2f}  
@@ -252,7 +251,7 @@ with tab3:
         st.dataframe(coef_df[["Feature", "Coefficient"]].style.format({"Coefficient": "{:.4f}"})) # show in app
 
     # Iris Dataset Visualization
-    #if source == "Iris":
-        #st.subheader("Pairplot of Iris Features")
-        #fig = sns.pairplot(df, hue="species", palette="viridis") # Create a seaborn pairplot colored by species
-        #st.pyplot(fig) # show in app
+    if source == "Iris":
+        st.subheader("Pairplot of Iris Features")
+        fig = sns.pairplot(df, hue="species", palette="viridis") # Create a seaborn pairplot colored by species
+        st.pyplot(fig) # show in app
