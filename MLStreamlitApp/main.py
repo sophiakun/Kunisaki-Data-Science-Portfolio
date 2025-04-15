@@ -69,11 +69,11 @@ else:
 
 if source == "Upload your own CSV":
     # Select target column
-    target_col = st.sidebar.selectbox("Select the target variable", df.columns)
+    target_col = st.sidebar.selectbox("Select the target variable (what you want to predict)", df.columns)
 
     # Select features
     feature_cols = st.sidebar.multiselect(
-        "Select features to include in the model",
+        "Select features to include in the model (inputs used to make predictions)",
         options=[col for col in df.columns if col != target_col],
         default=[col for col in df.columns if col != target_col]
     )
@@ -110,8 +110,6 @@ else:
 tab1, tab2, tab3 = st.tabs(["About the Data & Preview", "Model Settings", "Results & Evaluation"])
 
 with tab1:
-    st.subheader("Preview of Data")
-
     if source == "Titanic":
 
         st.markdown("""
@@ -126,7 +124,7 @@ with tab1:
             - **F1 Score:** A balance between precision and recall.
             - **Confusion Matrix:** See which passengers were misclassified.
         """)
-
+        st.subheader("Preview of Data")
         st.dataframe(df[features + ["survived"]].head())
 
     elif source == "Iris":
@@ -146,6 +144,10 @@ with tab1:
         st.dataframe(df.head())
 
 with tab2:
+    st.markdown("""
+    - **X Shape:** Rows = number of samples; Columns = number of input features
+    - **y Distribution:** Shows how many of each type of target are present
+    """)
     st.subheader("Model Info and Configuration")
     st.write("Selected Model:", model_name)
     st.write("X Shape:", X.shape)
@@ -176,6 +178,14 @@ with tab3:
 
     # Display ROC AUC for binary classifiers (excluding Decision Tree)
     st.subheader("Model Performance Metrics")
+    st.markdown("""
+    - **Accuracy:** % of total correct predictions  
+    - **Precision:** % of positive predictions that were correct  
+    - **Recall:** % of actual positives that were correctly predicted  
+    - **F1 Score:** Balance between precision and recall  
+    - **ROC AUC:** (for binary models) how well the model distinguishes classes
+    """)
+
     if len(np.unique(y)) == 2 and model_name != "Decision Tree":
         st.markdown(f"- **ROC AUC Score:** {roc_auc_score(y_test, y_pred):.2f}")
 
@@ -188,6 +198,8 @@ with tab3:
 
     # Confusion Matrix
     st.subheader("Confusion Matrix")
+    st.markdown("This shows how many values were correctly and incorrectly classified." \
+    "Specifcially, a breakdown of true positives, true negatives, false positives, and false negatives)")
     cm = confusion_matrix(y_test, y_pred)
     fig, ax = plt.subplots()
     sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
@@ -197,28 +209,24 @@ with tab3:
 
     # Classification Report Table
     st.subheader("Classification Report")
+    st.markdown("Detailed breakdown of precision, recall, and F1 per class.")
     report_df = pd.DataFrame(classification_report(y_test, y_pred, output_dict=True)).transpose()
     st.dataframe(report_df.style.format("{:.2f}"))
     
     # Show logistic regression model coefficients
     if model_name == "Logistic Regression":
         st.subheader("Model Coefficients")
-    
-    # Make sure feature names align with scaled or encoded input
-        if isinstance(X_train, np.ndarray):
-         feature_names = X.columns
-        else:
-            feature_names = X_train.columns
-
+        st.markdown("These values show how each input feature contributes to the prediction.")
+        feature_names = X.columns
         coef_df = pd.DataFrame({
             "Feature": feature_names,
             "Coefficient": model.coef_[0]
         })
-
         coef_df["Abs(Coefficient)"] = coef_df["Coefficient"].abs()
         coef_df = coef_df.sort_values("Abs(Coefficient)", ascending=False)
 
-        st.dataframe(coef_df[["Feature", "Coefficient"]].style.format("{:.4f}"))
+        styled = coef_df[["Feature", "Coefficient"]].style.format({"Coefficient": "{:.4f}"})
+        st.dataframe(styled)
 
     # Iris Dataset Visualization
     if source == "Iris":
