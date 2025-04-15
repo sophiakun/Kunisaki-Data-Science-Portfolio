@@ -170,6 +170,7 @@ with tab1:
         - You can see how well the features help separate classes
         """)
         fig = sns.pairplot(df, hue="species", palette="viridis")
+        fig.savefig("visualizations/iris_pairplot.png") 
         st.pyplot(fig)
 
     else:
@@ -258,7 +259,7 @@ with tab3:
     - The classes (Setosa, Versicolor, Virginica) are clearly separated
     - There is no missing or noisy data
 
-    **Perfect classification** is achieved on the test split.
+    **whcih shows **perfect classification** achieved on the test split!
     """)
 
     # Confusion Matrix
@@ -284,6 +285,7 @@ The confusion matrix cells represent:
     sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
     ax.set_xlabel("Predicted")
     ax.set_ylabel("Actual")
+    fig.savefig("visualizations/confusion_matrix_example.png", bbox_inches="tight")
     st.pyplot(fig)
 
     # Classification Report Table
