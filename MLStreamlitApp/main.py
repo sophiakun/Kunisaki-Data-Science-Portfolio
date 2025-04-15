@@ -210,8 +210,8 @@ with tab2: # model settings
 
     - **Min Samples to Split:**
       - The minimum number of data points a node must have to be split further
-      - **Higher values**: tree stops growing early, prevents overfitting
       - **Lower values**: tree grows deeper, more flexible but might overfit
+      - **Higher values**: tree stops growing early, prevents overfitting
     """)
 
 with tab3: # evaluation
