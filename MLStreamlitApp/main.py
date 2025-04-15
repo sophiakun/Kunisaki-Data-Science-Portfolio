@@ -241,6 +241,11 @@ with tab3:
     # Compute ROC AUC if the problem is binary classification and model is not a Decision Tree
     if len(np.unique(y)) == 2 and model_name != "Decision Tree":
         st.markdown(f"- **ROC AUC Score:** {roc_auc_score(y_test, y_pred):.2f}") # Show ROC AUC score (2 decimal places)
+        st.markdown("""
+    - ROC AUC (Receiver Operating Characteristic – Area Under Curve) measures how well the model can distinguish between classes
+    - AUC of 1.0 = perfect ranking
+    - AUC of 0.5 = random guessing
+    """)
 
     st.markdown(f"""
     - **Accuracy:** {accuracy_score(y_test, y_pred):.2f}  
@@ -280,7 +285,7 @@ The confusion matrix cells represent:
 - **True Positives** (Bottom-right): Actual = 1, Predicted = 1
 """)
     cm = confusion_matrix(y_test, y_pred)
-    fig, ax = plt.subplots() # Create a Matplotlib heatmap
+    fig, ax = plt.subplots() # Create a heatmap
     sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
     ax.set_xlabel("Predicted")
     ax.set_ylabel("Actual")

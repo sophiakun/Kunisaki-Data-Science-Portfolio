@@ -2,21 +2,23 @@
 
 ## Project Overview:
 
-Describe the goal of your project and summarize what the user can do with your app.
-
-This interactive Streamlit application allows users to explore supervised machine learning models with built-in or custom datasets. Users can:
+Welcome! This interactive Streamlit application allows users to explore supervised machine learning models with built-in or custom datasets. Users can:
 
 - Upload their own CSV data or use provided Titanic/Iris datasets
 
 - Select features and target variables
 
-- hoose between Logistic Regression, Decision Trees, or K-Nearest Neighbors models
+- Choose between Logistic Regression, Decision Trees, or K-Nearest Neighbors ML models
 
 - View performance metrics and visualizations
 
 ### Run Locally
-In the requirements.txt terminal, run: 
-pip install pipreqs
+
+cd MLStreamlitApp
+
+Create a requirements.txt file
+
+Run pip install pipreqs 
 
 ### Deployed Version Link
 [Launch the App Here](https://kunisaki-data-science-portfolio.streamlit.app/)

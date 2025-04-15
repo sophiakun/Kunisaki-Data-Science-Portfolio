@@ -29,15 +29,6 @@ The dataset lists every athlete who one a medal in the 2008 Olympic Games, and t
 
 Some pre-processing steps that I took were standardizing column names, reshaping data using the melt() command, splitting the combined gender-sport variable into separate columns, and finally, removing unnecessary characters (underscores) and formatting inconsistencies (capitalization).
 
-## References:
-
-To see some of the resources I used, and for further reading, please reference the sources below.
-
-- **[Pandas Cheat Sheet](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf)**
-- **[Tidy Data Principles](https://vita.had.co.nz/papers/tidy-data.pdf)**
-- **[Seaborn Barplots](https://seaborn.pydata.org/generated/seaborn.barplot.html)**
-- **[Seaborn Countplots](https://seaborn.pydata.org/generated/seaborn.countplot.html)**
-
 ## Visual Examples:
 
 ### **1. Top 5 Sports by Number of Medals**
@@ -48,3 +39,12 @@ To see some of the resources I used, and for further reading, please reference t
 
 ### **3. Medal Distribution**
 ![Medal Distribution](visualizations/Figure_3.png)
+
+## References:
+
+To see some of the resources I used, and for further reading, please reference the sources below.
+
+- **[Pandas Cheat Sheet](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf)**
+- **[Tidy Data Principles](https://vita.had.co.nz/papers/tidy-data.pdf)**
+- **[Seaborn Barplots](https://seaborn.pydata.org/generated/seaborn.barplot.html)**
+- **[Seaborn Countplots](https://seaborn.pydata.org/generated/seaborn.countplot.html)**
