@@ -317,8 +317,8 @@ The confusion matrix cells represent:
         st.markdown("""
 These values show how much each feature (input variable) influences the model’s predictions:
 
-- A **positive coefficient** means the feature increases the chance of predicting class `1`  
-- A **negative coefficient** means it decreases that chance  
+- A **positive coefficient** means the feature increases the chance of predicting the target  
+- A **negative coefficient** means the feature decreases the chance of predicting the target  
 - The **larger the number**, the stronger the influence
 """)
         # Extract feature names and corresponding model coefficients

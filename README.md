@@ -8,9 +8,7 @@ Hello! This repository highlights my projects and technical skills from the cour
 
 **Portfolio Update 2:** [Tidy Data Project](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/TidyData-Project)
 
-**Portfolio Update 3:** [ML Streamlit App](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLStreamlitApp) 
-
-[Launch the App Here](https://kunisaki-data-science-portfolio.streamlit.app/)
+**Portfolio Update 3:** [ML Streamlit App](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLStreamlitApp) | [Launch the App Here](https://kunisaki-data-science-portfolio.streamlit.app/)
 
 **Portfolio README:** [README.md](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/blob/main/README.md)
 
@@ -61,7 +59,7 @@ Portfolio Significance:
 - **Data Cleaning:** melt(), pivot_table(), etc.
 - **Interactive Applications:** develop strong UI/UX capabilities for seamless user interaction in Streamlit
 - **Data Visualization:** sns.barplot(), sns.countplot(), sns.pairplot(), plt.pie() using Matplotlib & Seaborn
-- **Machine Learning:** Build and evaluate supervised learning models (Logistic Regression, KNN, Decision Trees) using Scikit-learn; apply concepts like train-test split, scaling, model evaluation metrics, and hyperparameter tuning
+- **Machine Learning:** build and evaluate supervised learning models (Logistic Regression, KNN, Decision Trees) using Scikit-learn; apply concepts like train-test split, scaling, model evaluation metrics, and hyperparameter tuning
 
 ## Importance
 
