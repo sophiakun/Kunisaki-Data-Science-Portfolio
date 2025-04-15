@@ -41,8 +41,7 @@ This project complements my data science portfolio by showcasing my ability to:
 - **Use various Python libraries** such as Pandas, Matplotlib, and Seaborn
 
 ### **3. ⚙️ Interactive Supervised Machine Learning Explorer**
-[View Code](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLStreamlitApp)
-[Launch App](https://kunisaki-data-science-portfolio.streamlit.app/)
+[View Code](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLStreamlitApp) | [Launch App](https://kunisaki-data-science-portfolio.streamlit.app/)
 
 Deployed to the Streamlit Community Cloud, the ML project shows my development of a machine learning application using Python and Streamlit. The app allows users to upload their own dataset, select and train a supervised machine learning model, experiment with hyperparameter tuning, and view model performance metrics. 
 

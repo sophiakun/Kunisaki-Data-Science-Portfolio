@@ -113,8 +113,7 @@ if model_name == "Decision Tree":
 if model_name == "KNN":
     selected_k = st.sidebar.slider(
         "Choose number of neighbors (k):",
-        min_value=1, max_value=15, step=2, value=5
-    )
+        min_value=1, max_value=15, step=2, value=5) # show value options (odd numbers)
 
 # Initialize respective models
 if model_name == "Logistic Regression":
@@ -135,7 +134,7 @@ else:  # KNN
 tab1, tab2, tab3 = st.tabs(["About", "Model Settings", "Evaluation"])
 
 with tab1:
-    # Show "About the Dataset" only for built-in datasets
+    # Description of dataset (if pre-selected) and preview
     if source == "Titanic":
         st.markdown("""
         ### Titanic Dataset
@@ -183,7 +182,7 @@ with tab1:
         st.subheader("Dataset Preview")
         st.dataframe(df.head())
 
-with tab2:
+with tab2: # model settings
     st.markdown("""
     - **X Shape:** Rows = number of samples; Columns = number of input features
     - **y Distribution:** Shows how many of each type of target variable are present
@@ -193,7 +192,7 @@ with tab2:
     st.write("X Shape:", X.shape)
     st.write("y Distribution:", pd.Series(y).value_counts())
 
-with tab3:
+with tab3: # evaluation
     # Encode categorical features and labels
     X = pd.get_dummies(X, drop_first=True)
     if y.dtype == "object":
