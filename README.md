@@ -62,4 +62,4 @@ Portfolio Significance:
 
 ## Importance
 
-This portfolio represents my progress in data science, from learning **data transformation skills** like cleaning and structuring data, to developing **interactive machine learning algorithms**, where I have presented data that is engaging for users, and that ultimately, tells a story. 
+This portfolio represents my progress in data science, from learning **data transformation skills** like cleaning and structuring data, to developing **interactive machine learning algorithms**. In particular, the ML Streamlit App brings together my technical skills with tools like Scikit-learn, Pandas, and Streamlit and exemplifies my ability to explain complex models and metrics in a clear, accessible way. Through these projects, I have presented data that is engaging for users, and that ultimately, tells a story. 
