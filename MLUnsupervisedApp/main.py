@@ -41,7 +41,7 @@ Upload **your own dataset** or use the built-in **Iris Dataset** to engage with 
 st.sidebar.header("1. Choose a Dataset")
 source = st.sidebar.radio("Select dataset source:", ["Iris Dataset", "Titanic Dataset", "Upload your own CSV"])
 
-# for user-uploaded CSV
+# Load dataset based on user selection
 if source == "Upload your own CSV":
     uploaded_file = st.sidebar.file_uploader("Upload CSV", type="csv")
     # If no file is uploaded, show a warning and stop the app from continuing
@@ -50,20 +50,14 @@ if source == "Upload your own CSV":
         st.stop()
     df = pd.read_csv(uploaded_file)
 
-# for the Titanic example
-elif source == "Titanic Dataset": 
-    # Drop rows with missing age values
+elif source == "Titanic Dataset":
     df = sns.load_dataset("titanic").dropna(subset=["age"])
-    # Convert the sex column to a binary numeric column
     df = pd.get_dummies(df, columns=["sex"], drop_first=True)
-    # Define features (Titanic does not need y for unsupervised)
-    features = ['pclass', 'age', 'sibsp', 'parch', 'fare', 'sex_male']
-    X = df[features]
+    # No need to set X here—you’ll do it after feature selection
 
-else:  # for the Iris example
+else:  # Iris Dataset
     df = sns.load_dataset("iris")
-    # Use all columns except species as features
-    X = df.drop(columns=["species"])
+    # No need to set X here—you’ll do it after feature selection
 
 # -----------------------------------------------
 # Feature Selection Sidebar
@@ -92,12 +86,11 @@ if not numeric_cols:
     st.warning("⚠️ No numeric columns available for clustering.")
     st.stop()
 
-# Add unique key for Streamlit widget reset
+# Clean multiselect (no key needed because prompt is unique per dataset)
 feature_cols = st.sidebar.multiselect(
     prompt,
     options=numeric_cols,
-    default=default_features,
-    key=f"feature_select_{source}"
+    default=default_features
 )
 
 X = df[feature_cols]
