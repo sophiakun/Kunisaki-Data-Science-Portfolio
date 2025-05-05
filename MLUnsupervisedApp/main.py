@@ -16,7 +16,6 @@ import seaborn as sns
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 from sklearn.decomposition import PCA
-from sklearn.datasets import load_iris
 
 # -----------------------------------------------
 # Application Information
@@ -169,7 +168,7 @@ with tab1:
         """)
 
 # -------------------------------
-# Tab 2: Model Settings & Info
+# Tab 2: Model Settings
 # -------------------------------
 
 with tab2:
@@ -231,4 +230,127 @@ with tab2:
         **Note:** PCA works best when the input features are numeric and scaled.
         """)
 
-# Tab 3
+# -------------------------------
+# Tab 3: Evaluation
+# -------------------------------
+
+with tab3:
+    st.subheader("Results & Evaluation")
+
+    if model_choice == "K-Means Clustering":
+        # Step 1️: Train the K-Means clustering model
+        kmeans = KMeans(n_clusters=k, init=init_method, random_state=42)
+        labels = kmeans.fit_predict(X)
+
+        # Add cluster labels back into the dataframe for reference
+        df['Cluster'] = labels
+        # Step 2️: Silhouette Score (Cluster Quality)
+        sil_score = silhouette_score(X, labels)
+
+        st.markdown(f"""
+        **Silhouette Score:** `{sil_score:.3f}`  
+        - Ranges from -1 to 1.
+        - Closer to 1 means well-defined, separated clusters.
+        - Around 0 means overlapping clusters.
+        - Below 0 suggests points may have been assigned to the wrong cluster.
+        """)
+
+        # Step 3️: 2D Cluster Scatter Plot (PCA projection)
+        if X.shape[1] >= 2:
+            # Use PCA to reduce the data to 2 components for visualization
+            pca = PCA(2)
+            components = pca.fit_transform(X)
+
+            st.subheader("Cluster Scatter Plot (PCA 2D Projection)")
+            st.markdown("""
+            - This plot projects your data onto 2 dimensions using PCA.
+            - Each color represents a different cluster found by K-Means.
+            """)
+
+            fig, ax = plt.subplots()
+            sns.scatterplot(
+                x=components[:, 0],
+                y=components[:, 1],
+                hue=labels,
+                palette="Set1",
+                ax=ax
+            )
+            ax.set_xlabel("Principal Component 1")
+            ax.set_ylabel("Principal Component 2")
+            ax.set_title("K-Means Clusters (2D Projection)")
+            st.pyplot(fig)
+            
+        # Step 4️: Elbow Plot (to find optimal k)
+        st.subheader("Elbow Method Plot")
+        st.markdown("""
+        - This plot shows **inertia** (within-cluster sum of squares) vs. number of clusters.
+        - Look for the 'elbow' point where adding more clusters doesn't improve inertia much.
+        - Helps you choose a good value for `k`.
+        """)
+
+        distortions = []
+        K_range = range(1, 11)  # Test k from 1 to 10
+
+        # Loop over k values to calculate inertia
+        for k_val in K_range:
+            km = KMeans(n_clusters=k_val, init=init_method, random_state=42)
+            km.fit(X)
+            distortions.append(km.inertia_)
+
+        fig2, ax2 = plt.subplots()
+        ax2.plot(K_range, distortions, marker='o')
+        ax2.set_xlabel('Number of Clusters (k)')
+        ax2.set_ylabel('Inertia')
+        ax2.set_title('Elbow Method for Optimal k')
+        st.pyplot(fig2)
+
+    elif model_choice == "Principal Component Analysis (PCA)":
+        from sklearn.decomposition import PCA
+
+        # Step 1: Apply PCA to the selected features
+        pca = PCA(n_components=n_components)
+        components = pca.fit_transform(X)
+        explained_var = pca.explained_variance_ratio_
+
+        # Step 2: Display explained variance ratio
+        st.write("### Explained Variance Ratio per Component")
+        st.markdown("""
+        - This shows how much variance each principal component explains.
+        - Higher variance means that component captures more important patterns in the data.
+        """)
+
+        for idx, var in enumerate(explained_var):
+            st.write(f"Component {idx + 1}: **{var:.4f}**")
+
+        # Step 3️: 2D Scatter Plot of First 2 Components
+        if n_components >= 2:
+            st.subheader("PCA Scatter Plot (First 2 Components)")
+            st.markdown("""
+            - This plot shows your data projected onto the first 2 principal components.
+            - Useful for visualizing patterns, clusters, or trends in your data.
+            """)
+
+            fig, ax = plt.subplots()
+            sns.scatterplot(
+                x=components[:, 0],
+                y=components[:, 1]
+            )
+            ax.set_xlabel("Principal Component 1")
+            ax.set_ylabel("Principal Component 2")
+            ax.set_title("PCA - First 2 Components")
+            st.pyplot(fig)
+
+        # Step 4️: Scree Plot (Explained Variance)
+        st.subheader("PCA Scree Plot")
+        st.markdown("""
+        - The scree plot shows the explained variance ratio of each principal component.
+        - Helps you decide how many components capture most of the data’s variance.
+        - Look for the point where the curve levels off ('elbow').
+        """)
+
+        fig2, ax2 = plt.subplots()
+        ax2.plot(range(1, n_components + 1), explained_var, marker='o')
+        ax2.set_xlabel("Principal Components")
+        ax2.set_ylabel("Explained Variance Ratio")
+        ax2.set_title("Scree Plot")
+        st.pyplot(fig2)
