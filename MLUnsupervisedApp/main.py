@@ -174,26 +174,61 @@ with tab1:
 
 with tab2:
     st.subheader("Selected Model & Settings")
+
+    # Display general model info and selected feature columns
     st.write(f"**Model:** {model_choice}")
     st.write(f"**Selected Features:** {feature_cols}")
-    st.write(f"**X Shape:** {X.shape}")
+    st.write(f"**X Shape:** {X.shape} (Rows: samples, Columns: features)")
 
     if model_choice == "K-Means Clustering":
+        # Show K-Means hyperparameters (k & init method)
         st.markdown(f"""
         - **Number of Clusters (k):** {k}  
-        - **Initialization Method:** {init_method}
+        - **Initialization Method:** `{init_method}`
 
-        **K-Means Notes:**
-        - K-Means tries to partition data into {k} distinct clusters.
-        - The initialization method can impact how quickly the algorithm converges.
+        ---
+        **What is K-Means?**
+        - K-Means is a clustering algorithm that partitions data into `{k}` distinct groups (clusters).
+        - It assigns each data point to the nearest cluster center based on distance (usually Euclidean).
+
+        **What does the Initialization Method mean?**
+
+        - `k-means++`:
+            - A **smart initialization** method that spreads out the initial cluster centers.
+            - Helps the algorithm converge faster and **reduces the risk of bad clustering.**
+        - `random`:
+            - Initializes cluster centers completely **at random.**
+            - May sometimes result in slower convergence or poor clustering (but still widely used).
+
+        **How does K-Means work?**
+        1️. Start with `{k}` initial cluster centers
+        2️. Assign each data point to the nearest cluster
+        3️. Recalculate cluster centers based on current assignments
+        4️. Repeat until the assignments stop changing (convergence)
+
+        **Note:** K-Means is sensitive to the scale of data. That’s why we generally use only numeric features, and scaling helps improve results.
         """)
+
     elif model_choice == "Principal Component Analysis (PCA)":
+        # Show PCA settings (number of components)
         st.markdown(f"""
         - **Number of Components:** {n_components}
 
-        **PCA Notes:**
-        - PCA reduces dimensionality by finding the main directions of variance in the data.
-        - Helps visualize patterns and correlations between features.
+        ---
+        **What is PCA?**
+        - Principal Component Analysis (PCA) is a **dimensionality reduction** technique.
+        - It transforms your data into a new set of axes (principal components) that **capture the most variance** in the data.
+        
+        **Why use PCA?**
+        - Helps **simplify complex data** while retaining important patterns.
+        - Makes it easier to **visualize high-dimensional data** (for example, plotting the first 2 components).
+
+        **How does PCA work?**
+        1️. Identifies directions (components) where data varies the most.
+        2️. Projects the data onto those components.
+        3️. Orders components so that the **first explains the most variance,** the second explains the next most, etc.
+
+        **Note:** PCA works best when the input features are numeric and scaled.
         """)
 
 # Tab 3
