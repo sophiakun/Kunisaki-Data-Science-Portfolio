@@ -143,3 +143,28 @@ with tab1:
         **User-Uploaded Dataset:**
         - You uploaded your own dataset! You can now cluster your data using the selected features.
         """)
+        
+# Tab 2
+with tab2:
+    st.subheader("Selected Model & Settings")
+    st.write(f"**Model:** {model_choice}")
+    st.write(f"**Selected Features:** {feature_cols}")
+    st.write(f"**X Shape:** {X.shape}")
+
+    if model_choice == "K-Means Clustering":
+        st.markdown(f"""
+        - **Number of Clusters (k):** {k}  
+        - **Initialization Method:** {init_method}
+
+        **K-Means Notes:**
+        - K-Means tries to partition data into {k} distinct clusters.
+        - The initialization method can impact how quickly the algorithm converges.
+        """)
+    elif model_choice == "Principal Component Analysis (PCA)":
+        st.markdown(f"""
+        - **Number of Components:** {n_components}
+
+        **PCA Notes:**
+        - PCA reduces dimensionality by finding the main directions of variance in the data.
+        - Helps visualize patterns and correlations between features.
+        """)
