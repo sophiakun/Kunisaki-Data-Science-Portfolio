@@ -66,3 +66,22 @@ else:
         X = df.drop(columns=["species"])
         # Make species as target
         y = df["species"]
+
+# -----------------------------------------------
+# Feature Selection Sidebar
+# -----------------------------------------------
+
+st.sidebar.header("2. Select Features for Clustering")
+numeric_cols = df.select_dtypes(include="number").columns.tolist()
+if not numeric_cols:
+    st.warning("No numeric columns available for clustering.")
+    st.stop()
+
+feature_cols = st.sidebar.multiselect(
+    "Select features to include in clustering:",
+    options=numeric_cols,
+    default=numeric_cols  # Pre-select all numeric columns
+)
+
+X = df[feature_cols]
+st.sidebar.write(f"Selected features: {', '.join(X.columns)}")
