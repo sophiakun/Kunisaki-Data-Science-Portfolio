@@ -33,3 +33,36 @@ Explore different unsupervised machine learning models including:
 Upload **your own dataset** or use the built-in **Iris Dataset** to engage with this interactive app!
 """)
 
+# -----------------------------------------------
+# User-Uploaded Dataset
+# -----------------------------------------------
+
+# Create sidebar with different datasets to choose from
+st.sidebar.header("1. Choose a Dataset")
+source = st.sidebar.radio("Select dataset source:", ["Iris Dataset", "Titanic Dataset", "Upload your own CSV"])
+
+# for user-uploaded CSV
+if source == "Upload your own CSV":
+    uploaded_file = st.sidebar.file_uploader("Upload CSV", type="csv")
+    # If no file is uploaded, show a warning and stop the app from continuing
+    if not uploaded_file:
+        st.warning("Please upload a CSV file to continue.")
+        st.stop()
+    df = pd.read_csv(uploaded_file)
+# for the Titanic example
+else:
+    if source == "Titanic":
+        # Drop rows with missing age values
+        df = sns.load_dataset("titanic").dropna(subset=["age"])
+        # Convert the sex column to a binary numeric column
+        df = pd.get_dummies(df, columns=["sex"], drop_first=True)
+        # Define features and target
+        features = ['pclass', 'age', 'sibsp', 'parch', 'fare', 'sex_male']
+        X = df[features]
+        y = df["survived"]
+    else: # for the Iris example
+        df = sns.load_dataset("iris")
+        # Use all columns except species as features
+        X = df.drop(columns=["species"])
+        # Make species as target
+        y = df["species"]
