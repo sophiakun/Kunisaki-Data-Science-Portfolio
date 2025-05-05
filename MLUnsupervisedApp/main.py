@@ -25,9 +25,9 @@ st.title("⚙️  Unsupervised Machine Learning Explorer ⚙️ ")
 st.markdown("""
 Explore different unsupervised machine learning models including:  
 1. **K-Means Clustering**: an algorithm that partitions data into distinct clusters  
-   by minimizing within-cluster variance.  
+   by minimizing within-cluster variance
 2. **Principal Component Analysis (PCA)**: a dimensionality reduction technique that  
-   transforms features into principal components capturing the most variance.
+   transforms features into principal components capturing the most variance
 
 Upload **your own dataset** or use the built-in **Iris Dataset** to engage with this interactive app!
 """)
@@ -153,10 +153,10 @@ with tab1:
             - *Versicolor*
             - *Virginica*
         - Each sample has the following numeric measurements:
-            - `sepal length (cm)`
-            - `sepal width (cm)`
-            - `petal length (cm)`
-            - `petal width (cm)`
+            - sepal length (cm)
+            - sepal width (cm)
+            - petal length (cm)
+            - petal width (cm)
         - We'll apply clustering to see how well we can naturally group the flowers based on their measurements—without using species labels.
         """)
     else:
@@ -249,10 +249,10 @@ with tab3:
 
         st.markdown(f"""
         **Silhouette Score:** `{sil_score:.3f}`  
-        - Ranges from -1 to 1.
-        - Closer to 1 means well-defined, separated clusters.
-        - Around 0 means overlapping clusters.
-        - Below 0 suggests points may have been assigned to the wrong cluster.
+        - Ranges from -1 to 1
+        - Closer to 1 means well-defined, separated clusters
+        - Around 0 means overlapping clusters
+        - Below 0 suggests points may have been assigned to the wrong cluster
         """)
 
         # Step 3️: 2D Cluster Scatter Plot (PCA projection)
@@ -263,8 +263,8 @@ with tab3:
 
             st.subheader("Cluster Scatter Plot (PCA 2D Projection)")
             st.markdown("""
-            - This plot projects your data onto 2 dimensions using PCA.
-            - Each color represents a different cluster found by K-Means.
+            - This plot projects your data onto 2 dimensions using PCA
+            - Each color represents a different cluster found by K-Means
             """)
 
             fig, ax = plt.subplots()
@@ -283,9 +283,9 @@ with tab3:
         # Step 4️: Elbow Plot (to find optimal k)
         st.subheader("Elbow Method Plot")
         st.markdown("""
-        - This plot shows **inertia** (within-cluster sum of squares) vs. number of clusters.
-        - Look for the 'elbow' point where adding more clusters doesn't improve inertia much.
-        - Helps you choose a good value for `k`.
+        - This plot shows **inertia** (within-cluster sum of squares) vs. number of clusters
+        - Look for the 'elbow' point where adding more clusters doesn't improve inertia much
+        - Helps you choose a good value for `k`
         """)
 
         distortions = []
@@ -315,8 +315,8 @@ with tab3:
         # Step 2: Display explained variance ratio
         st.write("### Explained Variance Ratio per Component")
         st.markdown("""
-        - This shows how much variance each principal component explains.
-        - Higher variance means that component captures more important patterns in the data.
+        - This shows how much variance each principal component explains
+        - Higher variance means that component captures more important patterns in the data
         """)
 
         for idx, var in enumerate(explained_var):
@@ -326,8 +326,8 @@ with tab3:
         if n_components >= 2:
             st.subheader("PCA Scatter Plot (First 2 Components)")
             st.markdown("""
-            - This plot shows your data projected onto the first 2 principal components.
-            - Useful for visualizing patterns, clusters, or trends in your data.
+            - This plot shows your data projected onto the first 2 principal components
+            - Useful for visualizing patterns, clusters, or trends in your data
             """)
 
             fig, ax = plt.subplots()
@@ -343,9 +343,9 @@ with tab3:
         # Step 4️: Scree Plot (Explained Variance)
         st.subheader("PCA Scree Plot")
         st.markdown("""
-        - The scree plot shows the explained variance ratio of each principal component.
-        - Helps you decide how many components capture most of the data’s variance.
-        - Look for the point where the curve levels off ('elbow').
+        - The scree plot shows the explained variance ratio of each principal component
+        - Helps you decide how many components capture most of the data’s variance
+        - Look for the point where the curve levels off ('elbow')
         """)
 
         fig2, ax2 = plt.subplots()
