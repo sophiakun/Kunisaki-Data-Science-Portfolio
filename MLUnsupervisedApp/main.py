@@ -74,26 +74,28 @@ else:
 # Create another header on the sidebar prompting the user to select features
 st.sidebar.header("2. Select Features for Clustering")
 
+# Get numeric columns freshly after dataset load
+numeric_cols = df.select_dtypes(include="number").columns.tolist()
+
+# Set prompt + default based on dataset
 if source == "Iris Dataset":
     prompt = "Select flower measurements to include in clustering:"
-    default_features = df.select_dtypes(include="number").columns.tolist()
+    default_features = numeric_cols  # all numeric (the 4 sepal/petal features)
 
 elif source == "Titanic Dataset":
     prompt = "Select passenger features to include in clustering:"
-    default_features = ['pclass', 'age', 'sibsp', 'parch', 'fare', 'sex_male']  # or just all numeric
-    # Make sure only valid columns are in default
-    default_features = [col for col in default_features if col in df.columns]
+    # Only use valid columns that exist in the loaded Titanic dataset
+    default_features = [col for col in ['pclass', 'age', 'sibsp', 'parch', 'fare', 'sex_male'] if col in numeric_cols]
 
 else:
     prompt = "Select numeric columns to include in clustering:"
-    default_features = df.select_dtypes(include="number").columns.tolist()
+    default_features = numeric_cols
 
-# Get numeric columns only
-numeric_cols = df.select_dtypes(include="number").columns.tolist()
 if not numeric_cols:
-    st.warning("No numeric columns available for clustering.")
+    st.warning("⚠️ No numeric columns available for clustering.")
     st.stop()
 
+# Feature selection box (always fresh)
 feature_cols = st.sidebar.multiselect(
     prompt,
     options=numeric_cols,
