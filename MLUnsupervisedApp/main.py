@@ -49,57 +49,23 @@ if source == "Upload your own CSV":
         st.warning("Please upload a CSV file to continue.")
         st.stop()
     df = pd.read_csv(uploaded_file)
+
 # for the Titanic example
-else:
-    if source == "Titanic":
-        # Drop rows with missing age values
-        df = sns.load_dataset("titanic").dropna(subset=["age"])
-        # Convert the sex column to a binary numeric column
-        df = pd.get_dummies(df, columns=["sex"], drop_first=True)
-        # Define features and target
-        features = ['pclass', 'age', 'sibsp', 'parch', 'fare', 'sex_male']
-        X = df[features]
-        y = df["survived"]
-    else: # for the Iris example
-        df = sns.load_dataset("iris")
-        # Use all columns except species as features
-        X = df.drop(columns=["species"])
-        # Make species as target
-        y = df["species"]
+elif source == "Titanic Dataset": 
+    # Drop rows with missing age values
+    df = sns.load_dataset("titanic").dropna(subset=["age"])
+    # Convert the sex column to a binary numeric column
+    df = pd.get_dummies(df, columns=["sex"], drop_first=True)
+    # Define features (Titanic does not need y for unsupervised)
+    features = ['pclass', 'age', 'sibsp', 'parch', 'fare', 'sex_male']
+    X = df[features]
+
+else:  # for the Iris example
+    df = sns.load_dataset("iris")
+    # Use all columns except species as features
+    X = df.drop(columns=["species"])
 
 # -----------------------------------------------
 # Feature Selection Sidebar
 # -----------------------------------------------
-st.sidebar.header("2. Select Features for Clustering")
 
-# Get numeric columns (from the current df!)
-numeric_cols = df.select_dtypes(include="number").columns.tolist()
-
-# Set prompt + default features smartly
-if source == "Iris Dataset":
-    prompt = "Select flower measurements to include in clustering:"
-    default_features = numeric_cols  # All 4 iris columns
-
-elif source == "Titanic Dataset":
-    prompt = "Select passenger features to include in clustering:"
-    default_features = [col for col in ['pclass', 'age', 'sibsp', 'parch', 'fare', 'sex_male'] if col in numeric_cols]
-
-else:
-    prompt = "Select numeric columns to include in clustering:"
-    default_features = numeric_cols
-
-# Handle case: no numeric columns at all
-if not numeric_cols:
-    st.warning("⚠️ No numeric columns available for clustering.")
-    st.stop()
-
-# Add unique key for Streamlit widget reset
-feature_cols = st.sidebar.multiselect(
-    prompt,
-    options=numeric_cols,
-    default=default_features,
-    key=f"feature_select_{source}"
-)
-
-X = df[feature_cols]
-st.sidebar.write(f"Selected features: {', '.join(X.columns)}")
