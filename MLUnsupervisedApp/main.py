@@ -53,11 +53,9 @@ if source == "Upload your own CSV":
 elif source == "Titanic Dataset":
     df = sns.load_dataset("titanic").dropna(subset=["age"])
     df = pd.get_dummies(df, columns=["sex"], drop_first=True)
-    # No need to set X here—you’ll do it after feature selection
 
 else:  # Iris Dataset
     df = sns.load_dataset("iris")
-    # No need to set X here—you’ll do it after feature selection
 
 # -----------------------------------------------
 # Feature Selection Sidebar
@@ -65,10 +63,10 @@ else:  # Iris Dataset
 
 st.sidebar.header("2. Select Features for Clustering")
 
-# Get numeric columns (from the current df!)
+# Get numeric columns 
 numeric_cols = df.select_dtypes(include="number").columns.tolist()
 
-# Set prompt + default features smartly
+# Set prompt and give default features
 if source == "Iris Dataset":
     prompt = "Select flower measurements to include in clustering:"
     default_features = numeric_cols  # All 4 iris columns
@@ -81,17 +79,21 @@ else:
     prompt = "Select numeric columns to include in clustering:"
     default_features = numeric_cols
 
-# Handle case: no numeric columns at all
+# Restrict to numeric columns 
 if not numeric_cols:
-    st.warning("⚠️ No numeric columns available for clustering.")
+    st.warning("No numeric columns available for clustering.")
     st.stop()
 
-# Clean multiselect (no key needed because prompt is unique per dataset)
+# Select features
 feature_cols = st.sidebar.multiselect(
     prompt,
     options=numeric_cols,
-    default=default_features
-)
+    default=default_features)
 
 X = df[feature_cols]
+# Display the list of selected feature names to the user
 st.sidebar.write(f"Selected features: {', '.join(X.columns)}")
+
+# -----------------------------------------------
+# Model Selection Sidebar
+# -----------------------------------------------
