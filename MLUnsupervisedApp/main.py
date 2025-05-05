@@ -22,7 +22,6 @@ from sklearn.datasets import load_iris
 # Application Information
 # -----------------------------------------------
 
-st.set_page_config(page_title="Unsupervised ML Explorer", layout="wide")
 st.title("⚙️  Unsupervised Machine Learning Explorer ⚙️ ")
 st.markdown("""
 Explore different unsupervised machine learning models including:  
