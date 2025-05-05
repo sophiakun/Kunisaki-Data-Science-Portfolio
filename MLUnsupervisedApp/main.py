@@ -113,3 +113,33 @@ if model_choice == "Principal Component Analysis (PCA)":
     max_components = min(len(feature_cols), 10)
     n_components = st.sidebar.slider(
         "Number of components:", min_value=2, max_value=max_components, value=2)
+
+# -----------------------------------------------
+# Create 3 Different Tabs 
+# -----------------------------------------------
+
+# Create tabs: About / Model Settings / Evaluation
+tab1, tab2, tab3 = st.tabs(["About", "Model Settings", "Evaluation"])
+
+# Tab 1 
+with tab1:
+    st.subheader("Dataset Preview")
+    st.dataframe(df.head())
+
+    if source == "Titanic Dataset":
+        st.markdown("""
+        **Titanic Dataset Overview:**
+        - This dataset includes information about Titanic passengers, including class, age, fare, and gender.
+        - We'll use numeric passenger features to form clusters and explore potential patterns.
+        """)
+    elif source == "Iris Dataset":
+        st.markdown("""
+        **Iris Dataset Overview:**
+        - This classic dataset contains measurements of iris flowers.
+        - We'll cluster the flowers based on their sepal and petal measurements.
+        """)
+    else:
+        st.markdown("""
+        **User-Uploaded Dataset:**
+        - You uploaded your own dataset! You can now cluster your data using the selected features.
+        """)
