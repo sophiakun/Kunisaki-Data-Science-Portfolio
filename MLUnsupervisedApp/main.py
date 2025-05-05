@@ -69,3 +69,36 @@ else:  # for the Iris example
 # Feature Selection Sidebar
 # -----------------------------------------------
 
+st.sidebar.header("2. Select Features for Clustering")
+
+# Get numeric columns (from the current df!)
+numeric_cols = df.select_dtypes(include="number").columns.tolist()
+
+# Set prompt + default features smartly
+if source == "Iris Dataset":
+    prompt = "Select flower measurements to include in clustering:"
+    default_features = numeric_cols  # All 4 iris columns
+
+elif source == "Titanic Dataset":
+    prompt = "Select passenger features to include in clustering:"
+    default_features = [col for col in ['pclass', 'age', 'sibsp', 'parch', 'fare', 'sex_male'] if col in numeric_cols]
+
+else:
+    prompt = "Select numeric columns to include in clustering:"
+    default_features = numeric_cols
+
+# Handle case: no numeric columns at all
+if not numeric_cols:
+    st.warning("⚠️ No numeric columns available for clustering.")
+    st.stop()
+
+# Add unique key for Streamlit widget reset
+feature_cols = st.sidebar.multiselect(
+    prompt,
+    options=numeric_cols,
+    default=default_features,
+    key=f"feature_select_{source}"
+)
+
+X = df[feature_cols]
+st.sidebar.write(f"Selected features: {', '.join(X.columns)}")
