@@ -61,6 +61,7 @@ else:  # Iris Dataset
 # Feature Selection Sidebar
 # -----------------------------------------------
 
+# Create header in sidebar for feature selection
 st.sidebar.header("2. Select Features for Clustering")
 
 # Get numeric columns 
@@ -97,3 +98,18 @@ st.sidebar.write(f"Selected features: {', '.join(X.columns)}")
 # -----------------------------------------------
 # Model Selection Sidebar
 # -----------------------------------------------
+
+# Create header in sidebar for model selection
+st.sidebar.header("3. Choose a Model")
+model_choice = st.sidebar.selectbox("Model:", ["K-Means Clustering", "Principal Component Analysis (PCA)"])
+
+# K-Means settings
+if model_choice == "K-Means Clustering":
+    k = st.sidebar.slider("Number of clusters (k):", 2, 10, 3)
+    init_method = st.sidebar.selectbox("Initialization method:", ["k-means++", "random"])
+
+# PCA settings
+if model_choice == "Principal Component Analysis (PCA)":
+    max_components = min(len(feature_cols), 10)
+    n_components = st.sidebar.slider(
+        "Number of components:", min_value=2, max_value=max_components, value=2)
