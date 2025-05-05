@@ -29,7 +29,7 @@ Explore different unsupervised machine learning models including:
 2. **Principal Component Analysis (PCA)**: a dimensionality reduction technique that  
    transforms features into principal components capturing the most variance
 
-Upload **your own dataset** or use the built-in **Iris Dataset** to engage with this interactive app!
+Upload **your own dataset** or use the built-in **Iris Dataset** or **Titanic Dataset** to engage with this interactive app!
 """)
 
 # -----------------------------------------------
