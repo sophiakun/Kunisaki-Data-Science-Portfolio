@@ -121,30 +121,57 @@ if model_choice == "Principal Component Analysis (PCA)":
 # Create tabs: About / Model Settings / Evaluation
 tab1, tab2, tab3 = st.tabs(["About", "Model Settings", "Evaluation"])
 
+# -------------------------------
+# Tab 1: About the Dataset
+# -------------------------------
+
 # Tab 1 
 with tab1:
+    # Show a preview of the loaded dataset (first 5 rows)
     st.subheader("Dataset Preview")
     st.dataframe(df.head())
 
+    # Titantic-specific information
     if source == "Titanic Dataset":
         st.markdown("""
         **Titanic Dataset Overview:**
-        - This dataset includes information about Titanic passengers, including class, age, fare, and gender.
-        - We'll use numeric passenger features to form clusters and explore potential patterns.
+        - Contains data on passengers aboard the Titanic.
+        - Key features include:
+            - `pclass`: Passenger class (1st, 2nd, 3rd)
+            - `age`: Age of the passenger
+            - `fare`: Ticket fare
+            - `sex_male`: Gender (converted to numeric: 1 = male, 0 = female)
+            - `sibsp`: Number of siblings/spouses aboard
+            - `parch`: Number of parents/children aboard
+        - We'll explore clusters based on these numeric features to see if interesting patterns emerge, such as grouping by age/fare/class.
         """)
+    # Iris-specific information
     elif source == "Iris Dataset":
         st.markdown("""
         **Iris Dataset Overview:**
-        - This classic dataset contains measurements of iris flowers.
-        - We'll cluster the flowers based on their sepal and petal measurements.
+        - This classic dataset includes measurements of 150 iris flowers across 3 species:
+            - *Setosa*
+            - *Versicolor*
+            - *Virginica*
+        - Each sample has the following numeric measurements:
+            - `sepal length (cm)`
+            - `sepal width (cm)`
+            - `petal length (cm)`
+            - `petal width (cm)`
+        - We'll apply clustering to see how well we can naturally group the flowers based on their measurements—without using species labels.
         """)
     else:
         st.markdown("""
         **User-Uploaded Dataset:**
-        - You uploaded your own dataset! You can now cluster your data using the selected features.
+        - You uploaded your own dataset!
+        - We’ll cluster based on the numeric columns you selected.
+        - The results will help you explore natural groupings or patterns in your data.
         """)
-        
-# Tab 2
+
+# -------------------------------
+# Tab 2: Model Settings & Info
+# -------------------------------
+
 with tab2:
     st.subheader("Selected Model & Settings")
     st.write(f"**Model:** {model_choice}")
@@ -168,3 +195,5 @@ with tab2:
         - PCA reduces dimensionality by finding the main directions of variance in the data.
         - Helps visualize patterns and correlations between features.
         """)
+
+# Tab 3
