@@ -71,17 +71,33 @@ else:
 # Feature Selection Sidebar
 # -----------------------------------------------
 
+# Create another header on the sidebar prompting the user to select features
 st.sidebar.header("2. Select Features for Clustering")
+
+if source == "Iris Dataset":
+    prompt = "Select flower measurements to include in clustering:"
+    default_features = df.select_dtypes(include="number").columns.tolist()
+
+elif source == "Titanic Dataset":
+    prompt = "Select passenger features to include in clustering:"
+    default_features = ['pclass', 'age', 'sibsp', 'parch', 'fare', 'sex_male']  # or just all numeric
+    # Make sure only valid columns are in default
+    default_features = [col for col in default_features if col in df.columns]
+
+else:
+    prompt = "Select numeric columns to include in clustering:"
+    default_features = df.select_dtypes(include="number").columns.tolist()
+
+# Get numeric columns only
 numeric_cols = df.select_dtypes(include="number").columns.tolist()
 if not numeric_cols:
     st.warning("No numeric columns available for clustering.")
     st.stop()
 
 feature_cols = st.sidebar.multiselect(
-    "Select features to include in clustering:",
+    prompt,
     options=numeric_cols,
-    default=numeric_cols  # Pre-select all numeric columns
-)
+    default=default_features)
 
 X = df[feature_cols]
 st.sidebar.write(f"Selected features: {', '.join(X.columns)}")
