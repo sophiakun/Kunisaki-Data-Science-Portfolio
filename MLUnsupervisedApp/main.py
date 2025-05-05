@@ -71,50 +71,33 @@ else:
 # Feature Selection Sidebar
 # -----------------------------------------------
 
-if source == "Upload your own CSV":
-    st.sidebar.header("2. Select Features for Clustering")
+st.sidebar.header("2. Select Features for Clustering")
 
-    # Let the user pick which columns to use
-    feature_cols = st.sidebar.multiselect(
-        "Select features to include in clustering:",
-        options=df.columns,
-        default=df.select_dtypes(include="number").columns.tolist()  # default = numeric columns
-    )
+# Get numeric columns
+numeric_cols = df.select_dtypes(include="number").columns.tolist()
 
-    # Filter to numeric columns only (in case user selects non-numeric)
-    X = df[feature_cols].select_dtypes(include="number")
+# Set default features based on dataset
+if source == "Iris Dataset":
+    prompt = "Select flower measurements to include in clustering:"
+    default_features = numeric_cols  # all 4 iris columns
 
-    # Display what features were selected
-    st.write(f"Selected features: {', '.join(X.columns)}")
+elif source == "Titanic Dataset":
+    prompt = "Select passenger features to include in clustering:"
+    default_features = [col for col in ['pclass', 'age', 'sibsp', 'parch', 'fare', 'sex_male'] if col in numeric_cols]
 
 else:
-    # Predefine features for built-in datasets
+    prompt = "Select numeric columns to include in clustering:"
+    default_features = numeric_cols
 
-    if source == "Titanic Dataset":
-        st.sidebar.header("2. Clustering Features")
-        st.sidebar.write("""
-        Using the following features for clustering:
-        - pclass
-        - age
-        - sibsp
-        - parch
-        - fare
-        - sex_male
-        """)
-        # Make sure only columns that exist are selected (in case)
-        feature_cols = [col for col in ['pclass', 'age', 'sibsp', 'parch', 'fare', 'sex_male'] if col in df.columns]
-        X = df[feature_cols]
+if not numeric_cols:
+    st.warning("⚠️ No numeric columns available for clustering.")
+    st.stop()
 
-    elif source == "Iris Dataset":
-        st.sidebar.header("2. Clustering Features")
-        st.sidebar.write("""
-        Using all 4 iris flower measurements:
-        - sepal length (cm)
-        - sepal width (cm)
-        - petal length (cm)
-        - petal width (cm)
-        """)
-        # Just the numeric columns (already known to be 4 in Iris dataset)
-        feature_cols = df.select_dtypes(include="number").columns.tolist()
-        X = df[feature_cols]
+feature_cols = st.sidebar.multiselect(
+    prompt,
+    options=numeric_cols,
+    default=default_features
+)
 
+X = df[feature_cols]
+st.sidebar.write(f"Selected features: {', '.join(X.columns)}")
