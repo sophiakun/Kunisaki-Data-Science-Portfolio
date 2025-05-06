@@ -1,11 +1,12 @@
 # -----------------------------------------------
-# Launch Streamlit Cloud App
+# Unsupervised Machine Learning Streamlit App
 # -----------------------------------------------
 
+# Launch Streamlit Cloud App:
 # requirements.txt file commands: pip install pipreqs
 
 # -----------------------------------------------
-# Unsupervised Machine Learning Streamlit App
+# Import Libraries
 # -----------------------------------------------
 
 import streamlit as st
@@ -23,6 +24,10 @@ from sklearn.decomposition import PCA
 
 st.title("⚙️  Unsupervised Machine Learning Explorer ⚙️ ")
 st.markdown("""
+Unsupervised machine learning is a type of machine learning that **finds patterns or groupings in data without using labeled outcomes.**  
+Unlike supervised learning (which trains a model to predict a known target), unsupervised learning, *Identifies natural clusters or groupings**
+within data and can **discovers hidden trends** you might not know exist!
+    
 Explore different unsupervised machine learning models including:  
 1. **K-Means Clustering**: an algorithm that partitions data into distinct clusters  
    by minimizing within-cluster variance
@@ -142,7 +147,7 @@ with tab1:
             - `sex_male`: Gender (converted to numeric: 1 = male, 0 = female)
             - `sibsp`: Number of siblings/spouses aboard
             - `parch`: Number of parents/children aboard
-        - We'll explore clusters based on these numeric features to see if interesting patterns emerge, such as grouping by age/fare/class.
+        - This unsupervised ML app will  explore clusters based on these numeric features to see if interesting patterns emerge, such as grouping by age/fare/class.
         """)
     # Iris-specific information
     elif source == "Iris Dataset":
@@ -157,14 +162,13 @@ with tab1:
             - sepal width (cm)
             - petal length (cm)
             - petal width (cm)
-        - We'll apply clustering to see how well we can naturally group the flowers based on their measurements—without using species labels.
+        - This unsupervised ML app will apply clustering to see how well we can naturally group the flowers based on their measurements—without using species labels.
         """)
     else:
         st.markdown("""
         **User-Uploaded Dataset:**
-        - You uploaded your own dataset!
-        - We’ll cluster based on the numeric columns you selected.
-        - The results will help you explore natural groupings or patterns in your data.
+        - Great job uploading a dataset. This app will cluster based on the numeric columns you selected
+        - The results will help you explore natural groupings or patterns in your data
         """)
 
 # -------------------------------
