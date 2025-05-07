@@ -8,9 +8,9 @@ Hello! This repository highlights my projects and technical skills from the cour
 
 **Portfolio Update 2:** [Tidy Data Project](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/TidyData-Project)
 
-**Portfolio Update 3:** [Supervised ML Streamlit App](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLStreamlitApp) | [Launch the App Here](https://kunisaki-data-science-portfolio.streamlit.app/)
+**Portfolio Update 3:** [Supervised ML Streamlit App](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLStreamlitApp) | [Launch the App](https://kunisaki-data-science-portfolio.streamlit.app/)
 
-- **Final Project:** [Unsupervised ML Streamlit App](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLUnsupervisedApp) | [Launch the App](https://kunisaki-data-science-portfolio-unsupervised-ml-app.streamlit.app/)
+**Final Project:** [Unsupervised ML Streamlit App](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLUnsupervisedApp) | [Launch the App](https://kunisaki-data-science-portfolio-unsupervised-ml-app.streamlit.app/)
 
 ## Organizational Plan
 
@@ -26,7 +26,10 @@ Each project will contain a:
 
 The Streamlit project showcases my skills in building a Streamlit application. Specifically, the app allows users to explore the Palmer Penguins dataset interactively. Users can select different species of penguins and slides across a range of penguin body masses. 
 
-Some key skills I demonstrated include using Streamlit for interactive components, such as sliders and selection filters. This project complements my overall coding portfolio by showcasing my ability to **develop interactive web applications for data exploration**.
+Portfolio Significance:
+- **Foundational Skills**: showcases my first attempt at building a user-friendly, interactive app 
+- **Streamlit Practice**: demonstrates early development of UI components
+- **Portfolio Launch Point**: serves as the starting project, setting the tone for future, more advanced projects!
 
 ### **2. 🏅 2008 Olympic Medalists Tidy Data**
 [View](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/TidyData-Project)
@@ -35,10 +38,11 @@ The tidy data project involves using **tidy data principles** to clean the data 
 
 Some key skills I demonstrated include using data clenaing tools in Pandas, such as  str.split() and str.replace(), data visualization tools in Matplotlib and Seaborn, and tidy data principles, ensuring that each variable is in its own column, each observation is a row, and each type of observational unit forms its own table.  
 
-This project complements my data science portfolio by showcasing my ability to:
-- **Transform unitdy data into tidy data** for better analysis
-- **Create data visualizations** that add meaning to the data
-- **Use various Python libraries** such as Pandas, Matplotlib, and Seaborn
+Portfolio Significance:
+- **Data Wrangling**: demonstrates my ability to transform untidy data into tidy formats for better analysis
+- **Libraries**: using Pandas, Matplotlib, and Seaborn
+- **Visualization Growth**: builds on my visualization capabilities introduced in Portfolio 1, and adding more meaning to the data
+
 
 ### **3. ⚙️ Interactive Supervised Machine Learning Explorer**
 [View Code](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLStreamlitApp) | [Launch App](https://kunisaki-data-science-portfolio.streamlit.app/)
@@ -58,7 +62,7 @@ Portfolio Significance:
 An interactive Streamlit app exploring **unsupervised machine learning** methods, including K-Means clustering and Principal Component Analysis (PCA).  
 Users can apply clustering to classic datasets or their own CSV uploads, adjust hyperparameters, and visualize clustering results in 2D PCA space.
 
-**Portfolio Significance**:
+Portfolio Significance:
 - **Advanced Machine Learning**: builds on the supervised ML app by expanding into unsupervised learning techniques
 - **Advanced Visualizations**:  elbow plots, scree plots, cluster projections
 - **Statistical Understanding**: shows knowledge of clustering evaluation (silhouette score, inertia) and dimensionality reduction (explained variance) metrics
