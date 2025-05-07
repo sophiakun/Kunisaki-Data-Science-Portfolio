@@ -1,6 +1,8 @@
 # 👩‍💻 Welcome to My Data Science Portfolio!
 
-Hello! This repository highlights my projects and technical skills from the course "Introduction to Data Science". The purpose of this portfolio is to document my data science journey and share my work with the my peers, professors, employers, the Notre Dame community, and beyond. As a senior graduating in May 2025, my hope is that I have evidence of my work in undergraduate data science classes for years to come!
+Hello! This repository highlights my projects and technical skills from the course "Introduction to Data Science". The purpose of this portfolio is to document my data science journey and share my work with the my peers, professors, employers, the Notre Dame community, and beyond.
+
+As a senior graduating in May 2025, my hope is that I have evidence of my work in undergraduate data science classes for years to come!
 
 ## Table of Contents
 
@@ -80,4 +82,8 @@ Portfolio Significance:
 
 ## Importance
 
-This portfolio represents my progress in data science, from learning **data transformation skills** like cleaning and structuring data, to developing **interactive machine learning algorithms**. In particular, the ML Streamlit App brings together my technical skills with tools like Scikit-learn, Pandas, and Streamlit and exemplifies my ability to explain complex models and metrics in a clear, accessible way. Through these projects, I have presented data that is engaging for users, and that ultimately, tells a story. 
+This portfolio represents my progress in data science, from learning **data transformation skills** like cleaning and structuring data, to developing **interactive machine learning algorithms**.
+
+In particular, both machine learning apps that I have built with Streamlit brings together my technical skills with tools like Scikit-learn, Pandas, and Streamlit and exemplifies my ability to explain complex models and metrics in a clear, accessible way. Through these projects, I have presented data that is engaging for users, and that ultimately, tells a story. 
+
+Thank you for taking the time to explore my data science portfolio! Feel free to reach out if you’d like to connect or discuss any of the projects you see here.
