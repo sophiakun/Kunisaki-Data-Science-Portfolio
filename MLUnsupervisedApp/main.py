@@ -17,6 +17,7 @@ import seaborn as sns
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
 
 # -----------------------------------------------
 # Application Information
@@ -53,12 +54,23 @@ if source == "Upload your own CSV":
         st.stop()
     df = pd.read_csv(uploaded_file)
 
+    # Drop rows with missing values
+    df = df.dropna()
+
+    # Encode categorical variables
+    df = pd.get_dummies(df, drop_first=True)
+
+    # Select numeric columns
+    numeric_cols = df.select_dtypes(include="number").columns.tolist()
+
 elif source == "Titanic Dataset":
     df = sns.load_dataset("titanic").dropna(subset=["age"])
     df = pd.get_dummies(df, columns=["sex"], drop_first=True)
+    numeric_cols = df.select_dtypes(include="number").columns.tolist()
 
 else:  # Iris Dataset
     df = sns.load_dataset("iris")
+    numeric_cols = df.select_dtypes(include="number").columns.tolist()
 
 # -----------------------------------------------
 # Feature Selection Sidebar
@@ -67,36 +79,28 @@ else:  # Iris Dataset
 # Create header in sidebar for feature selection
 st.sidebar.header("2. Select Features for Clustering")
 
-# Get numeric columns 
-numeric_cols = df.select_dtypes(include="number").columns.tolist()
-
-# Set prompt and give default features
+# Get numeric oclumns from the data
 if source == "Iris Dataset":
     prompt = "Select flower measurements to include in clustering:"
-    default_features = numeric_cols  # All 4 iris columns
-
+    default_features = numeric_cols
 elif source == "Titanic Dataset":
     prompt = "Select passenger features to include in clustering:"
     default_features = [col for col in ['pclass', 'age', 'sibsp', 'parch', 'fare', 'sex_male'] if col in numeric_cols]
-
 else:
     prompt = "Select numeric columns to include in clustering:"
     default_features = numeric_cols
 
-# Restrict to numeric columns 
 if not numeric_cols:
     st.warning("No numeric columns available for clustering.")
     st.stop()
 
-# Select features
-feature_cols = st.sidebar.multiselect(
-    prompt,
-    options=numeric_cols,
-    default=default_features)
-
+feature_cols = st.sidebar.multiselect(prompt, options=numeric_cols, default=default_features)
 X = df[feature_cols]
-# Display the list of selected feature names to the user
 st.sidebar.write(f"Selected features: {', '.join(X.columns)}")
+
+# Apply feature scaling
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
 
 # -----------------------------------------------
 # Model Selection Sidebar
