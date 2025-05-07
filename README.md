@@ -8,9 +8,9 @@ Hello! This repository highlights my projects and technical skills from the cour
 
 **Portfolio Update 2:** [Tidy Data Project](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/TidyData-Project)
 
-**Portfolio Update 3:** [ML Streamlit App](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLStreamlitApp) | [Launch the App Here](https://kunisaki-data-science-portfolio.streamlit.app/)
+**Portfolio Update 3:** [Supervised ML Streamlit App](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLStreamlitApp) | [Launch the App Here](https://kunisaki-data-science-portfolio.streamlit.app/)
 
-**Portfolio README:** [README.md](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/blob/main/README.md)
+- **Final Project:** [Unsupervised ML Streamlit App](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLUnsupervisedApp) | [Launch the App](https://kunisaki-data-science-portfolio-unsupervised-ml-app.streamlit.app/)
 
 ## Organizational Plan
 
@@ -52,13 +52,27 @@ Portfolio Significance:
 - **ML Understanding**: demonstrates knowledge and implementation of classification algorithms
 - **UI/UX Focus**: highlights user-friendly, interactive data science app development
 
+### **4. ⚙️ Interactive Unsupervised Machine Learning Explorer**
+[View Code](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLUnsupervisedApp) | [Launch App](https://kunisaki-data-science-portfolio-unsupervised-ml-app.streamlit.app/)
+
+An interactive Streamlit app exploring **unsupervised machine learning** methods, including K-Means clustering and Principal Component Analysis (PCA).  
+Users can apply clustering to classic datasets or their own CSV uploads, adjust hyperparameters, and visualize clustering results in 2D PCA space.
+
+**Portfolio Significance**:
+- **Advanced Machine Learning**: builds on the supervised ML app by expanding into unsupervised learning techniques
+- **Advanced Visualizations**:  elbow plots, scree plots, cluster projections
+- **Statistical Understanding**: shows knowledge of clustering evaluation (silhouette score, inertia) and dimensionality reduction (explained variance) metrics
+
 ## Skills Overview
 
 - **Python:** Pandas, Matplotlib, Seaborn, Streamlit, Scikit-learn
 - **Data Cleaning:** melt(), pivot_table(), etc.
 - **Interactive Applications:** develop strong UI/UX capabilities for seamless user interaction in Streamlit
 - **Data Visualization:** sns.barplot(), sns.countplot(), sns.pairplot(), plt.pie() using Matplotlib & Seaborn
-- **Machine Learning:** build and evaluate supervised learning models (Logistic Regression, KNN, Decision Trees) using Scikit-learn; apply concepts like train-test split, scaling, model evaluation metrics, and hyperparameter tuning
+- **Machine Learning**:
+  - Supervised models: Logistic Regression, Decision Trees, K-Nearest Neighbors
+  - Unsupervised models: K-Means Clustering, Principal Component Analysis
+- **Model Deployment**: Hosting Streamlit apps on the web for public access
 
 ## Importance
 
