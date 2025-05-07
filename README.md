@@ -26,7 +26,7 @@ Here’s a quick overview of my portfolio projects with brief descriptions and l
 - **🔍 Final Project: Unsupervised Machine Learning Explorer**  
   [View Project](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLUnsupervisedApp) | [Launch App](https://kunisaki-data-science-portfolio-unsupervised-ml-app.streamlit.app/)  
   
-  *An interactive app exploring unsupervised ML techniques like K-Means clustering and PCA with visualizations and evaluation tools.*
+  *A Streamlit app exploring unsupervised ML techniques like K-Means clustering and PCA with visualizations and evaluation tools.*
 
 ## Organizational Plan
 
