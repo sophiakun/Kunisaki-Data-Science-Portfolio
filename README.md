@@ -1,18 +1,28 @@
 # 👩‍💻 Welcome to My Data Science Portfolio!
 
-Hello! This repository highlights my projects and technical skills from the course "Introduction to Data Science". The purpose of this portfolio is to document my data science journey and share my work with the my peers, professors, employers, the Notre Dame community, and beyond.
+Hello! This repository highlights my projects and technical skills from the course *Introduction to Data Science* at the University of Notre Dame. The purpose of this portfolio is to document my data science journey and share my work with the my peers, professors, employers, the Notre Dame community, and beyond.
 
 As a senior graduating in May 2025, my hope is that I have evidence of my work in undergraduate data science classes for years to come!
 
-## Table of Contents
+## At a Glance
 
-**Portfolio Update 1:** [Basic Streamlit App](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/basic-streamlit-app)
+Here’s a quick overview of my portfolio projects with brief descriptions and links:
 
-**Portfolio Update 2:** [Tidy Data Project](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/TidyData-Project)
+- **🐧 Portfolio Update 1: Palmer Penguins Streamlit App**  
+  [View Project](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/basic-streamlit-app)  
+  *An interactive app to explore the Palmer Penguins dataset by filtering species and body mass.*
 
-**Portfolio Update 3:** [Supervised ML Streamlit App](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLStreamlitApp) | [Launch the App](https://kunisaki-data-science-portfolio.streamlit.app/)
+- **🏅 Portfolio Update 2: 2008 Olympic Medalists Tidy Data**  
+  [View Project](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/TidyData-Project)  
+  *A data cleaning and visualization project applying tidy data principles to Olympic medalist data.*
 
-**Final Project:** [Unsupervised ML Streamlit App](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLUnsupervisedApp) | [Launch the App](https://kunisaki-data-science-portfolio-unsupervised-ml-app.streamlit.app/)
+- **⚙️ Portfolio Update 3: Supervised Machine Learning Explorer**  
+  [View Project](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLStreamlitApp) | [Launch App](https://kunisaki-data-science-portfolio.streamlit.app/)  
+  *A Streamlit app that allows users to upload data, apply supervised ML models, tune hyperparameters, and view performance metrics.*
+
+- **🔍 Portfolio Update 4: Unsupervised Machine Learning Explorer**  
+  [View Project](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLUnsupervisedApp) | [Launch App](https://kunisaki-data-science-portfolio-unsupervised-ml-app.streamlit.app/)  
+  *An interactive app exploring unsupervised ML techniques like K-Means clustering and PCA with visualizations and evaluation tools.*
 
 ## Organizational Plan
 
