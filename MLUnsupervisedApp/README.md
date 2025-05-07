@@ -57,7 +57,7 @@ Run 'pip install pipreqs' in terminal
 ## Visual Examples:
 
 ### **1. Titanic Dataset — K-Means Cluster Plot (PCA 2D Projection)**
-<img src="visualizations/titanic_k.png" alt="K-Means Clusters" width="400">
+<img src="visualizations/titanic_k.png" alt="Titanic K-Means Clusters" width="400">
 
 This plot shows Titanic passengers projected onto two principal components (PCA), colored by K-Means cluster (k = 5).We observe five distinct clusters, mainly separated along Principal Component 1. Some clusters are tightly packed, while others sit at the extremes, suggesting outlier or unique passenger groups.
 
