@@ -1,4 +1,4 @@
-#  ⚙️ Streamlit Cloud Unsupervised Machine Learning App
+#  🔍 Streamlit Cloud Unsupervised Machine Learning App
 
 ## Project Overview:
 
