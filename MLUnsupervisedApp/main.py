@@ -150,13 +150,13 @@ with tab1:
             - `sex_male`: Gender (converted to numeric: 1 = male, 0 = female)
             - `sibsp`: Number of siblings/spouses aboard
             - `parch`: Number of parents/children aboard
-        - This unsupervised ML app will  explore clusters based on these numeric features to see if interesting patterns emerge, such as grouping by age/fare/class.
+        - This unsupervised ML app will explore clusters based on these numeric features to see if interesting patterns emerge, such as grouping by age/fare/class.
         """)
     # Iris-specific information
     elif source == "Iris Dataset":
         st.markdown("""
         **Iris Dataset Overview:**
-        - This classic dataset includes measurements of 150 iris flowers across 3 species:
+        - This classic dataset includes measurements of iris flowers across 3 species:
             - *Setosa*
             - *Versicolor*
             - *Virginica*
@@ -211,8 +211,6 @@ with tab2:
         2️. Assign each data point to the nearest cluster
         3️. Recalculate cluster centers based on current assignments
         4️. Repeat until the assignments stop changing (convergence)
-
-        **Note:** K-Means is sensitive to the scale of data. That’s why we generally use only numeric features, and scaling helps improve results.
         """)
 
     elif model_choice == "Principal Component Analysis (PCA)":
@@ -222,19 +220,16 @@ with tab2:
 
         ---
         **What is PCA?**
-        - Principal Component Analysis (PCA) is a **dimensionality reduction** technique.
-        - It transforms your data into a new set of axes (principal components) that **capture the most variance** in the data.
-        
-        **Why use PCA?**
-        - Helps **simplify complex data** while retaining important patterns.
-        - Makes it easier to **visualize high-dimensional data** (for example, plotting the first 2 components).
+        - Principal Component Analysis (PCA) is a **dimensionality reduction** technique
+        - It transforms your data into a new set of axes (principal components) that **capture the most variance** in the data
+        - PCA helps **simplify complex data** while retaining important patterns
+        - It makes it easier to **visualize high-dimensional data** (for example, plotting the first 2 components)
 
         **How does PCA work?**
         1️. Identifies directions (components) where data varies the most.
         2️. Projects the data onto those components.
         3️. Orders components so that the **first explains the most variance,** the second explains the next most, etc.
 
-        **Note:** PCA works best when the input features are numeric and scaled.
         """)
 
 # -------------------------------
