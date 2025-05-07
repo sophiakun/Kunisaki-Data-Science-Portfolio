@@ -23,7 +23,7 @@ from sklearn.preprocessing import StandardScaler
 # Application Information
 # -----------------------------------------------
 
-st.title("🔍 Unsupervised Machine Learning Explorer ⚙️ ")
+st.title("🔍 Unsupervised Machine Learning Explorer 🔍")
 st.markdown("""
 Unsupervised machine learning is a type of machine learning that **finds patterns or groupings** in data without using labeled outcomes.  Unlike supervised learning (which trains a model to predict a known target), unsupervised learning, **identifies natural clusters**
 within data and can **discovers hidden trends** you might not know exist!
