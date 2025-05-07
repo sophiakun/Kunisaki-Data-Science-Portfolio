@@ -59,7 +59,7 @@ Run 'pip install pipreqs' in terminal
 ### **1. Titanic Dataset — K-Means Cluster Plot (PCA 2D Projection)**
 <img src="visualizations/titanic_k.png" alt="Titanic K-Means Clusters" width="400">
 
-This plot shows Titanic passengers projected onto two principal components (PCA), colored by K-Means cluster (k = 5).We observe five distinct clusters, mainly separated along Principal Component 1. Some clusters are tightly packed, while others sit at the extremes, suggesting outlier or unique passenger groups.
+This plot shows Titanic passengers projected onto two principal components (PCA), colored by K-Means cluster (k = 5). 
 
 ### **2. Titanic Dataset — Elbow Method Plot**
 <img src="visualizations/titanic_k_elbow.png" alt="Elbow Plot" width="400">
