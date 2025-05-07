@@ -1,6 +1,7 @@
 # 🏅 2008 Olympic Medalists Tidy Data
 
-## About
+## Project Overview:
+
 This project focuses on cleaning and visualizing a **2008 Summer Olympic Medalists dataset** using **tidy data principles**. I transformed the dataset so that:
 
 - Each variable has its own column
@@ -34,7 +35,7 @@ Some pre-processing steps that I took were standardizing column names, reshaping
 - pandas 2.2.3
 - seaborn 0.13.2
 
-## App Features
+## Project Features
 - **Data Cleaning & Transformation**:
   - Apply tidy data principles for standardized structure
 - **Data Analysis**:
