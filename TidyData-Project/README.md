@@ -2,7 +2,7 @@
 
 ## Project Overview:
 
-This project focuses on cleaning and visualizing a **2008 Summer Olympic Medalists dataset** using **tidy data principles**. I transformed the dataset so that:
+Welcome! This project focuses on cleaning and visualizing a **2008 Summer Olympic Medalists dataset** using **tidy data principles**. I transformed the dataset so that:
 
 - Each variable has its own column
 - Each observation forms its own row

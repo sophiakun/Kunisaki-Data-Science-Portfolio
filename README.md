@@ -10,18 +10,22 @@ Here’s a quick overview of my portfolio projects with brief descriptions and l
 
 - **🐧 Portfolio Update 1: Palmer Penguins Streamlit App**  
   [View Project](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/basic-streamlit-app)  
+  
   *An interactive app to explore the Palmer Penguins dataset by filtering species and body mass.*
 
 - **🏅 Portfolio Update 2: 2008 Olympic Medalists Tidy Data**  
   [View Project](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/TidyData-Project)  
+  
   *A data cleaning and visualization project applying tidy data principles to Olympic medalist data.*
 
 - **⚙️ Portfolio Update 3: Supervised Machine Learning Explorer**  
   [View Project](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLStreamlitApp) | [Launch App](https://kunisaki-data-science-portfolio.streamlit.app/)  
+  
   *A Streamlit app that allows users to upload data, apply supervised ML models, tune hyperparameters, and view performance metrics.*
 
 - **🔍 Portfolio Update 4: Unsupervised Machine Learning Explorer**  
   [View Project](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLUnsupervisedApp) | [Launch App](https://kunisaki-data-science-portfolio-unsupervised-ml-app.streamlit.app/)  
+  
   *An interactive app exploring unsupervised ML techniques like K-Means clustering and PCA with visualizations and evaluation tools.*
 
 ## Organizational Plan
@@ -68,7 +72,7 @@ Portfolio Significance:
 - **ML Understanding**: demonstrates knowledge and implementation of classification algorithms
 - **UI/UX Focus**: highlights user-friendly, interactive data science app development
 
-### **4. ⚙️ Interactive Unsupervised Machine Learning Explorer**
+### **4. 🔍 Interactive Unsupervised Machine Learning Explorer**
 [View Code](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLUnsupervisedApp) | [Launch App](https://kunisaki-data-science-portfolio-unsupervised-ml-app.streamlit.app/)
 
 An interactive Streamlit app exploring **unsupervised machine learning** methods, including K-Means clustering and Principal Component Analysis (PCA).  
