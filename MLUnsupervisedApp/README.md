@@ -8,7 +8,7 @@ Welcome! This interactive Streamlit application allows users to explore unsuperv
 
 - Select feature variables
 
-- Choose unsupervised machine learning models such as K-Means Clustering and Principal Component Analysis (PCA)
+- Choose unsupervised machine learning models such as K-Means Clustering, Hierarchical Clustering, or Principal Component Analysis (PCA)
 
 - View performance metrics and visualizations
 
@@ -38,20 +38,27 @@ Run 'pip install pipreqs' in terminal
 
 - **Model Options**:
   - K-Means Clustering
+  - Hierarchical Clustering
   - Principal Component Analysis (PCA)
+
 
 - **Interactive Hyperparameter Tuning**:
   - K-Means: Choose number of clusters (k), initialization method (k-means++ or random)
+  - Hierarchical Clustering: Choose number of clusters (`k`), linkage method (`ward`, `complete`, `average`, `single`)
   - PCA: Select number of components (up to 10)
+
 
 - **Performance Metrics**:
   - K-Means: Silhouette Score (cluster separation); Inertia (within-cluster sum of squares)
+  - Hierarchical Clustering: Silhouette Score (quality of cluster separation)
   - PCA: Explained Variance Ratio (how much variance each component explains)
+  
 
 - **Visualizations**:
   - PCA 2D Projection of K-Means Clusters
   - Elbow Plot (to choose optimal k)
   - Scree Plot (to decide how many PCA components to retain)
+  - PCA 2D Projection of Hierarchical Clustering Clusters
   - Data preview and feature selection summaries
 
 ## Visual Examples:
@@ -85,6 +92,7 @@ To see some of the resources I used, and for further reading, please reference t
 
 - **Scikit-learn Models**
   - [K Means](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html)
+  - [Hierarchical Clustering]( https://scikit-learn.org/stable/modules/clustering.html#hierarchical-clustering)
   - [PCA](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html)
   - [Silhouette Score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.silhouette_score.html)
   - [StandardScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html)
