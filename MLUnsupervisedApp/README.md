@@ -85,6 +85,8 @@ This scree plot shows the explained variance ratio of each PCA component. It hel
 ### **5. Iris Dataset — Hierarchical Clustering Scatter Plot**
 <img src="visualizations/iris_hc.png" alt="Iris Scree Plot" width="400">
 
+This plot shows the results of applying hierarchical agglomerative clustering using the Ward linkage method with 3 clusters.
+
 ## References:
 
 To see some of the resources I used, and for further reading, please reference the sources below.
