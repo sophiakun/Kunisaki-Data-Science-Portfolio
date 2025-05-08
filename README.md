@@ -28,13 +28,6 @@ Here’s a quick overview of my portfolio projects with brief descriptions and l
   
   *A Streamlit app exploring unsupervised ML techniques like K-Means clustering, hierarchical clustering, and PCA with visualizations and evaluation tools.*
 
-## Organizational Plan
-
-Each project will contain a:
-- **Data Source**: a csv file that contains the dataset
-- **Jupyter Notebook**: titled "main.py" to document code
-- **README.md**: to describe what the project does and why the project is useful
-
 ## Projects
 
 ### **1. 🐧 Palmer Penguins Streamlit App**
