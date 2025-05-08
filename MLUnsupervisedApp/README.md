@@ -76,6 +76,9 @@ This visual shows the classic Iris dataset clustered and projected into 2D using
 
 This scree plot shows the explained variance ratio of each PCA component. It helps decide how many components to keep by identifying where the curve levels off, retaining enough variance for meaningful analysis.
 
+### **5. Iris Dataset — Hierarchical Clustering Scatter Plot**
+<img src="visualizations/iris_hc.png" alt="Iris Scree Plot" width="400">
+
 ## References:
 
 To see some of the resources I used, and for further reading, please reference the sources below.
