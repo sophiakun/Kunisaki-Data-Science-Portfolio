@@ -262,7 +262,6 @@ with tab2:
     This approach is useful when you want to **explore nested or tree-like relationships** between data points.
     """)
 
-
 # -------------------------------
 # Tab 3: Evaluation
 # -------------------------------
@@ -387,3 +386,39 @@ with tab3:
         ax2.set_ylabel("Explained Variance Ratio")
         ax2.set_title("Scree Plot")
         st.pyplot(fig2)
+
+    elif model_choice == "Hierarchical Clustering":
+    # Step 1: Fit Agglomerative Clustering
+        agglom = AgglomerativeClustering(n_clusters=k, linkage=linkage_method)
+        labels = agglom.fit_predict(X)
+
+        # Add cluster labels back into the dataframe
+        df['Cluster'] = labels
+
+        # Step 2: Silhouette Score
+        sil_score = silhouette_score(X, labels)
+        st.markdown(f"""
+        **Silhouette Score:** `{sil_score:.3f}`  
+        - Ranges from -1 to 1
+        - Closer to 1 = well-separated clusters
+        - Near 0 = overlapping clusters
+        """)
+
+        # Step 3: 2D PCA Projection Plot
+        if X.shape[1] >= 2:
+            pca = PCA(2)
+            components = pca.fit_transform(X)
+
+            st.subheader("Hierarchical Clustering Scatter Plot (PCA 2D Projection)")
+            fig, ax = plt.subplots()
+            sns.scatterplot(
+                x=components[:, 0],
+                y=components[:, 1],
+                hue=labels,
+                palette="Set2",
+                ax=ax
+            )
+            ax.set_xlabel("Principal Component 1")
+            ax.set_ylabel("Principal Component 2")
+            ax.set_title("Hierarchical Clustering (2D Projection)")
+            st.pyplot(fig)
