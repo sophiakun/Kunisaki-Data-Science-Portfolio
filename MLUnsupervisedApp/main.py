@@ -18,6 +18,7 @@ from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import AgglomerativeClustering
 
 # -----------------------------------------------
 # Application Information
@@ -33,7 +34,9 @@ Explore different unsupervised machine learning models including:
    by minimizing within-cluster variance
 2. **Principal Component Analysis (PCA)**: a dimensionality reduction technique that  
    transforms features into principal components capturing the most variance
-
+3. **Hierarchical (Agglomerative) Clustering**: a bottom-up approach that builds nested clusters  
+   by successively merging the closest pairs of clusters
+            
 Upload **your own dataset** or use the built-in **Iris Dataset** or **Titanic Dataset** to engage with this interactive app!
 """)
 
@@ -108,7 +111,7 @@ X_scaled = scaler.fit_transform(X)
 
 # Create header in sidebar for model selection
 st.sidebar.header("3. Choose a Model")
-model_choice = st.sidebar.selectbox("Model:", ["K-Means Clustering", "Principal Component Analysis (PCA)"])
+model_choice = st.sidebar.selectbox("Model:", ["K-Means Clustering", "Hierarchical Clustering", "Principal Component Analysis (PCA)"])
 
 # K-Means settings
 if model_choice == "K-Means Clustering":
@@ -120,6 +123,11 @@ if model_choice == "Principal Component Analysis (PCA)":
     max_components = min(len(feature_cols), 10)
     n_components = st.sidebar.slider(
         "Number of components:", min_value=2, max_value=max_components, value=2)
+
+# Hierarchical Clustering settings
+if model_choice == "Hierarchical Clustering":
+    k = st.sidebar.slider("Number of clusters (k):", 2, 10, 3)
+    linkage_method = st.sidebar.selectbox("Linkage method:", ["ward", "complete", "average", "single"])
 
 # -----------------------------------------------
 # Create 3 Different Tabs 
@@ -167,6 +175,7 @@ with tab1:
             - petal width (cm)
         - This unsupervised ML app will apply clustering to see how well we can naturally group the flowers based on their measurements—without using species labels.
         """)
+    
     else:
         st.markdown("""
         **User-Uploaded Dataset:**
@@ -231,6 +240,28 @@ with tab2:
         3️. Orders components so that the **first explains the most variance,** the second explains the next most, etc.
 
         """)
+
+    elif model_choice == "Hierarchical Clustering":
+        st.markdown(f"""
+    - **Number of Clusters (k):** {k}  
+    - **Linkage Method:** `{linkage_method}`
+
+    ---
+    **What is Hierarchical Clustering?**
+    - A bottom-up clustering approach where:
+        1. Each data point starts as its own cluster.
+        2. The two closest clusters are merged.
+        3. This repeats until only `k` clusters remain.
+
+    **What does the Linkage Method mean?**
+    - `ward`: Minimizes the variance between clusters.
+    - `complete`: Considers the farthest points when merging clusters.
+    - `average`: Uses the average distance between all pairs of points.
+    - `single`: Merges based on the nearest points between clusters.
+
+    This approach is useful when you want to **explore nested or tree-like relationships** between data points.
+    """)
+
 
 # -------------------------------
 # Tab 3: Evaluation
