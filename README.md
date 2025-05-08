@@ -26,7 +26,7 @@ Here’s a quick overview of my portfolio projects with brief descriptions and l
 - **🔍 Final Project: Unsupervised Machine Learning Explorer**  
   [View Project](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLUnsupervisedApp) | [Launch App](https://kunisaki-data-science-portfolio-unsupervised-ml-app.streamlit.app/)  
   
-  *A Streamlit app exploring unsupervised ML techniques like K-Means clustering and PCA with visualizations and evaluation tools.*
+  *A Streamlit app exploring unsupervised ML techniques like K-Means clustering, hierarchical clustering, and PCA with visualizations and evaluation tools.*
 
 ## Organizational Plan
 
@@ -75,7 +75,7 @@ Portfolio Significance:
 ### **4. 🔍 Interactive Unsupervised Machine Learning Explorer**
 [View Code](https://github.com/sophiakun/Kunisaki-Data-Science-Portfolio/tree/main/MLUnsupervisedApp) | [Launch App](https://kunisaki-data-science-portfolio-unsupervised-ml-app.streamlit.app/)
 
-An interactive Streamlit app exploring **unsupervised machine learning** methods, including K-Means clustering and Principal Component Analysis (PCA).  
+An interactive Streamlit app exploring **unsupervised machine learning** methods, including K-Means Clustering, Hierarchical Clustering and Principal Component Analysis (PCA).  
 Users can apply clustering to classic datasets or their own CSV uploads, adjust hyperparameters, and visualize clustering results in 2D PCA space.
 
 Portfolio Significance:
@@ -90,8 +90,8 @@ Portfolio Significance:
 - **Interactive Applications:** develop strong UI/UX capabilities for seamless user interaction in Streamlit
 - **Data Visualization:** sns.barplot(), sns.countplot(), sns.pairplot(), plt.pie() using Matplotlib & Seaborn
 - **Machine Learning**:
-  - Supervised models: Logistic Regression, Decision Trees, K-Nearest Neighbors
-  - Unsupervised models: K-Means Clustering, Principal Component Analysis
+  - Supervised Models: Logistic Regression, Decision Trees, K-Nearest Neighbors
+  - Unsupervised Models: K-Means Clustering, Hierarchical Clustering, Principal Component Analysis
 - **Model Deployment**: Hosting Streamlit apps on the web for public access
 
 ## Importance
