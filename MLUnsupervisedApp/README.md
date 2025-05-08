@@ -41,7 +41,6 @@ Run 'pip install pipreqs' in terminal
   - Hierarchical Clustering
   - Principal Component Analysis (PCA)
 
-
 - **Interactive Hyperparameter Tuning**:
   - K-Means: Choose number of clusters (k), initialization method (k-means++ or random)
   - Hierarchical Clustering: Choose number of clusters (`k`), linkage method (`ward`, `complete`, `average`, `single`)

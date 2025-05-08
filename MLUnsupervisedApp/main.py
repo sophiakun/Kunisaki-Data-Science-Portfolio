@@ -32,10 +32,12 @@ within data and can **discovers hidden trends** you might not know exist!
 Explore different unsupervised machine learning models including:  
 1. **K-Means Clustering**: an algorithm that partitions data into distinct clusters  
    by minimizing within-cluster variance
-2. **Principal Component Analysis (PCA)**: a dimensionality reduction technique that  
-   transforms features into principal components capturing the most variance
-3. **Hierarchical (Agglomerative) Clustering**: a bottom-up approach that builds nested clusters  
+            
+2. **Hierarchical (Agglomerative) Clustering**: a bottom-up approach that builds nested clusters  
    by successively merging the closest pairs of clusters
+
+3. **Principal Component Analysis (PCA)**: a dimensionality reduction technique that  
+   transforms features into principal components capturing the most variance
             
 Upload **your own dataset** or use the built-in **Iris Dataset** or **Titanic Dataset** to engage with this interactive app!
 """)
@@ -249,15 +251,15 @@ with tab2:
     ---
     **What is Hierarchical Clustering?**
     - A bottom-up clustering approach where:
-        1. Each data point starts as its own cluster.
-        2. The two closest clusters are merged.
-        3. This repeats until only `k` clusters remain.
+        1. Each data point starts as its own cluster
+        2. The two closest clusters are merged
+        3. This repeats until only `k` clusters remain
 
     **What does the Linkage Method mean?**
-    - `ward`: Minimizes the variance between clusters.
-    - `complete`: Considers the farthest points when merging clusters.
-    - `average`: Uses the average distance between all pairs of points.
-    - `single`: Merges based on the nearest points between clusters.
+    - `ward`: Minimizes the variance between clusters
+    - `complete`: Considers the farthest points when merging clusters
+    - `average`: Uses the average distance between all pairs of points
+    - `single`: Merges based on the nearest points between clusters
 
     This approach is useful when you want to **explore nested or tree-like relationships** between data points.
     """)
